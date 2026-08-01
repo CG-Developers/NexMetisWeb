@@ -30,13 +30,17 @@
 <meta property="og:title" content="NexMetis — Automatización e IA para empresas">
 <meta property="og:description" content="Estrategia digital, plataformas a medida y procesos automatizados. Barcelona.">
 <meta property="og:url" content="https://DOMINIO/">
-<meta property="og:image" content="https://DOMINIO/og-image.png">
+<meta property="og:image" content="https://DOMINIO/og-image.jpg">
+<meta property="og:image:secure_url" content="https://DOMINIO/og-image.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:alt" content="Nexmetis Tech — Automatización e IA, Barcelona">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="NexMetis — Automatización e IA para empresas">
 <meta name="twitter:description" content="Estrategia digital, plataformas a medida y procesos automatizados. Barcelona.">
-<meta name="twitter:image" content="https://DOMINIO/og-image.png">
+<meta name="twitter:image" content="https://DOMINIO/og-image.jpg">
+<meta name="twitter:image:alt" content="Nexmetis Tech — Automatización e IA, Barcelona">
 
 <!-- Datos estructurados -->
 <script type="application/ld+json">
@@ -92,6 +96,51 @@
   .nx-neon:hover { color: #FFFFFF; background: rgba(46, 139, 255, 0.16); border-color: rgba(46, 139, 255, 1); transform: translateY(-1px); box-shadow: 0 0 0 1px rgba(46, 139, 255, 0.6), 0 0 30px rgba(46, 139, 255, 0.7), inset 0 0 22px rgba(46, 139, 255, 0.25); animation: none; }
   @keyframes nxNeonPulse { 0%, 100% { box-shadow: 0 0 0 1px rgba(46, 139, 255, 0.22), 0 0 12px rgba(46, 139, 255, 0.3), inset 0 0 12px rgba(46, 139, 255, 0.1); } 50% { box-shadow: 0 0 0 1px rgba(46, 139, 255, 0.55), 0 0 26px rgba(46, 139, 255, 0.6), inset 0 0 20px rgba(46, 139, 255, 0.2); } }
   @media (prefers-reduced-motion: reduce) { .nx-neon { animation: none; } }
+  .nx-neon-lg { padding: 16px 34px; font-size: 12px; }
+  .nx-badge { display: inline-flex; align-items: center; padding: 4px 10px; border: 1px solid rgba(46, 139, 255, 0.55); border-radius: 999px; font-size: 9px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #BBD9FF; background: rgba(46, 139, 255, 0.08); white-space: nowrap; }
+
+  /* ===== TABLET Y MÓVIL ===== */
+  @media (max-width: 900px) {
+    header { padding: 14px 18px !important; gap: 14px !important; }
+    header img { height: 28px !important; }
+    header nav { gap: 16px !important; }
+    .nx-neon { padding: 9px 16px !important; font-size: 10px !important; letter-spacing: 0.14em !important; }
+    .nx-neon-lg { padding: 14px 24px !important; font-size: 11px !important; }
+
+    #nx-top { padding-top: 62px !important; }
+    #nx-hero-track { height: 260vh !important; }
+    #nx-torre { padding: 72px 20px 24px !important; }
+    #nx-proyectos { padding: 76px 20px 0 !important; }
+    #nx-contacto { padding: 76px 20px 90px !important; }
+
+    /* La hélice 3D pasa a lista vertical: en móvil no hay hover ni scroll fino */
+    #nx-scroll { height: auto !important; }
+    #nx-stage { position: relative !important; height: auto !important; overflow: visible !important; perspective: none !important; padding: 8px 20px 64px !important; }
+    #nx-scene { position: static !important; transform: none !important; transform-style: flat !important; display: grid !important; gap: 16px !important; inset: auto !important; }
+    [data-card] { position: static !important; width: 100% !important; height: auto !important; transform: none !important; opacity: 1 !important; filter: none !important; pointer-events: auto !important; padding: 22px 20px 24px !important; background: linear-gradient(160deg, rgba(17, 28, 49, 0.78), rgba(7, 12, 22, 0.86)) !important; border-color: rgba(140, 210, 255, 0.45) !important; box-shadow: 0 0 0 1px rgba(93, 227, 255, 0.28), 0 18px 44px -24px rgba(4, 12, 30, 0.9) !important; z-index: auto !important; }
+    [data-card] h3 { font-size: 24px !important; }
+    [data-card] [data-desc] { opacity: 1 !important; }
+    [data-card] [data-list] { max-height: none !important; opacity: 1 !important; transform: none !important; overflow: visible !important; }
+    [data-card] [data-list] ul { grid-template-columns: 1fr !important; }
+    [data-card] [data-link] { display: none !important; }
+    #nx-core, #nx-hint, #nx-gridtitle, #nx-cursor, #nx-smoke { display: none !important; }
+    #nx-stage div:has(> #nx-hud-level) { display: none !important; }
+
+    /* Carrusel de casos: tarjetas a escala del viewport */
+    #nx-cases { height: clamp(360px, 56vh, 460px) !important; }
+    [data-case] { width: 280px !important; height: 176px !important; margin: -88px 0 0 -140px !important; }
+  }
+
+  @media (max-width: 720px) {
+    header nav a:not(.nx-neon) { display: none !important; }
+    header { padding: 12px 16px !important; }
+    #nx-load img { width: 78vw !important; }
+  }
+
+  @media (hover: none) {
+    #nx-cursor, #nx-smoke { display: none !important; }
+    .nx-neon { animation: none; }
+  }
 </style>
 <script src="./image-slot.js"></script>
 </helmet>
@@ -275,7 +324,7 @@ digital de tu empresa:</p>
         <a data-card data-index="0" href="https://nexmetis.lovable.app/servicios/estrategia-digital" style="position: absolute; left: 50%; top: 50%; width: 440px; box-sizing: border-box; padding: 30px 32px 32px; background: linear-gradient(160deg, rgba(26, 26, 26, 0.94), rgba(10, 10, 10, 0.96)); border: 1px solid rgba(255, 255, 255, 0.13); color: #FDFAF5; transform-style: preserve-3d; will-change: transform, opacity;">
           <span data-link style="position: absolute; left: 0; top: 50%; width: 320px; height: 1px; transform-origin: 0 50%; transform: rotateY(90deg); background: linear-gradient(90deg, rgba(46, 139, 255, 0), var(--nx-accent, #2E8BFF)); pointer-events: none;"></span>
           <div style="display: flex; align-items: flex-start; justify-content: flex-end; gap: 20px;">
-            <x-import component-from-global-scope="NexMetisDesignSystem.Badge" variant="outline-inverse" size="sm" hint-size="74px,18px">Nivel 1 / 5</x-import>
+            <span class="nx-badge">Nivel 1 / 5</span>
           </div>
           <h3 style="font-family: 'Bodoni Moda', Georgia, serif; font-weight: 700; font-size: 30px; line-height: 1.1; margin: 16px 0 0;">Estrategia digital</h3>
           <p data-desc style="font-size: 14px; line-height: 1.6; color: #C4BDB4; margin: 14px 0 0; text-wrap: pretty;">Analizamos procesos, definimos la arquitectura tecnológica y trazamos una hoja de ruta realista para crecer sin deuda técnica.</p>
@@ -294,7 +343,7 @@ digital de tu empresa:</p>
         <a data-card data-index="1" href="https://nexmetis.lovable.app/servicios/desarrollo-web" style="position: absolute; left: 50%; top: 50%; width: 440px; box-sizing: border-box; padding: 30px 32px 32px; background: linear-gradient(160deg, rgba(26, 26, 26, 0.94), rgba(10, 10, 10, 0.96)); border: 1px solid rgba(255, 255, 255, 0.13); color: #FDFAF5; transform-style: preserve-3d; will-change: transform, opacity;">
           <span data-link style="position: absolute; left: 0; top: 50%; width: 320px; height: 1px; transform-origin: 0 50%; transform: rotateY(90deg); background: linear-gradient(90deg, rgba(46, 139, 255, 0), var(--nx-accent, #2E8BFF)); pointer-events: none;"></span>
           <div style="display: flex; align-items: flex-start; justify-content: flex-end; gap: 20px;">
-            <x-import component-from-global-scope="NexMetisDesignSystem.Badge" variant="outline-inverse" size="sm" hint-size="74px,18px">Nivel 2 / 5</x-import>
+            <span class="nx-badge">Nivel 2 / 5</span>
           </div>
           <h3 style="font-family: 'Bodoni Moda', Georgia, serif; font-weight: 700; font-size: 30px; line-height: 1.1; margin: 16px 0 0;">Desarrollo web</h3>
           <p data-desc style="font-size: 14px; line-height: 1.6; color: #C4BDB4; margin: 14px 0 0; text-wrap: pretty;">Construimos webs corporativas, plataformas y aplicaciones a medida con rendimiento, seguridad y mantenimiento previsible.</p>
@@ -312,7 +361,7 @@ digital de tu empresa:</p>
         <a data-card data-index="2" href="https://nexmetis.lovable.app/servicios/automatizacion" style="position: absolute; left: 50%; top: 50%; width: 440px; box-sizing: border-box; padding: 30px 32px 32px; background: linear-gradient(160deg, rgba(26, 26, 26, 0.94), rgba(10, 10, 10, 0.96)); border: 1px solid rgba(255, 255, 255, 0.13); color: #FDFAF5; transform-style: preserve-3d; will-change: transform, opacity;">
           <span data-link style="position: absolute; left: 0; top: 50%; width: 320px; height: 1px; transform-origin: 0 50%; transform: rotateY(90deg); background: linear-gradient(90deg, rgba(46, 139, 255, 0), var(--nx-accent, #2E8BFF)); pointer-events: none;"></span>
           <div style="display: flex; align-items: flex-start; justify-content: flex-end; gap: 20px;">
-            <x-import component-from-global-scope="NexMetisDesignSystem.Badge" variant="outline-inverse" size="sm" hint-size="74px,18px">Nivel 3 / 5</x-import>
+            <span class="nx-badge">Nivel 3 / 5</span>
           </div>
           <h3 style="font-family: 'Bodoni Moda', Georgia, serif; font-weight: 700; font-size: 30px; line-height: 1.1; margin: 16px 0 0;">Automatización</h3>
           <p data-desc style="font-size: 14px; line-height: 1.6; color: #C4BDB4; margin: 14px 0 0; text-wrap: pretty;">Eliminamos el trabajo repetitivo conectando flujos, datos y comunicaciones entre las herramientas que ya usáis.</p>
@@ -330,7 +379,7 @@ digital de tu empresa:</p>
         <a data-card data-index="3" href="https://nexmetis.lovable.app/servicios/inteligencia-artificial" style="position: absolute; left: 50%; top: 50%; width: 440px; box-sizing: border-box; padding: 30px 32px 32px; background: linear-gradient(160deg, rgba(26, 26, 26, 0.94), rgba(10, 10, 10, 0.96)); border: 1px solid rgba(255, 255, 255, 0.13); color: #FDFAF5; transform-style: preserve-3d; will-change: transform, opacity;">
           <span data-link style="position: absolute; left: 0; top: 50%; width: 320px; height: 1px; transform-origin: 0 50%; transform: rotateY(90deg); background: linear-gradient(90deg, rgba(46, 139, 255, 0), var(--nx-accent, #2E8BFF)); pointer-events: none;"></span>
           <div style="display: flex; align-items: flex-start; justify-content: flex-end; gap: 20px;">
-            <x-import component-from-global-scope="NexMetisDesignSystem.Badge" variant="outline-inverse" size="sm" hint-size="74px,18px">Nivel 4 / 5</x-import>
+            <span class="nx-badge">Nivel 4 / 5</span>
           </div>
           <h3 style="font-family: 'Bodoni Moda', Georgia, serif; font-weight: 700; font-size: 30px; line-height: 1.1; margin: 16px 0 0;">Inteligencia artificial</h3>
           <p data-desc style="font-size: 14px; line-height: 1.6; color: #C4BDB4; margin: 14px 0 0; text-wrap: pretty;">Aplicamos IA donde aporta margen real: asistentes, agentes operativos y procesamiento documental con control humano.</p>
@@ -349,7 +398,7 @@ digital de tu empresa:</p>
         <a data-card data-index="4" href="https://nexmetis.lovable.app/servicios/evolucion-tecnologica" style="position: absolute; left: 50%; top: 50%; width: 440px; box-sizing: border-box; padding: 30px 32px 32px; background: linear-gradient(160deg, rgba(26, 26, 26, 0.94), rgba(10, 10, 10, 0.96)); border: 1px solid rgba(255, 255, 255, 0.13); color: #FDFAF5; transform-style: preserve-3d; will-change: transform, opacity;">
           <span data-link style="position: absolute; left: 0; top: 50%; width: 320px; height: 1px; transform-origin: 0 50%; transform: rotateY(90deg); background: linear-gradient(90deg, rgba(46, 139, 255, 0), var(--nx-accent, #2E8BFF)); pointer-events: none;"></span>
           <div style="display: flex; align-items: flex-start; justify-content: flex-end; gap: 20px;">
-            <x-import component-from-global-scope="NexMetisDesignSystem.Badge" variant="outline-inverse" size="sm" hint-size="74px,18px">Nivel 5 / 5</x-import>
+            <span class="nx-badge">Nivel 5 / 5</span>
           </div>
           <h3 style="font-family: 'Bodoni Moda', Georgia, serif; font-weight: 700; font-size: 30px; line-height: 1.1; margin: 16px 0 0;">Evolución tecnológica</h3>
           <p data-desc style="font-size: 14px; line-height: 1.6; color: #C4BDB4; margin: 14px 0 0; text-wrap: pretty;">Auditamos, mantenemos y optimizamos lo construido para que el sistema siga siendo rápido, seguro y escalable.</p>
@@ -465,7 +514,7 @@ digital de tu empresa:</p>
     <h2 style="font-family: 'Bodoni Moda', Georgia, serif; font-weight: 700; font-size: clamp(34px, 4.6vw, 68px); line-height: 1.02; margin: 0; max-width: 22ch;">¿Analizamos tu proyecto?</h2>
     <p style="font-size: 17px; line-height: 1.62; color: #C4BDB4; max-width: 56ch; margin: 0;">Cuéntanos qué queréis construir o automatizar y te devolvemos una propuesta técnica con alcance y fases.</p>
     <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 28px;">
-      <x-import component-from-global-scope="NexMetisDesignSystem.Button" variant="inverse" size="lg" href="mailto:hola@nexmetis.com" hint-size="222px,48px">Escribir a NexMetis</x-import>
+      <a href="mailto:hola@nexmetis.com" class="nx-neon nx-neon-lg">Escribir a Nexmetis</a>
       <a href="mailto:hola@nexmetis.com" style="font-size: 15px; color: #C4BDB4;" style-hover="color: #FDFAF5;">hola@nexmetis.com</a>
     </div>
   </section>
