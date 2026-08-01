@@ -50,8 +50,9 @@
   "name": "NexMetis",
   "url": "https://nexmetis.nexsocial.org/",
   "logo": "https://nexmetis.nexsocial.org/icon-512.png",
-  "description": "Automatización, IA y arquitectura tecnológica para empresas.",
-  "address": { "@type": "PostalAddress", "addressLocality": "Barcelona", "addressCountry": "ES" }
+  "description": "Automatización, IA y arquitectura tecnológica para empresas. División tecnológica de NexSocial.",
+  "address": { "@type": "PostalAddress", "addressLocality": "Barcelona", "addressCountry": "ES" },
+  "parentOrganization": { "@type": "Organization", "name": "NexSocial", "url": "https://nexsocial.cat/" }
 }
 </script>
 
@@ -67,6 +68,7 @@
 <style>
   html { background: #0A0A0A; overscroll-behavior-y: none; }
   body { margin: 0; background: #0A0A0A; -webkit-font-smoothing: antialiased; }
+  #nx-root { overflow: clip; }
   a { color: var(--nx-accent, #2E8BFF); text-decoration: none; }
   a:hover { color: #7FC4FF; }
   ::selection { background: #12467F; color: #FDFAF5; }
@@ -317,7 +319,7 @@ digital de tu empresa:</p>
 
       <div id="nx-scene" style="position: absolute; inset: 0; transform-style: preserve-3d;">
 
-        <a data-card data-index="0" href="https://nexmetis.lovable.app/servicios/estrategia-digital" style="position: absolute; left: 50%; top: 50%; width: 440px; box-sizing: border-box; padding: 30px 32px 32px; background: linear-gradient(160deg, rgba(26, 26, 26, 0.94), rgba(10, 10, 10, 0.96)); border: 1px solid rgba(255, 255, 255, 0.13); color: #FDFAF5; transform-style: preserve-3d; will-change: transform, opacity;">
+        <a data-card data-index="0" href="#nx-contacto" style="position: absolute; left: 50%; top: 50%; width: 440px; box-sizing: border-box; padding: 30px 32px 32px; background: linear-gradient(160deg, rgba(26, 26, 26, 0.94), rgba(10, 10, 10, 0.96)); border: 1px solid rgba(255, 255, 255, 0.13); color: #FDFAF5; transform-style: preserve-3d; will-change: transform, opacity;">
           <span data-link style="position: absolute; left: 0; top: 50%; width: 320px; height: 1px; transform-origin: 0 50%; transform: rotateY(90deg); background: linear-gradient(90deg, rgba(46, 139, 255, 0), var(--nx-accent, #2E8BFF)); pointer-events: none;"></span>
           <div style="display: flex; align-items: flex-start; justify-content: flex-end; gap: 20px;">
             <span class="nx-badge">Nivel 1 / 5</span>
@@ -331,12 +333,12 @@ digital de tu empresa:</p>
               <li style="font-size: 12px; letter-spacing: 0.04em; color: #9B9189; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 8px;">Arquitectura de sistemas</li>
               <li style="font-size: 12px; letter-spacing: 0.04em; color: #9B9189; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 8px;">Hoja de ruta por fases</li>
             </ul>
-            <span style="display: inline-block; margin-top: 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--nx-accent, #2E8BFF);">Explorar servicio →</span>
+            <span style="display: inline-block; margin-top: 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--nx-accent, #2E8BFF);">Consultar servicio →</span>
           </div>
         </a>
 
         
-        <a data-card data-index="1" href="https://nexmetis.lovable.app/servicios/desarrollo-web" style="position: absolute; left: 50%; top: 50%; width: 440px; box-sizing: border-box; padding: 30px 32px 32px; background: linear-gradient(160deg, rgba(26, 26, 26, 0.94), rgba(10, 10, 10, 0.96)); border: 1px solid rgba(255, 255, 255, 0.13); color: #FDFAF5; transform-style: preserve-3d; will-change: transform, opacity;">
+        <a data-card data-index="1" href="#nx-contacto" style="position: absolute; left: 50%; top: 50%; width: 440px; box-sizing: border-box; padding: 30px 32px 32px; background: linear-gradient(160deg, rgba(26, 26, 26, 0.94), rgba(10, 10, 10, 0.96)); border: 1px solid rgba(255, 255, 255, 0.13); color: #FDFAF5; transform-style: preserve-3d; will-change: transform, opacity;">
           <span data-link style="position: absolute; left: 0; top: 50%; width: 320px; height: 1px; transform-origin: 0 50%; transform: rotateY(90deg); background: linear-gradient(90deg, rgba(46, 139, 255, 0), var(--nx-accent, #2E8BFF)); pointer-events: none;"></span>
           <div style="display: flex; align-items: flex-start; justify-content: flex-end; gap: 20px;">
             <span class="nx-badge">Nivel 2 / 5</span>
@@ -350,11 +352,11 @@ digital de tu empresa:</p>
               <li style="font-size: 12px; letter-spacing: 0.04em; color: #9B9189; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 8px;">Comercio electrónico</li>
               <li style="font-size: 12px; letter-spacing: 0.04em; color: #9B9189; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 8px;">Áreas privadas y portales</li>
             </ul>
-            <span style="display: inline-block; margin-top: 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--nx-accent, #2E8BFF);">Explorar servicio →</span>
+            <span style="display: inline-block; margin-top: 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--nx-accent, #2E8BFF);">Consultar servicio →</span>
           </div>
         </a>
 
-        <a data-card data-index="2" href="https://nexmetis.lovable.app/servicios/automatizacion" style="position: absolute; left: 50%; top: 50%; width: 440px; box-sizing: border-box; padding: 30px 32px 32px; background: linear-gradient(160deg, rgba(26, 26, 26, 0.94), rgba(10, 10, 10, 0.96)); border: 1px solid rgba(255, 255, 255, 0.13); color: #FDFAF5; transform-style: preserve-3d; will-change: transform, opacity;">
+        <a data-card data-index="2" href="#nx-contacto" style="position: absolute; left: 50%; top: 50%; width: 440px; box-sizing: border-box; padding: 30px 32px 32px; background: linear-gradient(160deg, rgba(26, 26, 26, 0.94), rgba(10, 10, 10, 0.96)); border: 1px solid rgba(255, 255, 255, 0.13); color: #FDFAF5; transform-style: preserve-3d; will-change: transform, opacity;">
           <span data-link style="position: absolute; left: 0; top: 50%; width: 320px; height: 1px; transform-origin: 0 50%; transform: rotateY(90deg); background: linear-gradient(90deg, rgba(46, 139, 255, 0), var(--nx-accent, #2E8BFF)); pointer-events: none;"></span>
           <div style="display: flex; align-items: flex-start; justify-content: flex-end; gap: 20px;">
             <span class="nx-badge">Nivel 3 / 5</span>
@@ -368,11 +370,11 @@ digital de tu empresa:</p>
               <li style="font-size: 12px; letter-spacing: 0.04em; color: #9B9189; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 8px;">Comunicaciones automáticas</li>
               <li style="font-size: 12px; letter-spacing: 0.04em; color: #9B9189; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 8px;">Gestión documental</li>
             </ul>
-            <span style="display: inline-block; margin-top: 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--nx-accent, #2E8BFF);">Explorar servicio →</span>
+            <span style="display: inline-block; margin-top: 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--nx-accent, #2E8BFF);">Consultar servicio →</span>
           </div>
         </a>
 
-        <a data-card data-index="3" href="https://nexmetis.lovable.app/servicios/inteligencia-artificial" style="position: absolute; left: 50%; top: 50%; width: 440px; box-sizing: border-box; padding: 30px 32px 32px; background: linear-gradient(160deg, rgba(26, 26, 26, 0.94), rgba(10, 10, 10, 0.96)); border: 1px solid rgba(255, 255, 255, 0.13); color: #FDFAF5; transform-style: preserve-3d; will-change: transform, opacity;">
+        <a data-card data-index="3" href="#nx-contacto" style="position: absolute; left: 50%; top: 50%; width: 440px; box-sizing: border-box; padding: 30px 32px 32px; background: linear-gradient(160deg, rgba(26, 26, 26, 0.94), rgba(10, 10, 10, 0.96)); border: 1px solid rgba(255, 255, 255, 0.13); color: #FDFAF5; transform-style: preserve-3d; will-change: transform, opacity;">
           <span data-link style="position: absolute; left: 0; top: 50%; width: 320px; height: 1px; transform-origin: 0 50%; transform: rotateY(90deg); background: linear-gradient(90deg, rgba(46, 139, 255, 0), var(--nx-accent, #2E8BFF)); pointer-events: none;"></span>
           <div style="display: flex; align-items: flex-start; justify-content: flex-end; gap: 20px;">
             <span class="nx-badge">Nivel 4 / 5</span>
@@ -386,12 +388,12 @@ digital de tu empresa:</p>
               <li style="font-size: 12px; letter-spacing: 0.04em; color: #9B9189; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 8px;">Procesamiento documental</li>
               <li style="font-size: 12px; letter-spacing: 0.04em; color: #9B9189; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 8px;">Análisis y clasificación</li>
             </ul>
-            <span style="display: inline-block; margin-top: 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--nx-accent, #2E8BFF);">Explorar servicio →</span>
+            <span style="display: inline-block; margin-top: 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--nx-accent, #2E8BFF);">Consultar servicio →</span>
           </div>
         </a>
 
         
-        <a data-card data-index="4" href="https://nexmetis.lovable.app/servicios/evolucion-tecnologica" style="position: absolute; left: 50%; top: 50%; width: 440px; box-sizing: border-box; padding: 30px 32px 32px; background: linear-gradient(160deg, rgba(26, 26, 26, 0.94), rgba(10, 10, 10, 0.96)); border: 1px solid rgba(255, 255, 255, 0.13); color: #FDFAF5; transform-style: preserve-3d; will-change: transform, opacity;">
+        <a data-card data-index="4" href="#nx-contacto" style="position: absolute; left: 50%; top: 50%; width: 440px; box-sizing: border-box; padding: 30px 32px 32px; background: linear-gradient(160deg, rgba(26, 26, 26, 0.94), rgba(10, 10, 10, 0.96)); border: 1px solid rgba(255, 255, 255, 0.13); color: #FDFAF5; transform-style: preserve-3d; will-change: transform, opacity;">
           <span data-link style="position: absolute; left: 0; top: 50%; width: 320px; height: 1px; transform-origin: 0 50%; transform: rotateY(90deg); background: linear-gradient(90deg, rgba(46, 139, 255, 0), var(--nx-accent, #2E8BFF)); pointer-events: none;"></span>
           <div style="display: flex; align-items: flex-start; justify-content: flex-end; gap: 20px;">
             <span class="nx-badge">Nivel 5 / 5</span>
@@ -405,7 +407,7 @@ digital de tu empresa:</p>
               <li style="font-size: 12px; letter-spacing: 0.04em; color: #9B9189; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 8px;">Optimización y rendimiento</li>
               <li style="font-size: 12px; letter-spacing: 0.04em; color: #9B9189; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 8px;">Seguridad y escalabilidad</li>
             </ul>
-            <span style="display: inline-block; margin-top: 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--nx-accent, #2E8BFF);">Explorar servicio →</span>
+            <span style="display: inline-block; margin-top: 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--nx-accent, #2E8BFF);">Consultar servicio →</span>
           </div>
         </a>
 
@@ -417,7 +419,7 @@ digital de tu empresa:</p>
       </div>
 
       <div style="position: absolute; left: 40px; bottom: 40px; display: flex; align-items: center; gap: 18px; pointer-events: none;">
-        <span id="nx-hud-level" style="font-family: 'Bodoni Moda', Georgia, serif; font-weight: 700; font-size: 30px; color: #FDFAF5; min-width: 92px;">01 / 07</span>
+        <span id="nx-hud-level" style="font-family: 'Bodoni Moda', Georgia, serif; font-weight: 700; font-size: 30px; color: #FDFAF5; min-width: 92px;">01 / 05</span>
         <div style="width: 240px; height: 2px; background: rgba(255, 255, 255, 0.14);">
           <div id="nx-hud-bar" style="width: 0%; height: 100%; background: var(--nx-accent, #2E8BFF);"></div>
         </div>
@@ -494,7 +496,7 @@ digital de tu empresa:</p>
       </div>
       <div style="display: flex; align-items: center; gap: 14px;">
         <button id="nx-case-prev" type="button" aria-label="Caso anterior" data-cursor="Atrás" style="width: 40px; height: 40px; border: 1px solid rgba(255, 255, 255, 0.22); background: transparent; color: #FDFAF5; font-size: 14px; cursor: pointer;" style-hover="border-color: var(--nx-accent, #2E8BFF); color: var(--nx-accent, #2E8BFF);">←</button>
-        <span id="nx-case-idx" style="font-family: 'Bodoni Moda', Georgia, serif; font-weight: 700; font-size: 18px; color: #FDFAF5; min-width: 54px; text-align: center;">01 / 06</span>
+        <span id="nx-case-idx" style="font-family: 'Bodoni Moda', Georgia, serif; font-weight: 700; font-size: 18px; color: #FDFAF5; min-width: 54px; text-align: center;">01 / 05</span>
         <button id="nx-case-next" type="button" aria-label="Caso siguiente" data-cursor="Siguiente" style="width: 40px; height: 40px; border: 1px solid rgba(255, 255, 255, 0.22); background: transparent; color: #FDFAF5; font-size: 14px; cursor: pointer;" style-hover="border-color: var(--nx-accent, #2E8BFF); color: var(--nx-accent, #2E8BFF);">→</button>
       </div>
     </div>
@@ -518,7 +520,7 @@ digital de tu empresa:</p>
   <footer style="border-top: 1px solid rgba(255, 255, 255, 0.08); background: rgba(255, 255, 255, 0.02);">
     <div style="max-width: 1360px; margin: 0 auto; padding: 72px 40px 48px; display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 48px;">
       <div style="display: grid; gap: 16px; align-content: start;">
-        <span style="font-family: 'Bodoni Moda', Georgia, serif; font-weight: 700; font-size: 26px; color: #FDFAF5;">NexMetis</span>
+        <img src="logo-nexmetis.png" alt="Nexmetis Tech" width="900" height="275" style="width: 190px; height: auto; display: block;">
         <p style="font-size: 13px; line-height: 1.65; color: #9B9189; margin: 0; max-width: 34ch;">Ingeniería digital en Barcelona. Estrategia, desarrollo, automatización e inteligencia artificial para hacer crecer tu empresa.</p>
       </div>
       <div style="display: grid; gap: 12px; align-content: start;">
@@ -603,6 +605,23 @@ class Component extends DCLogic {
     this.initGlyphs();
     this.initWipe();
     this.initVideo();
+    setTimeout(() => this.auditTail(), 3500);
+  }
+
+  auditTail() {
+    // diagnostico: avisa en consola si algo desborda por debajo del footer
+    const foot = document.querySelector('footer');
+    if (!foot) return;
+    const f = foot.getBoundingClientRect().bottom + window.scrollY;
+    const gap = Math.round(document.documentElement.scrollHeight - f);
+    if (gap <= 2) { console.log('[nx] OK: el documento termina en el footer'); return; }
+    const culprits = [...document.querySelectorAll('body *')].filter((el) => {
+      const r = el.getBoundingClientRect();
+      if (!r.height && !r.width) return false;
+      if (getComputedStyle(el).position === 'fixed') return false;
+      return r.bottom + window.scrollY > f + 2;
+    }).map((el) => el.tagName + '#' + (el.id || '-') + ' h=' + Math.round(el.getBoundingClientRect().height));
+    console.log('[nx] sobran ' + gap + 'px bajo el footer. Culpables:', culprits.slice(0, 8));
   }
 
   initVideo() {
