@@ -9,7 +9,7 @@
 <meta name="description" content="Automatización, IA y arquitectura tecnológica a medida. Estrategia digital, plataformas y apps con rendimiento, seguridad y mantenimiento previsible. Barcelona.">
 <meta name="author" content="NexMetis">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://DOMINIO/">
+<link rel="canonical" href="https://nexmetis.nexsocial.org/">
 
 <!-- Apariencia y privacidad -->
 <meta name="theme-color" content="#0A0A0A">
@@ -29,9 +29,9 @@
 <meta property="og:locale" content="es_ES">
 <meta property="og:title" content="NexMetis — Automatización e IA para empresas">
 <meta property="og:description" content="Estrategia digital, plataformas a medida y procesos automatizados. Barcelona.">
-<meta property="og:url" content="https://DOMINIO/">
-<meta property="og:image" content="https://DOMINIO/og-image.jpg">
-<meta property="og:image:secure_url" content="https://DOMINIO/og-image.jpg">
+<meta property="og:url" content="https://nexmetis.nexsocial.org/">
+<meta property="og:image" content="https://nexmetis.nexsocial.org/og-image.jpg">
+<meta property="og:image:secure_url" content="https://nexmetis.nexsocial.org/og-image.jpg">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:alt" content="Nexmetis Tech — Automatización e IA, Barcelona">
 <meta property="og:image:width" content="1200">
@@ -39,7 +39,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="NexMetis — Automatización e IA para empresas">
 <meta name="twitter:description" content="Estrategia digital, plataformas a medida y procesos automatizados. Barcelona.">
-<meta name="twitter:image" content="https://DOMINIO/og-image.jpg">
+<meta name="twitter:image" content="https://nexmetis.nexsocial.org/og-image.jpg">
 <meta name="twitter:image:alt" content="Nexmetis Tech — Automatización e IA, Barcelona">
 
 <!-- Datos estructurados -->
@@ -48,8 +48,8 @@
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "NexMetis",
-  "url": "https://DOMINIO/",
-  "logo": "https://DOMINIO/icon-512.png",
+  "url": "https://nexmetis.nexsocial.org/",
+  "logo": "https://nexmetis.nexsocial.org/icon-512.png",
   "description": "Automatización, IA y arquitectura tecnológica para empresas.",
   "address": { "@type": "PostalAddress", "addressLocality": "Barcelona", "addressCountry": "ES" }
 }
@@ -178,7 +178,7 @@
 
     <div id="nx-parallax" style="position: absolute; inset: -5%; z-index: 0; will-change: transform;">
       <div style="position: absolute; inset: 0; animation: nxGlassIn 1900ms cubic-bezier(0.16, 1, 0.3, 1) both;">
-        <video id="nx-hero-video" src="media/hero-video.mp4" autoplay muted loop playsinline preload="auto" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;"></video>
+        <video id="nx-hero-video" src="media/hero-video.mp4" autoplay muted playsinline preload="auto" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;"></video>
       </div>
     </div>
 
@@ -610,11 +610,18 @@ class Component extends DCLogic {
     if (!v) return;
     v.muted = true;
     v.defaultMuted = true;
-    v.loop = true;
+    v.loop = false;
     v.playbackRate = 0.85;
-    const kick = () => { const p = v.play(); if (p && p.catch) p.catch(() => {}); };
+    const kick = () => { if (this.videoEnded) return; const p = v.play(); if (p && p.catch) p.catch(() => {}); };
     this.kickVideo = kick;
-    v.addEventListener('ended', () => { v.currentTime = 0; kick(); });
+    // al terminar no reencadena: para, corta la musica y ofrece repetir
+    v.addEventListener('ended', () => {
+      this.videoEnded = true;
+      this.videoStarted = false;
+      this.soundWasOn = false;
+      v.pause();
+      this.syncSoundBtn();
+    });
     // hold on the first frame until the visitor starts scrolling
     const hold = () => { v.pause(); v.currentTime = 0; };
     v.addEventListener('loadeddata', hold, { once: true });
@@ -629,7 +636,7 @@ class Component extends DCLogic {
     });
     this.videoWatch = setInterval(() => {
       if (!this.alive) { clearInterval(this.videoWatch); return; }
-      if (this.videoStarted && v.paused && !v.ended) kick();
+      if (this.videoStarted && v.paused && !v.ended && !this.videoEnded) kick();
     }, 1200);
 
     const btn = document.getElementById('nx-sound');
@@ -637,9 +644,19 @@ class Component extends DCLogic {
     const label = document.getElementById('nx-sound-label');
     if (!btn) return;
     btn.addEventListener('click', () => {
+      if (this.videoEnded) {
+        this.videoEnded = false;
+        this.videoStarted = true;
+        v.currentTime = 0;
+        v.volume = 1;
+        kick();
+        this.syncSoundBtn();
+        return;
+      }
       v.muted = !v.muted;
       v.volume = 1;
       this.soundWasOn = false;
+      if (v.paused) this.videoStarted = true;
       kick();
       this.syncSoundBtn();
     });
@@ -957,29 +974,6 @@ class Component extends DCLogic {
     problemStyle();
     this.problemStyle = problemStyle;
     this.revealSubs = revealSubs;
-    // rewind: al volver arriba, la pantalla de "tareas repetitivas" se rearma
-    const resetHero = () => {
-      if (!this.decoded || this.heroShards) return;
-      running = false;
-      this.runicBusy = false;
-      this.decoded = false;
-      subs.forEach((el) => {
-        el.classList.remove('nx-in');
-        el.style.transition = 'none';
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(18px)';
-        el.style.pointerEvents = 'none';
-        el.style.display = 'none';
-      });
-      const board = document.getElementById('nx-board');
-      if (board) board.style.opacity = '1';
-      const bl = document.getElementById('nx-board-list');
-      if (bl) { bl.style.opacity = '1'; bl.style.filter = 'none'; }
-      problemStyle();
-      clearTimeout(this.replayT);
-      this.replayT = setTimeout(() => { if (!this.decoded && !this.heroShards) run(560, 1350); }, 4200);
-    };
-    this.resetHero = resetHero;
     const paint = (l, k) => {
       // k: 0 = original grey glass, 1 = electric blue
       if (k <= 0) {
@@ -1203,6 +1197,13 @@ class Component extends DCLogic {
     if (!v || !btn) return;
     const icon = document.getElementById('nx-sound-icon');
     const label = document.getElementById('nx-sound-label');
+    if (this.videoEnded) {
+      if (icon) icon.textContent = '\u21BB';
+      if (label) label.textContent = 'Reproducir de nuevo';
+      btn.style.borderColor = '#7FC4FF';
+      btn.style.color = '#7FC4FF';
+      return;
+    }
     if (icon) icon.textContent = v.muted ? '\u25B6' : '\u275A\u275A';
     if (label) label.textContent = v.muted ? 'Activar sonido' : 'Silenciar';
     btn.style.borderColor = v.muted ? 'rgba(255, 255, 255, 0.32)' : '#7FC4FF';
@@ -1248,7 +1249,7 @@ class Component extends DCLogic {
       const board = document.getElementById('nx-board');
       if (board && !this.decoded) board.style.opacity = String(Math.pow(1 - gone, 1.6));
       if (gone > 0.14 && !this.crashPlayed) { this.crashPlayed = true; this.playCrash(); }
-      if (e < 0.004) { this.crashPlayed = false; if (this.resetHero) this.resetHero(); }
+      if (e < 0.004) this.crashPlayed = false;
     }
     const cracks = document.getElementById('nx-cracks');
     if (cracks) {
@@ -1285,8 +1286,9 @@ class Component extends DCLogic {
     if (scrim) scrim.style.opacity = String(1 - gT * 0.82);
     if (vid) {
       if (e < 0.006) {
-        // parked at the top: first frame, frozen
+        // parked at the top: first frame, frozen y listo para volver a sonar
         this.videoStarted = false;
+        if (this.videoEnded) { this.videoEnded = false; this.syncSoundBtn(); }
         if (!vid.paused) vid.pause();
         if (vid.currentTime > 0.05) vid.currentTime = 0;
       } else if (!this.videoStarted) {
@@ -1297,9 +1299,10 @@ class Component extends DCLogic {
     this.shatterHero(Math.min(Math.max((e - 0.004) / 0.24, 0), 1));
     const btn = document.getElementById('nx-sound');
     if (btn) {
-      const show = Math.min(Math.max((e - 0.3) / 0.18, 0), 1);
+      // visible desde el arranque del video y hasta que el hero sale de pantalla
+      const show = 1 - Math.min(Math.max((e - 0.72) / 0.16, 0), 1);
       btn.style.opacity = String(show);
-      btn.style.pointerEvents = show > 0.6 ? 'auto' : 'none';
+      btn.style.pointerEvents = show > 0.4 ? 'auto' : 'none';
     }
     const mid = document.getElementById('nx-hero-mid');
     if (mid) {
