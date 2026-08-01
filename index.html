@@ -952,6 +952,29 @@ class Component extends DCLogic {
     problemStyle();
     this.problemStyle = problemStyle;
     this.revealSubs = revealSubs;
+    // rewind: al volver arriba, la pantalla de "tareas repetitivas" se rearma
+    const resetHero = () => {
+      if (!this.decoded || this.heroShards) return;
+      running = false;
+      this.runicBusy = false;
+      this.decoded = false;
+      subs.forEach((el) => {
+        el.classList.remove('nx-in');
+        el.style.transition = 'none';
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(18px)';
+        el.style.pointerEvents = 'none';
+        el.style.display = 'none';
+      });
+      const board = document.getElementById('nx-board');
+      if (board) board.style.opacity = '1';
+      const bl = document.getElementById('nx-board-list');
+      if (bl) { bl.style.opacity = '1'; bl.style.filter = 'none'; }
+      problemStyle();
+      clearTimeout(this.replayT);
+      this.replayT = setTimeout(() => { if (!this.decoded && !this.heroShards) run(560, 1350); }, 4200);
+    };
+    this.resetHero = resetHero;
     const paint = (l, k) => {
       // k: 0 = original grey glass, 1 = electric blue
       if (k <= 0) {
@@ -1191,7 +1214,7 @@ class Component extends DCLogic {
       const board = document.getElementById('nx-board');
       if (board && !this.decoded) board.style.opacity = String(Math.pow(1 - gone, 1.6));
       if (gone > 0.14 && !this.crashPlayed) { this.crashPlayed = true; this.playCrash(); }
-      if (e < 0.004) this.crashPlayed = false;
+      if (e < 0.004) { this.crashPlayed = false; if (this.resetHero) this.resetHero(); }
     }
     const cracks = document.getElementById('nx-cracks');
     if (cracks) {
