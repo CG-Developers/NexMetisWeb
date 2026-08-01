@@ -1,0 +1,53 @@
+/* Flamenco & Events Barcelona — Spacing Tokens */
+
+:root {
+  /* ─── Base scale (4px grid) ─── */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+  --space-32: 128px;
+  --space-40: 160px;
+  --space-48: 192px;
+  --space-64: 256px;
+
+  /* ─── Semantic gap tokens ─── */
+  --gap-xs:  var(--space-2);   /* 8px  — tight inline gaps */
+  --gap-sm:  var(--space-4);   /* 16px — card inner padding */
+  --gap-md:  var(--space-6);   /* 24px — default component gap */
+  --gap-lg:  var(--space-8);   /* 32px — section inner gap */
+  --gap-xl:  var(--space-12);  /* 48px — between sections */
+  --gap-2xl: var(--space-20);  /* 80px — generous section gap */
+  --gap-3xl: var(--space-32);  /* 128px — hero vertical space */
+
+  /* ─── Layout ─── */
+  --container-max:       1280px;
+  --container-narrow:    840px;
+  --container-wide:      1440px;
+  --container-padding-x: var(--space-8);  /* 32px sides */
+
+  /* ─── Section padding ─── */
+  --section-padding-y: var(--space-20);  /* 80px top/bottom */
+  --section-padding-x: var(--space-8);   /* 32px left/right */
+
+  /* ─── Component tokens ─── */
+  --card-padding:   var(--space-8);
+  --card-padding-sm: var(--space-6);
+  --button-padding-x: var(--space-8);
+  --button-padding-y: var(--space-4);
+  --button-padding-x-sm: var(--space-5);
+  --button-padding-y-sm: var(--space-2);
+  --button-padding-x-lg: var(--space-12);
+  --button-padding-y-lg: var(--space-5);
+
+  --input-padding-x: var(--space-4);
+  --input-padding-y: var(--space-3);
+}

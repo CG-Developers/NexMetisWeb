@@ -1,0 +1,64 @@
+/* Flamenco & Events Barcelona — Effects Tokens */
+
+:root {
+  /* ─── Border radius ─── */
+  /* Brand style: sharp corners. Minimal rounding. */
+  --radius-none: 0;
+  --radius-xs:   1px;
+  --radius-sm:   2px;
+  --radius-md:   4px;
+  --radius-lg:   8px;
+  --radius-full: 9999px;
+
+  /* Semantic */
+  --radius-button: var(--radius-none);   /* Buttons: sharp */
+  --radius-card:   var(--radius-sm);     /* Cards: barely rounded */
+  --radius-badge:  var(--radius-none);   /* Badges: sharp */
+  --radius-input:  var(--radius-sm);
+
+  /* ─── Shadows ─── */
+  /* Warm, slightly amber-tinted shadows match the brand warmth */
+  --shadow-xs:  0 1px 2px rgba(10, 10, 10, 0.06);
+  --shadow-sm:  0 2px 8px  rgba(10, 10, 10, 0.08);
+  --shadow-md:  0 4px 20px rgba(10, 10, 10, 0.11);
+  --shadow-lg:  0 12px 40px rgba(10, 10, 10, 0.16);
+  --shadow-xl:  0 24px 80px rgba(10, 10, 10, 0.22);
+  --shadow-dark: 0 8px 32px rgba(10, 10, 10, 0.50);  /* for dark sections */
+
+  /* Glow: for stage-light effect on accent elements */
+  --shadow-crimson: 0 4px 24px rgba(155, 27, 48, 0.30);
+  --shadow-dorado:  0 4px 24px rgba(196, 154, 60, 0.30);
+
+  /* ─── Transitions ─── */
+  /* Brand animation: elegant, not playful. Slow, cinematic. */
+  --ease-default:    cubic-bezier(0.25, 0.1, 0.25, 1); /* @kind other */
+  --ease-in:         cubic-bezier(0.4, 0, 1, 1); /* @kind other */
+  --ease-out:        cubic-bezier(0, 0, 0.2, 1); /* @kind other */
+  --ease-in-out:     cubic-bezier(0.4, 0, 0.2, 1); /* @kind other */
+  --ease-reveal:     cubic-bezier(0.16, 1, 0.3, 1); /* @kind other */
+  --ease-cinematic:  cubic-bezier(0.77, 0, 0.18, 1); /* @kind other */
+
+  --duration-fast:   100ms; /* @kind other */
+  --duration-base:   220ms; /* @kind other */
+  --duration-slow:   380ms; /* @kind other */
+  --duration-reveal: 640ms; /* @kind other */
+  --duration-scene:  900ms; /* @kind other */
+
+  --transition-fast:    var(--duration-fast) var(--ease-default); /* @kind other */
+  --transition-base:    var(--duration-base) var(--ease-default); /* @kind other */
+  --transition-slow:    var(--duration-slow) var(--ease-out); /* @kind other */
+  --transition-reveal:  var(--duration-reveal) var(--ease-reveal); /* @kind other */
+  --transition-scene:   var(--duration-scene) var(--ease-cinematic); /* @kind other */
+
+  /* ─── Borders ─── */
+  --border-width:   1px; /* @kind other */
+  --border-default: 1px solid var(--color-ivory-400); /* @kind other */
+  --border-strong:  1px solid var(--color-humo-200); /* @kind other */
+  --border-inverse: 1px solid rgba(255, 255, 255, 0.15); /* @kind other */
+  --border-accent:  1px solid var(--color-crimson); /* @kind other */
+
+  /* ─── Opacity ─── */
+  --opacity-disabled: 0.38; /* @kind other */
+  --opacity-muted:    0.55; /* @kind other */
+  --opacity-overlay:  0.62; /* @kind other */
+}

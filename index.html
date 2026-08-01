@@ -1,0 +1,1516 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.cdnfonts.com/css/sreda" rel="stylesheet">
+<link href="https://fonts.cdnfonts.com/css/chalkduster" rel="stylesheet">
+<link rel="stylesheet" href="_ds/nexmetis-design-system/tokens/colors.css">
+<link rel="stylesheet" href="_ds/nexmetis-design-system/tokens/typography.css">
+<link rel="stylesheet" href="_ds/nexmetis-design-system/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/nexmetis-design-system/tokens/effects.css">
+<link rel="stylesheet" href="_ds/nexmetis-design-system/styles.css">
+<script src="_ds/nexmetis-design-system/_ds_bundle.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Codystar:wght@300;400&family=Gochi+Hand&family=Walter+Turncoat&family=Caveat:wght@500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Archivo:wght@400;500;600;700&display=swap">
+<style>
+  html { background: #0A0A0A; }
+  body { margin: 0; background: #0A0A0A; -webkit-font-smoothing: antialiased; }
+  a { color: var(--nx-accent, #2E8BFF); text-decoration: none; }
+  a:hover { color: #7FC4FF; }
+  ::selection { background: #12467F; color: #FDFAF5; }
+  @keyframes nxPulseDown { 0% { top: 2%; opacity: 0; } 12% { opacity: 1; } 92% { opacity: 1; } 100% { top: 50%; opacity: 0; } }
+  @keyframes nxPulseUp { 0% { top: 98%; opacity: 0; } 12% { opacity: 1; } 92% { opacity: 1; } 100% { top: 50%; opacity: 0; } }
+  @keyframes nxBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
+  @keyframes nxCoreGlow { 0%, 100% { opacity: 0.45; } 50% { opacity: 0.95; } }
+  @keyframes nxTrace { 0% { transform: translateX(0); opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { transform: translateX(var(--nx-trace, 300px)); opacity: 0; } }
+  @keyframes nxFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+  @keyframes nxChevA { 0%, 100% { opacity: 0.25; transform: translateY(0); } 50% { opacity: 1; transform: translateY(4px); } }
+  @keyframes nxChevB { 0%, 100% { opacity: 1; transform: translateY(4px); } 50% { opacity: 0.25; transform: translateY(0); } }
+  @keyframes nxMarquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @keyframes nxMarqueeRev { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+  [data-reveal] { opacity: 0; transform: translateY(26px); transition: opacity 760ms cubic-bezier(0.16, 1, 0.3, 1), transform 760ms cubic-bezier(0.16, 1, 0.3, 1); }
+  [data-reveal].nx-in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { [data-reveal] { opacity: 1; transform: none; transition: none; } }
+  @keyframes nxGlassIn { from { transform: scale(1.14); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    @keyframes nxFlash { 0% { opacity: 0; } 16% { opacity: 0.42; } 100% { opacity: 0; } }
+  @keyframes nxLineUp { from { transform: translateY(106%); } to { transform: translateY(0); } }
+</style>
+<script src="./image-slot.js"></script>
+</helmet>
+
+<div id="nx-root" style="background: #0A0A0A; color: #FDFAF5; font-family: 'Archivo', system-ui, sans-serif;">
+
+  <div id="nx-load" style="position: fixed; inset: 0; z-index: 1200; background: #0A0A0A; display: grid; place-content: center; justify-items: center; gap: 34px; transition: opacity 700ms cubic-bezier(0.16, 1, 0.3, 1), visibility 700ms;">
+    <span style="font-family: 'Bodoni Moda', Georgia, serif; font-weight: 700; font-size: clamp(38px, 7vw, 92px); letter-spacing: -0.01em; color: #FDFAF5;">NexMetis</span>
+    <div style="display: flex; align-items: center; gap: 20px;">
+      <div style="width: min(46vw, 420px); height: 1px; background: rgba(255, 255, 255, 0.16);">
+        <div id="nx-load-bar" style="width: 0%; height: 100%; background: var(--nx-accent, #2E8BFF);"></div>
+      </div>
+      <span id="nx-load-num" style="font-size: 11px; font-weight: 700; letter-spacing: 0.24em; color: var(--nx-accent, #2E8BFF); min-width: 42px;">000</span>
+    </div>
+    <span style="font-size: 10px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: #9B9189;">Inicializando arquitectura</span>
+  </div>
+
+  <canvas id="nx-smoke" style="position: fixed; inset: 0; z-index: 1090; pointer-events: none;"></canvas>
+
+  <div id="nx-cursor" style="position: fixed; top: 0; left: 0; z-index: 1100; width: 12px; height: 12px; margin: -6px 0 0 -6px; border: 1px solid rgba(255, 255, 255, 0.75); border-radius: 50%; pointer-events: none; opacity: 0; transition: opacity 300ms, width 260ms cubic-bezier(0.16,1,0.3,1), height 260ms cubic-bezier(0.16,1,0.3,1), background 260ms; display: grid; place-content: center;">
+    <span id="nx-cursor-label" style="font-size: 8px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #0A0A0A; opacity: 0; white-space: nowrap;">Abrir</span>
+  </div>
+
+  <header style="position: fixed; top: 0; left: 0; right: 0; z-index: 900; display: flex; align-items: center; justify-content: space-between; gap: 32px; padding: 18px 40px; background: rgba(10, 10, 10, 0.72); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(255, 255, 255, 0.08);">
+    <a href="#nx-top" style="display: flex; align-items: baseline; gap: 10px; color: #FDFAF5;">
+      <span style="font-family: 'Bodoni Moda', Georgia, serif; font-weight: 700; font-size: 22px; letter-spacing: 0.02em;">NexMetis</span>
+      <span style="font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: #9B9189;">Barcelona</span>
+    </a>
+    <nav style="display: flex; align-items: center; gap: 32px;">
+      <a href="#nx-torre" style="font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #C4BDB4;" style-hover="color: #FDFAF5;">Servicios</a>
+      <a href="#nx-proyectos" style="font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #C4BDB4;" style-hover="color: #FDFAF5;">Proyectos</a>
+      <a href="#nx-contacto" style="font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #C4BDB4;" style-hover="color: #FDFAF5;">Contacto</a>
+      <x-import component-from-global-scope="NexMetisDesignSystem.Button" variant="inverse-outline" size="sm" href="#nx-contacto" hint-size="188px,34px">Analizar mi proyecto</x-import>
+    </nav>
+  </header>
+
+  <div id="nx-hero-track" style="position: relative; height: 420vh;">
+  <section id="nx-top" style="position: sticky; top: 0; height: 100vh; box-sizing: border-box; display: grid; grid-template-rows: auto minmax(0, 1fr) auto; padding-top: 71px; overflow: hidden; background: #04070F;">
+
+    <div id="nx-parallax" style="position: absolute; inset: -5%; z-index: 0; will-change: transform;">
+      <div style="position: absolute; inset: 0; animation: nxGlassIn 1900ms cubic-bezier(0.16, 1, 0.3, 1) both;">
+        <video id="nx-hero-video" src="media/hero-video.mp4" autoplay muted loop playsinline preload="auto" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;"></video>
+      </div>
+    </div>
+
+    <div id="nx-photo" style="position: absolute; inset: -4%; z-index: 1; pointer-events: none; will-change: transform, opacity;"><div style="position: absolute; inset: 0; background-image: url('media/hero-photo.png'); background-size: cover; background-position: 60% 45%; background-repeat: no-repeat; animation: nxGlassIn 1900ms cubic-bezier(0.16, 1, 0.3, 1) both;"></div></div>
+
+    <div id="nx-scrim" style="position: absolute; inset: 0; z-index: 1; background: radial-gradient(50% 40% at 50% 42%, rgba(4, 7, 15, 0.52), rgba(4, 7, 15, 0.12) 74%, rgba(4, 7, 15, 0.28) 100%), linear-gradient(180deg, rgba(4, 7, 15, 0.55) 0%, rgba(4, 7, 15, 0.05) 34%, rgba(4, 7, 15, 0.62) 100%); pointer-events: none;"></div>
+
+    <div id="nx-pane" style="position: absolute; inset: 0; z-index: 3; border: 1.5px solid rgba(235, 244, 255, 0.4); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12), inset 0 0 60px rgba(200, 226, 255, 0.09), 0 0 26px rgba(160, 210, 255, 0.2); background: linear-gradient(118deg, rgba(214, 228, 244, 0.16) 30%, rgba(240, 248, 255, 0.34) 40.5%, rgba(226, 238, 252, 0.18) 47%, rgba(210, 226, 244, 0.15) 52%, rgba(240, 248, 255, 0.3) 60%, rgba(222, 235, 250, 0.16) 68%, rgba(212, 227, 244, 0.15) 74%, rgba(216, 230, 246, 0.17) 100%); backdrop-filter: blur(14px) saturate(0.85) brightness(1.1); -webkit-backdrop-filter: blur(14px) saturate(0.85) brightness(1.1); pointer-events: none; will-change: transform, opacity;"></div>
+
+    <div id="nx-board" style="position: absolute; inset: 0; z-index: 4; background: radial-gradient(62% 54% at 50% 42%, rgba(22, 26, 31, 0.94) 0%, rgba(22, 26, 31, 0.78) 52%, rgba(22, 26, 31, 0.28) 74%, rgba(22, 26, 31, 0) 88%); pointer-events: none; transition: opacity 900ms cubic-bezier(0.16, 1, 0.3, 1); will-change: opacity;">
+      <span style="position: absolute; right: 4%; bottom: 6%; width: 34%; height: 30%; background: radial-gradient(48% 42% at 62% 55%, rgba(214, 220, 226, 0.13), rgba(214, 220, 226, 0.05) 58%, transparent 78%), radial-gradient(30% 26% at 30% 40%, rgba(214, 220, 226, 0.09), transparent 72%); filter: blur(3px); transform: rotate(-7deg);"></span>
+      <span style="position: absolute; right: 12%; bottom: 3%; width: 24%; height: 18%; background: radial-gradient(52% 46% at 45% 50%, rgba(214, 220, 226, 0.1), transparent 74%); filter: blur(5px); transform: rotate(4deg);"></span>
+      <span style="position: absolute; right: 5%; bottom: 14%; width: 26%; height: 5px; background: linear-gradient(90deg, transparent, rgba(222, 228, 234, 0.14) 18%, rgba(222, 228, 234, 0.08) 55%, rgba(222, 228, 234, 0.13) 80%, transparent); filter: blur(1.4px); transform: rotate(-5deg);"></span>
+      <span style="position: absolute; right: 9%; bottom: 9%; width: 20%; height: 4px; background: linear-gradient(90deg, transparent, rgba(222, 228, 234, 0.11) 25%, rgba(222, 228, 234, 0.05) 60%, transparent); filter: blur(1.8px); transform: rotate(-3deg);"></span>
+      <span style="position: absolute; left: 4%; bottom: 30%; width: 22%; height: 5px; background: linear-gradient(90deg, transparent, rgba(222, 228, 234, 0.12) 20%, rgba(222, 228, 234, 0.06) 58%, rgba(222, 228, 234, 0.1) 82%, transparent); filter: blur(1.5px); transform: rotate(6deg);"></span>
+      <span style="position: absolute; left: 7%; bottom: 24%; width: 16%; height: 4px; background: linear-gradient(90deg, transparent, rgba(222, 228, 234, 0.09) 30%, rgba(222, 228, 234, 0.04) 65%, transparent); filter: blur(2px); transform: rotate(8deg);"></span>
+      <span style="position: absolute; left: 10%; top: 16%; width: 14%; height: 4px; background: linear-gradient(90deg, transparent, rgba(222, 228, 234, 0.08) 30%, transparent 80%); filter: blur(2.2px); transform: rotate(-4deg);"></span>
+      <div id="nx-board-list" style="position: absolute; left: 3.5%; top: 24%; display: grid; gap: 7px; transition: opacity 1100ms ease-out, filter 1100ms ease-out; font-family: 'Chalkduster', 'Walter Turncoat', cursive; font-size: clamp(11px, 1.15vw, 17px); color: rgba(228, 234, 240, 0.34); filter: blur(0.5px); transform: rotate(-3deg); line-height: 1.25;">
+        <span style="font-size: 1.25em; text-decoration: underline; text-underline-offset: 4px; color: rgba(228, 234, 240, 0.4); margin-bottom: 3px;">Pendientes:</span>
+        <span>&#8594; facturas a mano</span>
+        <span>&#8594; copiar datos</span>
+        <span style="opacity: 0.75;">&#8594; contestar emails</span>
+        <span>&#8594; revisar stock</span>
+        <span style="opacity: 0.6;">&#8594; informes excel</span>
+        <span style="opacity: 0.8;">&#8594; llamadas...</span>
+      </div>
+      <span style="position: absolute; left: 5%; bottom: 22%; width: 20%; height: 16%; background: radial-gradient(50% 44% at 50% 50%, rgba(214, 220, 226, 0.07), transparent 76%); filter: blur(6px); transform: rotate(9deg);"></span>
+    </div>
+
+    <div id="nx-cracks" style="position: absolute; inset: -6%; z-index: 3; background-image: url('assets/cracks-white.png'); background-size: cover; background-position: 50% 48%; background-repeat: no-repeat; opacity: 0; filter: drop-shadow(0 0 10px rgba(140, 232, 255, 0.5)); pointer-events: none; will-change: transform, opacity;"></div>
+
+    <div id="nx-boom" style="position: absolute; inset: -6%; z-index: 3; background-image: url('assets/boom-shards.png'); background-size: cover; background-position: 50% 50%; background-repeat: no-repeat; opacity: 0; filter: drop-shadow(0 0 12px rgba(140, 232, 255, 0.45)); pointer-events: none; will-change: transform, opacity;"></div>
+
+    <div id="nx-shards" style="position: absolute; inset: -4%; z-index: 2; background-image: url('assets/shards-alpha.png'); background-size: cover; background-position: 50% 45%; background-repeat: no-repeat; opacity: 0.5; -webkit-mask-image: radial-gradient(54% 46% at 50% 45%, rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0.62) 58%, #000 82%); mask-image: radial-gradient(54% 46% at 50% 45%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 62%, #000 86%); pointer-events: none; will-change: transform, opacity; filter: brightness(1.3) contrast(1.22) drop-shadow(0 10px 26px rgba(0, 0, 0, 0.55));"></div>
+
+    <div id="nx-shards-glint" style="position: absolute; inset: -4%; z-index: 3; background-image: url('assets/shards-cyan.png'); background-size: cover; background-position: 50% 45%; background-repeat: no-repeat; mix-blend-mode: screen; opacity: 0.95; -webkit-mask-image: radial-gradient(40% 34% at 50% 45%, rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0.62) 58%, #000 82%); mask-image: radial-gradient(54% 46% at 50% 45%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 62%, #000 86%); pointer-events: none; will-change: transform, opacity; filter: drop-shadow(0 0 12px rgba(93, 227, 255, 0.6));"></div>
+
+    <div style="position: absolute; inset: 0; z-index: 4; background: radial-gradient(54% 42% at 50% 45%, rgba(4, 7, 15, 0.82) 0%, rgba(4, 7, 15, 0.62) 42%, rgba(4, 7, 15, 0.22) 68%, rgba(4, 7, 15, 0) 84%); pointer-events: none;"></div>
+
+    <div style="position: absolute; inset: 0; z-index: 4; background: #EAF4FF; opacity: 0; pointer-events: none; animation: nxFlash 900ms ease-out 320ms both;"></div>
+
+    <div style="position: relative; z-index: 5; display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 16px 40px; border-bottom: 1px solid rgba(255, 255, 255, 0.14); backdrop-filter: blur(8px); background: rgba(4, 7, 15, 0.25);">
+      <span style="display: inline-flex; align-items: center; gap: 12px; font-size: 10px; font-weight: 700; letter-spacing: 0.26em; text-transform: uppercase; color: #C0D2E6;">
+        Ingeniería digital · Barcelona
+      </span>
+      <span style="display: inline-flex; align-items: center; gap: 12px; font-size: 10px; font-weight: 700; letter-spacing: 0.26em; text-transform: uppercase; color: #8FA3B8;">
+        <span style="color: #7FC4FF;">✦</span>
+        <span id="nx-cycle" style="color: #FDFAF5; min-width: 108px; display: inline-block; transition: opacity 320ms cubic-bezier(0.16, 1, 0.3, 1), transform 320ms cubic-bezier(0.16, 1, 0.3, 1);">Diagnosticar</span>
+      </span>
+    </div>
+
+    <div id="nx-hero-mid" style="position: relative; z-index: 5; min-height: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 34px; padding: 24px 32px 64px; will-change: transform, opacity;">
+      <h1 id="nx-h1" style="font-family: 'Bodoni Moda', Georgia, serif; font-weight: 700; font-size: clamp(50px, min(11.5vw, 19vh), 190px); line-height: 0.8; letter-spacing: -0.045em; text-align: center; margin: 0; color: #FDFAF5; will-change: transform;">
+        <span data-clip style="display: block; overflow: hidden; padding-bottom: 0.04em;"><span data-runic style="display: block; font-size: 0.56em; letter-spacing: -0.015em; font-style: italic; font-weight: 600; color: rgba(214, 224, 234, 0.24); -webkit-text-stroke: 1.1px rgba(214, 224, 234, 0.9); text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3), 0 -1px 1px rgba(4, 7, 15, 0.7), 0 3px 22px rgba(4, 7, 15, 0.55); paint-order: stroke fill; animation: nxLineUp 1000ms cubic-bezier(0.16, 1, 0.3, 1) 640ms both;">Rompamos</span></span>
+        <span data-clip style="display: block; overflow: hidden; padding-bottom: 0.06em;"><span data-runic style="display: block; font-style: italic; font-weight: 600; color: rgba(214, 224, 234, 0.24); -webkit-text-stroke: 1.4px rgba(214, 224, 234, 0.9); text-shadow: 0 1px 0 rgba(255, 255, 255, 0.32), 0 -1px 1px rgba(4, 7, 15, 0.75), 0 3px 26px rgba(4, 7, 15, 0.6), 0 0 52px rgba(93, 227, 255, 0.3); paint-order: stroke fill; animation: nxLineUp 1000ms cubic-bezier(0.16, 1, 0.3, 1) 780ms both;">los esquemas</span></span>
+      </h1>
+      <p data-hero-sub data-reveal data-typewriter style="font-family: 'Codystar', 'Space Grotesk', sans-serif; font-size: clamp(20px, 2vw, 30px); line-height: 1.7; letter-spacing: 0.07em; font-weight: 400; white-space: pre-line; text-align: center; color: #AFE2FF; text-shadow: 0 0 6px rgba(191, 233, 255, 0.9), 0 0 14px rgba(93, 227, 255, 0.85), 0 0 30px rgba(46, 139, 255, 0.75), 0 0 55px rgba(46, 139, 255, 0.5); margin: 0; text-wrap: pretty;">Construimos la infraestructura
+digital de tu empresa:</p>
+      <div data-hero-sub data-chips style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 18px 52px; padding: 0 16px;">
+        <span data-chip style="display: inline-flex; align-items: center; font-family: 'Space Grotesk', sans-serif; font-size: clamp(14px, 1.7vw, 19px); font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; white-space: nowrap; color: #6FB9FF; -webkit-text-stroke: 0.5px rgba(200, 232, 255, 0.85); text-shadow: 0 0 12px rgba(93, 227, 255, 0.85), 0 0 30px rgba(46, 139, 255, 0.6); opacity: 0; transform: scale(0.4);">Estrategia</span>
+        <span data-chip style="display: inline-flex; align-items: center; font-family: 'Space Grotesk', sans-serif; font-size: clamp(14px, 1.7vw, 19px); font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; white-space: nowrap; color: #6FB9FF; -webkit-text-stroke: 0.5px rgba(200, 232, 255, 0.85); text-shadow: 0 0 12px rgba(93, 227, 255, 0.85), 0 0 30px rgba(46, 139, 255, 0.6); opacity: 0; transform: scale(0.4);">Diseño</span>
+        <span data-chip style="display: inline-flex; align-items: center; font-family: 'Space Grotesk', sans-serif; font-size: clamp(14px, 1.7vw, 19px); font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; white-space: nowrap; color: #6FB9FF; -webkit-text-stroke: 0.5px rgba(200, 232, 255, 0.85); text-shadow: 0 0 12px rgba(93, 227, 255, 0.85), 0 0 30px rgba(46, 139, 255, 0.6); opacity: 0; transform: scale(0.4);">Desarrollo web</span>
+        <span data-chip style="display: inline-flex; align-items: center; font-family: 'Space Grotesk', sans-serif; font-size: clamp(14px, 1.7vw, 19px); font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; white-space: nowrap; color: #6FB9FF; -webkit-text-stroke: 0.5px rgba(200, 232, 255, 0.85); text-shadow: 0 0 12px rgba(93, 227, 255, 0.85), 0 0 30px rgba(46, 139, 255, 0.6); opacity: 0; transform: scale(0.4);">Automatización &amp; IA</span>
+      </div>
+      <div data-hero-sub style="display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-top: 26px;">
+        <a href="#nx-contacto" data-cursor="Ir" style="display: inline-flex; align-items: center; gap: 12px; padding: 15px 30px; border: 1px solid rgba(255, 255, 255, 0.35); border-radius: 999px; color: #FDFAF5; font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; backdrop-filter: blur(6px); background: rgba(255, 255, 255, 0.1); transition: border-color 280ms, color 280ms, background 280ms;" style-hover="border-color: #7FC4FF; color: #7FC4FF; background: rgba(255, 255, 255, 0.16);">
+          Analizar mi proyecto
+          <span style="font-size: 15px;">→</span>
+        </a>
+        <a href="#nx-torre" data-cursor="Bajar" style="display: inline-flex; align-items: center; gap: 12px; padding: 15px 30px; border: 1px solid rgba(255, 255, 255, 0.35); border-radius: 999px; color: #FDFAF5; font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; backdrop-filter: blur(6px); background: rgba(255, 255, 255, 0.1); transition: border-color 280ms, color 280ms, background 280ms;" style-hover="border-color: #7FC4FF; color: #7FC4FF; background: rgba(255, 255, 255, 0.16);">
+          Ver la arquitectura
+          <span style="font-size: 15px;">↓</span>
+        </a>
+      </div>
+      <div data-hero-sub style="display: flex; flex-direction: column; align-items: center; gap: 6px; margin-top: 26px; pointer-events: none;" aria-hidden="true">
+        <span style="font-family: 'Bodoni Moda', Georgia, serif; font-style: italic; font-weight: 600; font-size: 30px; letter-spacing: 0.04em; color: #6FB9FF; -webkit-text-stroke: 0.7px rgba(200, 232, 255, 0.9); text-shadow: 0 0 14px rgba(93, 227, 255, 0.85), 0 0 34px rgba(46, 139, 255, 0.65);">Desliza</span>
+        <svg width="34" height="40" viewBox="0 0 34 40" fill="none" style="display: block; overflow: visible; filter: drop-shadow(0 0 7px rgba(93, 227, 255, 0.95)) drop-shadow(0 0 18px rgba(46, 139, 255, 0.7));">
+          <path d="M6 4 L17 14 L28 4" stroke="#5DE3FF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" style="animation: nxChevA 1.6s ease-in-out infinite;"></path>
+          <path d="M6 20 L17 30 L28 20" stroke="#5DE3FF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" style="animation: nxChevB 1.6s ease-in-out infinite;"></path>
+        </svg>
+      </div>
+    </div>
+
+    <button id="nx-sound" type="button" data-cursor="Sonido" style="position: absolute; right: 32px; bottom: 32px; z-index: 6; display: inline-flex; align-items: center; gap: 10px; padding: 12px 20px; border: 1px solid rgba(255, 255, 255, 0.32); border-radius: 999px; background: rgba(4, 7, 15, 0.55); backdrop-filter: blur(10px); color: #FDFAF5; font-family: 'Archivo', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; cursor: pointer; opacity: 0; pointer-events: none; transition: opacity 500ms cubic-bezier(0.16, 1, 0.3, 1), border-color 260ms, color 260ms;" style-hover="border-color: #7FC4FF; color: #7FC4FF;">
+      <span id="nx-sound-icon" style="font-size: 13px;">▶</span>
+      <span id="nx-sound-label">Activar sonido</span>
+    </button>
+
+  </section>
+  </div>
+
+  <div id="nx-torre" style="position: relative; z-index: 5; padding: 120px 40px 40px; max-width: 1360px; margin: 0 auto;">
+    <span style="font-size: 11px; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: #9B9189;">Arquitectura NexMetis</span>
+    <h2 id="nx-arch-title" style="overflow: visible; font-family: 'Bodoni Moda', Georgia, serif; font-weight: 700; font-size: clamp(30px, 3.6vw, 56px); line-height: 1.06; margin: 18px 0 0; max-width: 30ch;">Nuestros servicios giran entorno a ti. Descubre qué podemos hacer para ayudarte</h2>
+  </div>
+
+  <div id="nx-streaks" style="position: fixed; inset: 0; z-index: 5; opacity: 0; pointer-events: none; overflow: hidden;">
+    <span data-streak style="position: absolute; left: 14%; top: -30vh; width: 1px; height: 34vh; background: linear-gradient(180deg, rgba(46, 139, 255, 0), #5DE3FF 45%, rgba(46, 139, 255, 0)); box-shadow: 0 0 12px rgba(93, 227, 255, 0.9);"></span>
+    <span data-streak style="position: absolute; left: 27%; top: -46vh; width: 2px; height: 22vh; background: linear-gradient(180deg, rgba(46, 139, 255, 0), #2E8BFF 50%, rgba(46, 139, 255, 0)); box-shadow: 0 0 16px rgba(46, 139, 255, 0.8);"></span>
+    <span data-streak style="position: absolute; left: 41%; top: -22vh; width: 1px; height: 44vh; background: linear-gradient(180deg, rgba(46, 139, 255, 0), #8CE8FF 40%, rgba(46, 139, 255, 0)); box-shadow: 0 0 14px rgba(140, 232, 255, 0.9);"></span>
+    <span data-streak style="position: absolute; left: 58%; top: -38vh; width: 1px; height: 30vh; background: linear-gradient(180deg, rgba(46, 139, 255, 0), #5DE3FF 52%, rgba(46, 139, 255, 0)); box-shadow: 0 0 12px rgba(93, 227, 255, 0.85);"></span>
+    <span data-streak style="position: absolute; left: 72%; top: -28vh; width: 2px; height: 26vh; background: linear-gradient(180deg, rgba(46, 139, 255, 0), #2E8BFF 48%, rgba(46, 139, 255, 0)); box-shadow: 0 0 16px rgba(46, 139, 255, 0.75);"></span>
+    <span data-streak style="position: absolute; left: 87%; top: -52vh; width: 1px; height: 38vh; background: linear-gradient(180deg, rgba(46, 139, 255, 0), #8CE8FF 44%, rgba(46, 139, 255, 0)); box-shadow: 0 0 14px rgba(140, 232, 255, 0.85);"></span>
+    <span data-streak style="position: absolute; left: 7%; top: -40vh; width: 2px; height: 18vh; background: linear-gradient(180deg, rgba(46, 139, 255, 0), #5DE3FF 50%, rgba(46, 139, 255, 0)); box-shadow: 0 0 18px rgba(93, 227, 255, 0.9);"></span>
+    <span data-streak style="position: absolute; left: 21%; top: -60vh; width: 1px; height: 48vh; background: linear-gradient(180deg, rgba(46, 139, 255, 0), #2E8BFF 46%, rgba(46, 139, 255, 0)); box-shadow: 0 0 12px rgba(46, 139, 255, 0.8);"></span>
+    <span data-streak style="position: absolute; left: 34%; top: -34vh; width: 3px; height: 14vh; background: linear-gradient(180deg, rgba(46, 139, 255, 0), #8CE8FF 52%, rgba(46, 139, 255, 0)); box-shadow: 0 0 22px rgba(140, 232, 255, 0.95);"></span>
+    <span data-streak style="position: absolute; left: 50%; top: -56vh; width: 1px; height: 40vh; background: linear-gradient(180deg, rgba(46, 139, 255, 0), #5DE3FF 42%, rgba(46, 139, 255, 0)); box-shadow: 0 0 14px rgba(93, 227, 255, 0.85);"></span>
+    <span data-streak style="position: absolute; left: 66%; top: -44vh; width: 2px; height: 24vh; background: linear-gradient(180deg, rgba(46, 139, 255, 0), #2E8BFF 50%, rgba(46, 139, 255, 0)); box-shadow: 0 0 16px rgba(46, 139, 255, 0.85);"></span>
+    <span data-streak style="position: absolute; left: 94%; top: -36vh; width: 1px; height: 30vh; background: linear-gradient(180deg, rgba(46, 139, 255, 0), #8CE8FF 48%, rgba(46, 139, 255, 0)); box-shadow: 0 0 14px rgba(140, 232, 255, 0.9);"></span>
+    <span data-streak style="position: absolute; left: 10%; top: -48vh; width: 2px; height: 28vh; background: linear-gradient(180deg, rgba(230, 178, 60, 0), #F5C452 50%, rgba(230, 178, 60, 0)); box-shadow: 0 0 16px rgba(245, 196, 82, 0.9);"></span>
+    <span data-streak style="position: absolute; left: 30%; top: -26vh; width: 1px; height: 38vh; background: linear-gradient(180deg, rgba(46, 139, 255, 0), #5DE3FF 46%, rgba(46, 139, 255, 0)); box-shadow: 0 0 12px rgba(93, 227, 255, 0.9);"></span>
+    <span data-streak style="position: absolute; left: 46%; top: -52vh; width: 2px; height: 20vh; background: linear-gradient(180deg, rgba(230, 178, 60, 0), #E8B33C 52%, rgba(230, 178, 60, 0)); box-shadow: 0 0 18px rgba(232, 179, 60, 0.85);"></span>
+    <span data-streak style="position: absolute; left: 62%; top: -32vh; width: 1px; height: 42vh; background: linear-gradient(180deg, rgba(46, 139, 255, 0), #8CE8FF 42%, rgba(46, 139, 255, 0)); box-shadow: 0 0 14px rgba(140, 232, 255, 0.85);"></span>
+    <span data-streak style="position: absolute; left: 78%; top: -58vh; width: 3px; height: 16vh; background: linear-gradient(180deg, rgba(230, 178, 60, 0), #F5C452 48%, rgba(230, 178, 60, 0)); box-shadow: 0 0 22px rgba(245, 196, 82, 0.95);"></span>
+    <span data-streak style="position: absolute; left: 4%; top: -24vh; width: 1px; height: 34vh; background: linear-gradient(180deg, rgba(46, 139, 255, 0), #2E8BFF 44%, rgba(46, 139, 255, 0)); box-shadow: 0 0 12px rgba(46, 139, 255, 0.8);"></span>
+    <span data-streak style="position: absolute; left: 55%; top: -42vh; width: 2px; height: 26vh; background: linear-gradient(180deg, rgba(230, 178, 60, 0), #E8B33C 50%, rgba(230, 178, 60, 0)); box-shadow: 0 0 16px rgba(232, 179, 60, 0.8);"></span>
+    <span data-streak style="position: absolute; left: 90%; top: -30vh; width: 1px; height: 36vh; background: linear-gradient(180deg, rgba(46, 139, 255, 0), #5DE3FF 46%, rgba(46, 139, 255, 0)); box-shadow: 0 0 14px rgba(93, 227, 255, 0.85);"></span>
+  </div>
+
+  <div id="nx-scroll" style="position: relative; height: 1020vh;">
+    <div id="nx-stage" style="position: sticky; top: 0; height: 100vh; overflow: hidden; perspective: 1500px; perspective-origin: 50% 50%;">
+
+      <div style="position: absolute; inset: 0; background: radial-gradient(58% 46% at 50% 50%, rgba(46, 139, 255, 0.10), rgba(10, 10, 10, 0) 70%), radial-gradient(90% 70% at 50% 120%, rgba(46, 139, 255, 0.09), rgba(10, 10, 10, 0) 70%); pointer-events: none;"></div>
+      <div id="nx-gridtex" style="position: absolute; inset: 0; background-image: linear-gradient(rgba(255, 255, 255, 0.028) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.028) 1px, transparent 1px); background-size: 88px 88px; mask-image: radial-gradient(70% 60% at 50% 50%, #000, transparent 78%); -webkit-mask-image: radial-gradient(70% 60% at 50% 50%, #000, transparent 78%); pointer-events: none;"></div>
+
+      <div id="nx-light" style="position: absolute; inset: 0; z-index: 0; opacity: 0; background: linear-gradient(180deg, rgba(4, 9, 22, 0.55) 0%, rgba(4, 9, 22, 0.2) 30%, rgba(4, 9, 22, 0.3) 100%), url('assets/services-bg.png') center / cover no-repeat; pointer-events: none;"></div>
+
+      <div id="nx-core" style="position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; transform: translateX(-1px); pointer-events: none;">
+        <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(46, 139, 255, 0) 0%, var(--nx-accent, #2E8BFF) 22%, #FDFAF5 50%, var(--nx-accent, #2E8BFF) 78%, rgba(46, 139, 255, 0) 100%);"></div>
+        <div style="position: absolute; left: -13px; top: 0; bottom: 0; width: 28px; background: linear-gradient(180deg, rgba(46, 139, 255, 0), rgba(46, 139, 255, 0.30) 50%, rgba(46, 139, 255, 0)); filter: blur(9px); animation: nxCoreGlow 4.4s ease-in-out infinite;"></div>
+        <div style="position: absolute; left: 50%; width: 7px; height: 7px; margin-left: -3.5px; margin-top: -3.5px; background: #FDFAF5; box-shadow: 0 0 14px 4px rgba(46, 139, 255, 0.9); animation: nxPulseDown 2.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;"></div>
+        <div style="position: absolute; left: 50%; width: 7px; height: 7px; margin-left: -3.5px; margin-top: -3.5px; background: #FDFAF5; box-shadow: 0 0 14px 4px rgba(46, 139, 255, 0.9); animation: nxPulseUp 2.6s cubic-bezier(0.4, 0, 0.2, 1) infinite 1.3s;"></div>
+        <div style="position: absolute; left: 50%; top: 50%; width: 46px; height: 46px; margin-left: -23px; margin-top: -23px; border: 1px solid rgba(46, 139, 255, 0.45); transform: rotate(45deg);"></div>
+        <div style="position: absolute; left: 22px; top: 50%; transform: translateY(-50%); white-space: nowrap; font-size: 9px; font-weight: 700; letter-spacing: 0.32em; text-transform: uppercase; color: rgba(46, 139, 255, 0.55); writing-mode: vertical-rl;">NexMetis Core</div>
+      </div>
+
+      <div id="nx-scene" style="position: absolute; inset: 0; transform-style: preserve-3d;">
+
+        <a data-card data-index="0" href="https://nexmetis.lovable.app/servicios/estrategia-digital" style="position: absolute; left: 50%; top: 50%; width: 440px; box-sizing: border-box; padding: 30px 32px 32px; background: linear-gradient(160deg, rgba(26, 26, 26, 0.94), rgba(10, 10, 10, 0.96)); border: 1px solid rgba(255, 255, 255, 0.13); color: #FDFAF5; transform-style: preserve-3d; will-change: transform, opacity;">
+          <span data-link style="position: absolute; left: 0; top: 50%; width: 320px; height: 1px; transform-origin: 0 50%; transform: rotateY(90deg); background: linear-gradient(90deg, rgba(46, 139, 255, 0), var(--nx-accent, #2E8BFF)); pointer-events: none;"></span>
+          <div style="display: flex; align-items: flex-start; justify-content: flex-end; gap: 20px;">
+            <x-import component-from-global-scope="NexMetisDesignSystem.Badge" variant="outline-inverse" size="sm" hint-size="74px,18px">Nivel 1 / 5</x-import>
+          </div>
+          <h3 style="font-family: 'Bodoni Moda', Georgia, serif; font-weight: 700; font-size: 30px; line-height: 1.1; margin: 16px 0 0;">Estrategia digital</h3>
+          <p data-desc style="font-size: 14px; line-height: 1.6; color: #C4BDB4; margin: 14px 0 0; text-wrap: pretty;">Analizamos procesos, definimos la arquitectura tecnológica y trazamos una hoja de ruta realista para crecer sin deuda técnica.</p>
+          <div data-list style="overflow: hidden;">
+            <ul style="list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 20px; margin: 18px 0 0; padding: 0;">
+              <li style="font-size: 12px; letter-spacing: 0.04em; color: #9B9189; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 8px;">Consultoría tecnológica</li>
+              <li style="font-size: 12px; letter-spacing: 0.04em; color: #9B9189; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 8px;">Análisis de procesos</li>
+              <li style="font-size: 12px; letter-spacing: 0.04em; color: #9B9189; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 8px;">Arquitectura de sistemas</li>
+              <li style="font-size: 12px; letter-spacing: 0.04em; color: #9B9189; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 8px;">Hoja de ruta por fases</li>
+            </ul>
+            <span style="display: inline-block; margin-top: 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--nx-accent, #2E8BFF);">Explorar servicio →</span>
+          </div>
+        </a>
+
+        
+        <a data-card data-index="1" href="https://nexmetis.lovable.app/servicios/desarrollo-web" style="position: absolute; left: 50%; top: 50%; width: 440px; box-sizing: border-box; padding: 30px 32px 32px; background: linear-gradient(160deg, rgba(26, 26, 26, 0.94), rgba(10, 10, 10, 0.96)); border: 1px solid rgba(255, 255, 255, 0.13); color: #FDFAF5; transform-style: preserve-3d; will-change: transform, opacity;">
+          <span data-link style="position: absolute; left: 0; top: 50%; width: 320px; height: 1px; transform-origin: 0 50%; transform: rotateY(90deg); background: linear-gradient(90deg, rgba(46, 139, 255, 0), var(--nx-accent, #2E8BFF)); pointer-events: none;"></span>
+          <div style="display: flex; align-items: flex-start; justify-content: flex-end; gap: 20px;">
+            <x-import component-from-global-scope="NexMetisDesignSystem.Badge" variant="outline-inverse" size="sm" hint-size="74px,18px">Nivel 2 / 5</x-import>
+          </div>
+          <h3 style="font-family: 'Bodoni Moda', Georgia, serif; font-weight: 700; font-size: 30px; line-height: 1.1; margin: 16px 0 0;">Desarrollo web</h3>
+          <p data-desc style="font-size: 14px; line-height: 1.6; color: #C4BDB4; margin: 14px 0 0; text-wrap: pretty;">Construimos webs corporativas, plataformas y aplicaciones a medida con rendimiento, seguridad y mantenimiento previsible.</p>
+          <div data-list style="overflow: hidden;">
+            <ul style="list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 20px; margin: 18px 0 0; padding: 0;">
+              <li style="font-size: 12px; letter-spacing: 0.04em; color: #9B9189; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 8px;">Webs corporativas</li>
+              <li style="font-size: 12px; letter-spacing: 0.04em; color: #9B9189; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 8px;">Plataformas y apps</li>
+              <li style="font-size: 12px; letter-spacing: 0.04em; color: #9B9189; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 8px;">Comercio electrónico</li>
+              <li style="font-size: 12px; letter-spacing: 0.04em; color: #9B9189; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 8px;">Áreas privadas y portales</li>
+            </ul>
+            <span style="display: inline-block; margin-top: 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--nx-accent, #2E8BFF);">Explorar servicio →</span>
+          </div>
+        </a>
+
+        <a data-card data-index="2" href="https://nexmetis.lovable.app/servicios/automatizacion" style="position: absolute; left: 50%; top: 50%; width: 440px; box-sizing: border-box; padding: 30px 32px 32px; background: linear-gradient(160deg, rgba(26, 26, 26, 0.94), rgba(10, 10, 10, 0.96)); border: 1px solid rgba(255, 255, 255, 0.13); color: #FDFAF5; transform-style: preserve-3d; will-change: transform, opacity;">
+          <span data-link style="position: absolute; left: 0; top: 50%; width: 320px; height: 1px; transform-origin: 0 50%; transform: rotateY(90deg); background: linear-gradient(90deg, rgba(46, 139, 255, 0), var(--nx-accent, #2E8BFF)); pointer-events: none;"></span>
+          <div style="display: flex; align-items: flex-start; justify-content: flex-end; gap: 20px;">
+            <x-import component-from-global-scope="NexMetisDesignSystem.Badge" variant="outline-inverse" size="sm" hint-size="74px,18px">Nivel 3 / 5</x-import>
+          </div>
+          <h3 style="font-family: 'Bodoni Moda', Georgia, serif; font-weight: 700; font-size: 30px; line-height: 1.1; margin: 16px 0 0;">Automatización</h3>
+          <p data-desc style="font-size: 14px; line-height: 1.6; color: #C4BDB4; margin: 14px 0 0; text-wrap: pretty;">Eliminamos el trabajo repetitivo conectando flujos, datos y comunicaciones entre las herramientas que ya usáis.</p>
+          <div data-list style="overflow: hidden;">
+            <ul style="list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 20px; margin: 18px 0 0; padding: 0;">
+              <li style="font-size: 12px; letter-spacing: 0.04em; color: #9B9189; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 8px;">Flujos de trabajo</li>
+              <li style="font-size: 12px; letter-spacing: 0.04em; color: #9B9189; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 8px;">CRM y formularios</li>
+              <li style="font-size: 12px; letter-spacing: 0.04em; color: #9B9189; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 8px;">Comunicaciones automáticas</li>
+              <li style="font-size: 12px; letter-spacing: 0.04em; color: #9B9189; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 8px;">Gestión documental</li>
+            </ul>
+            <span style="display: inline-block; margin-top: 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--nx-accent, #2E8BFF);">Explorar servicio →</span>
+          </div>
+        </a>
+
+        <a data-card data-index="3" href="https://nexmetis.lovable.app/servicios/inteligencia-artificial" style="position: absolute; left: 50%; top: 50%; width: 440px; box-sizing: border-box; padding: 30px 32px 32px; background: linear-gradient(160deg, rgba(26, 26, 26, 0.94), rgba(10, 10, 10, 0.96)); border: 1px solid rgba(255, 255, 255, 0.13); color: #FDFAF5; transform-style: preserve-3d; will-change: transform, opacity;">
+          <span data-link style="position: absolute; left: 0; top: 50%; width: 320px; height: 1px; transform-origin: 0 50%; transform: rotateY(90deg); background: linear-gradient(90deg, rgba(46, 139, 255, 0), var(--nx-accent, #2E8BFF)); pointer-events: none;"></span>
+          <div style="display: flex; align-items: flex-start; justify-content: flex-end; gap: 20px;">
+            <x-import component-from-global-scope="NexMetisDesignSystem.Badge" variant="outline-inverse" size="sm" hint-size="74px,18px">Nivel 4 / 5</x-import>
+          </div>
+          <h3 style="font-family: 'Bodoni Moda', Georgia, serif; font-weight: 700; font-size: 30px; line-height: 1.1; margin: 16px 0 0;">Inteligencia artificial</h3>
+          <p data-desc style="font-size: 14px; line-height: 1.6; color: #C4BDB4; margin: 14px 0 0; text-wrap: pretty;">Aplicamos IA donde aporta margen real: asistentes, agentes operativos y procesamiento documental con control humano.</p>
+          <div data-list style="overflow: hidden;">
+            <ul style="list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 20px; margin: 18px 0 0; padding: 0;">
+              <li style="font-size: 12px; letter-spacing: 0.04em; color: #9B9189; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 8px;">Asistentes y agentes</li>
+              <li style="font-size: 12px; letter-spacing: 0.04em; color: #9B9189; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 8px;">Generación de contenido</li>
+              <li style="font-size: 12px; letter-spacing: 0.04em; color: #9B9189; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 8px;">Procesamiento documental</li>
+              <li style="font-size: 12px; letter-spacing: 0.04em; color: #9B9189; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 8px;">Análisis y clasificación</li>
+            </ul>
+            <span style="display: inline-block; margin-top: 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--nx-accent, #2E8BFF);">Explorar servicio →</span>
+          </div>
+        </a>
+
+        
+        <a data-card data-index="4" href="https://nexmetis.lovable.app/servicios/evolucion-tecnologica" style="position: absolute; left: 50%; top: 50%; width: 440px; box-sizing: border-box; padding: 30px 32px 32px; background: linear-gradient(160deg, rgba(26, 26, 26, 0.94), rgba(10, 10, 10, 0.96)); border: 1px solid rgba(255, 255, 255, 0.13); color: #FDFAF5; transform-style: preserve-3d; will-change: transform, opacity;">
+          <span data-link style="position: absolute; left: 0; top: 50%; width: 320px; height: 1px; transform-origin: 0 50%; transform: rotateY(90deg); background: linear-gradient(90deg, rgba(46, 139, 255, 0), var(--nx-accent, #2E8BFF)); pointer-events: none;"></span>
+          <div style="display: flex; align-items: flex-start; justify-content: flex-end; gap: 20px;">
+            <x-import component-from-global-scope="NexMetisDesignSystem.Badge" variant="outline-inverse" size="sm" hint-size="74px,18px">Nivel 5 / 5</x-import>
+          </div>
+          <h3 style="font-family: 'Bodoni Moda', Georgia, serif; font-weight: 700; font-size: 30px; line-height: 1.1; margin: 16px 0 0;">Evolución tecnológica</h3>
+          <p data-desc style="font-size: 14px; line-height: 1.6; color: #C4BDB4; margin: 14px 0 0; text-wrap: pretty;">Auditamos, mantenemos y optimizamos lo construido para que el sistema siga siendo rápido, seguro y escalable.</p>
+          <div data-list style="overflow: hidden;">
+            <ul style="list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 20px; margin: 18px 0 0; padding: 0;">
+              <li style="font-size: 12px; letter-spacing: 0.04em; color: #9B9189; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 8px;">Auditoría técnica</li>
+              <li style="font-size: 12px; letter-spacing: 0.04em; color: #9B9189; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 8px;">Mantenimiento evolutivo</li>
+              <li style="font-size: 12px; letter-spacing: 0.04em; color: #9B9189; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 8px;">Optimización y rendimiento</li>
+              <li style="font-size: 12px; letter-spacing: 0.04em; color: #9B9189; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 8px;">Seguridad y escalabilidad</li>
+            </ul>
+            <span style="display: inline-block; margin-top: 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--nx-accent, #2E8BFF);">Explorar servicio →</span>
+          </div>
+        </a>
+
+      </div>
+
+      <div id="nx-gridtitle" style="position: absolute; top: 76px; left: 0; right: 0; display: flex; flex-direction: column; align-items: center; gap: 10px; opacity: 0; pointer-events: none;">
+        <span style="font-size: 10px; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; color: var(--nx-accent, #2E8BFF);">NexMetis</span>
+        <span style="font-family: 'Bodoni Moda', Georgia, serif; font-weight: 700; font-size: 34px; color: #FDFAF5; text-shadow: 0 2px 18px rgba(4, 9, 22, 0.8);">Nuestros servicios</span>
+      </div>
+
+      <div style="position: absolute; left: 40px; bottom: 40px; display: flex; align-items: center; gap: 18px; pointer-events: none;">
+        <span id="nx-hud-level" style="font-family: 'Bodoni Moda', Georgia, serif; font-weight: 700; font-size: 30px; color: #FDFAF5; min-width: 92px;">01 / 07</span>
+        <div style="width: 240px; height: 2px; background: rgba(255, 255, 255, 0.14);">
+          <div id="nx-hud-bar" style="width: 0%; height: 100%; background: var(--nx-accent, #2E8BFF);"></div>
+        </div>
+        <span id="nx-hud-name" style="font-size: 10px; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: #9B9189;">Estrategia digital</span>
+      </div>
+
+      <div id="nx-hint" style="position: absolute; right: 40px; bottom: 42px; display: flex; align-items: center; gap: 10px; font-size: 10px; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: #9B9189;">
+        <span style="width: 6px; height: 6px; background: var(--nx-accent, #2E8BFF); animation: nxBlink 1.8s ease-in-out infinite;"></span>
+        <span id="nx-hint-text"></span>
+      </div>
+
+    </div>
+  </div>
+
+  <section id="nx-proyectos" style="position: relative; overflow: hidden; max-width: 1360px; margin: 0 auto; padding: 130px 40px 0;">
+    <div id="nx-wipe" style="position: absolute; inset: 0; z-index: 6; display: grid; grid-template-columns: repeat(9, 1fr); pointer-events: none;">
+      <span style="background: linear-gradient(180deg, #17202C 0%, #0A0A0A 78%); border-right: 1px solid rgba(46, 139, 255, 0.4); box-shadow: inset 0 -2px 0 0 rgba(93, 227, 255, 0.55), 0 0 30px rgba(46, 139, 255, 0.18); transform: translateY(0); transition: transform 1150ms cubic-bezier(0.76, 0, 0.24, 1) 0ms;"></span>
+      <span style="background: linear-gradient(180deg, #17202C 0%, #0A0A0A 78%); border-right: 1px solid rgba(46, 139, 255, 0.4); box-shadow: inset 0 -2px 0 0 rgba(93, 227, 255, 0.55), 0 0 30px rgba(46, 139, 255, 0.18); transform: translateY(0); transition: transform 1150ms cubic-bezier(0.76, 0, 0.24, 1) 91ms;"></span>
+      <span style="background: linear-gradient(180deg, #17202C 0%, #0A0A0A 78%); border-right: 1px solid rgba(46, 139, 255, 0.4); box-shadow: inset 0 -2px 0 0 rgba(93, 227, 255, 0.55), 0 0 30px rgba(46, 139, 255, 0.18); transform: translateY(0); transition: transform 1150ms cubic-bezier(0.76, 0, 0.24, 1) 182ms;"></span>
+      <span style="background: linear-gradient(180deg, #17202C 0%, #0A0A0A 78%); border-right: 1px solid rgba(46, 139, 255, 0.4); box-shadow: inset 0 -2px 0 0 rgba(93, 227, 255, 0.55), 0 0 30px rgba(46, 139, 255, 0.18); transform: translateY(0); transition: transform 1150ms cubic-bezier(0.76, 0, 0.24, 1) 273ms;"></span>
+      <span style="background: linear-gradient(180deg, #17202C 0%, #0A0A0A 78%); border-right: 1px solid rgba(46, 139, 255, 0.4); box-shadow: inset 0 -2px 0 0 rgba(93, 227, 255, 0.55), 0 0 30px rgba(46, 139, 255, 0.18); transform: translateY(0); transition: transform 1150ms cubic-bezier(0.76, 0, 0.24, 1) 364ms;"></span>
+      <span style="background: linear-gradient(180deg, #17202C 0%, #0A0A0A 78%); border-right: 1px solid rgba(46, 139, 255, 0.4); box-shadow: inset 0 -2px 0 0 rgba(93, 227, 255, 0.55), 0 0 30px rgba(46, 139, 255, 0.18); transform: translateY(0); transition: transform 1150ms cubic-bezier(0.76, 0, 0.24, 1) 455ms;"></span>
+      <span style="background: linear-gradient(180deg, #17202C 0%, #0A0A0A 78%); border-right: 1px solid rgba(46, 139, 255, 0.4); box-shadow: inset 0 -2px 0 0 rgba(93, 227, 255, 0.55), 0 0 30px rgba(46, 139, 255, 0.18); transform: translateY(0); transition: transform 1150ms cubic-bezier(0.76, 0, 0.24, 1) 546ms;"></span>
+      <span style="background: linear-gradient(180deg, #17202C 0%, #0A0A0A 78%); border-right: 1px solid rgba(46, 139, 255, 0.4); box-shadow: inset 0 -2px 0 0 rgba(93, 227, 255, 0.55), 0 0 30px rgba(46, 139, 255, 0.18); transform: translateY(0); transition: transform 1150ms cubic-bezier(0.76, 0, 0.24, 1) 637ms;"></span>
+      <span style="background: linear-gradient(180deg, #17202C 0%, #0A0A0A 78%); border-right: 1px solid rgba(46, 139, 255, 0.4); box-shadow: inset 0 -2px 0 0 rgba(93, 227, 255, 0.55), 0 0 30px rgba(46, 139, 255, 0.18); transform: translateY(0); transition: transform 1150ms cubic-bezier(0.76, 0, 0.24, 1) 728ms;"></span>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 24px;">
+      <div>
+        <span style="font-size: 11px; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: #9B9189;">Proyectos</span>
+        <h2 data-reveal style="font-family: 'Bodoni Moda', Georgia, serif; font-weight: 700; font-size: clamp(30px, 3.6vw, 56px); line-height: 1.06; margin: 18px 0 0; max-width: 24ch;">Lo que ya hemos construido para ti</h2>
+      </div>
+      <a href="#nx-contacto" data-cursor="Ver" style="font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; border-bottom: 1px solid var(--nx-accent, #2E8BFF); padding-bottom: 6px;">Ver todos los casos</a>
+    </div>
+    <div id="nx-cases" style="position: relative; margin-top: 44px; height: clamp(500px, 62vh, 620px); overflow: hidden; border-top: 1px solid rgba(255, 255, 255, 0.1); border-bottom: 1px solid rgba(255, 255, 255, 0.1); perspective: 1200px; perspective-origin: 50% 50%; cursor: grab; touch-action: pan-y; user-select: none;">
+      <div style="position: absolute; inset: 0; background: radial-gradient(52% 62% at 50% 54%, rgba(46, 139, 255, 0.10), rgba(10, 10, 10, 0) 72%); pointer-events: none;"></div>
+      <div id="nx-ring" style="position: absolute; left: 50%; top: 50%; width: 0; height: 0; transform-style: preserve-3d;">
+        <a data-case data-index="0" href="https://nexsocial.cat" target="_blank" rel="noopener" data-title="NexSocial" data-tag="Desarrollo web" data-desc="Web corporativa multiidioma para una cooperativa de acompañamiento sociovital." data-cursor="Ver" style="position: absolute; width: 420px; height: 262px; margin: -131px 0 0 -210px; backface-visibility: hidden; border: 1px solid rgba(255, 255, 255, 0.14); background: #111111 url('assets/case-nexsocial.png') center top / cover no-repeat; overflow: hidden; will-change: transform, opacity; text-decoration: none;">
+          <div style="position: absolute; inset: auto 0 0 0; padding: 52px 20px 16px; background: linear-gradient(180deg, rgba(10, 10, 10, 0) 0%, rgba(10, 10, 10, 0.92) 62%); pointer-events: none;">
+            <span style="display: block; font-size: 8px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--nx-accent, #2E8BFF);">Desarrollo web</span>
+            <span style="display: block; margin-top: 6px; font-family: 'Bodoni Moda', Georgia, serif; font-weight: 700; font-size: 22px; line-height: 1.12; color: #FDFAF5;">NexSocial</span>
+          </div>
+        </a>
+        <a data-case data-index="1" href="https://flamencoeventsbarcelona.com" target="_blank" rel="noopener" data-title="Flamenco &amp; Events Barcelona" data-tag="Plataforma de eventos" data-desc="Gestor de eventos y reservas con venta de entradas y agenda multiidioma." data-cursor="Ver" style="position: absolute; width: 420px; height: 262px; margin: -131px 0 0 -210px; backface-visibility: hidden; border: 1px solid rgba(255, 255, 255, 0.14); background: #111111 url('assets/case-flamenco.png') center top / cover no-repeat; overflow: hidden; will-change: transform, opacity; text-decoration: none;">
+          <div style="position: absolute; inset: auto 0 0 0; padding: 52px 20px 16px; background: linear-gradient(180deg, rgba(10, 10, 10, 0) 0%, rgba(10, 10, 10, 0.92) 62%); pointer-events: none;">
+            <span style="display: block; font-size: 8px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--nx-accent, #2E8BFF);">Plataforma de eventos</span>
+            <span style="display: block; margin-top: 6px; font-family: 'Bodoni Moda', Georgia, serif; font-weight: 700; font-size: 22px; line-height: 1.12; color: #FDFAF5;">Flamenco &amp; Events</span>
+          </div>
+        </a>
+          <div data-case data-index="2" data-title="NexlicitIA" data-tag="Inteligencia artificial" data-desc="Gestor automatizado de ayudas y licitaciones: detección, análisis y seguimiento." data-cursor="Ver" style="position: absolute; width: 420px; height: 262px; margin: -131px 0 0 -210px; backface-visibility: hidden; border: 1px solid rgba(255, 255, 255, 0.14); background: #111111 url('assets/case-nexlicitia.png') center center / cover no-repeat; overflow: hidden; will-change: transform, opacity;">
+          <div style="position: absolute; inset: auto 0 0 0; padding: 52px 20px 16px; background: linear-gradient(180deg, rgba(10, 10, 10, 0) 0%, rgba(10, 10, 10, 0.92) 62%); pointer-events: none;">
+            <span style="display: block; font-size: 8px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--nx-accent, #2E8BFF);">Inteligencia artificial</span>
+            <span style="display: block; margin-top: 6px; font-family: 'Bodoni Moda', Georgia, serif; font-weight: 700; font-size: 22px; line-height: 1.12; color: #FDFAF5;">NexlicitIA</span>
+          </div>
+        </div>
+        <div data-case data-index="3" data-title="Intranet corporativa" data-tag="Plataforma interna" data-desc="Portal de equipo con gestión de casos, documentos compartidos y accesos por rol." data-cursor="Ver" style="position: absolute; width: 420px; height: 262px; margin: -131px 0 0 -210px; backface-visibility: hidden; border: 1px solid rgba(255, 255, 255, 0.14); background: #111111 url('assets/case-intranet.png') center center / cover no-repeat; overflow: hidden; will-change: transform, opacity;">
+          <div style="position: absolute; inset: auto 0 0 0; padding: 52px 20px 16px; background: linear-gradient(180deg, rgba(10, 10, 10, 0) 0%, rgba(10, 10, 10, 0.92) 62%); pointer-events: none;">
+            <span style="display: block; font-size: 8px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--nx-accent, #2E8BFF);">Plataforma interna</span>
+            <span style="display: block; margin-top: 6px; font-family: 'Bodoni Moda', Georgia, serif; font-weight: 700; font-size: 22px; line-height: 1.12; color: #FDFAF5;">Intranet corporativa</span>
+          </div>
+        </div>
+        <div data-case data-index="4" data-title="CRM TraçaNex" data-tag="Automatización" data-desc="CRM a medida: casos, personas, facturación y cuadro de mando en tiempo real." data-cursor="Ver" style="position: absolute; width: 420px; height: 262px; margin: -131px 0 0 -210px; backface-visibility: hidden; border: 1px solid rgba(255, 255, 255, 0.14); background: #111111 url('assets/case-crm.png') center top / cover no-repeat; overflow: hidden; will-change: transform, opacity;">
+          <div style="position: absolute; inset: auto 0 0 0; padding: 52px 20px 16px; background: linear-gradient(180deg, rgba(10, 10, 10, 0) 0%, rgba(10, 10, 10, 0.92) 62%); pointer-events: none;">
+            <span style="display: block; font-size: 8px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--nx-accent, #2E8BFF);">Automatización</span>
+            <span style="display: block; margin-top: 6px; font-family: 'Bodoni Moda', Georgia, serif; font-weight: 700; font-size: 22px; line-height: 1.12; color: #FDFAF5;">CRM TraçaNex</span>
+          </div>
+        </div>
+        </div>
+    </div>
+
+    <div style="display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 18px 0 0;">
+      <div style="display: flex; align-items: center; gap: 10px; font-size: 9px; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: #9B9189;">
+        <span style="width: 6px; height: 6px; background: var(--nx-accent, #2E8BFF); animation: nxBlink 1.8s ease-in-out infinite;"></span>
+        Arrastra para girar
+      </div>
+      <div style="display: flex; align-items: center; gap: 14px;">
+        <button id="nx-case-prev" type="button" aria-label="Caso anterior" data-cursor="Atrás" style="width: 40px; height: 40px; border: 1px solid rgba(255, 255, 255, 0.22); background: transparent; color: #FDFAF5; font-size: 14px; cursor: pointer;" style-hover="border-color: var(--nx-accent, #2E8BFF); color: var(--nx-accent, #2E8BFF);">←</button>
+        <span id="nx-case-idx" style="font-family: 'Bodoni Moda', Georgia, serif; font-weight: 700; font-size: 18px; color: #FDFAF5; min-width: 54px; text-align: center;">01 / 06</span>
+        <button id="nx-case-next" type="button" aria-label="Caso siguiente" data-cursor="Siguiente" style="width: 40px; height: 40px; border: 1px solid rgba(255, 255, 255, 0.22); background: transparent; color: #FDFAF5; font-size: 14px; cursor: pointer;" style-hover="border-color: var(--nx-accent, #2E8BFF); color: var(--nx-accent, #2E8BFF);">→</button>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 20px; padding: 22px 0 0; border-top: 1px solid rgba(255, 255, 255, 0.1); margin-top: 20px;">
+      <h3 id="nx-case-title" style="font-family: 'Bodoni Moda', Georgia, serif; font-weight: 700; font-size: clamp(24px, 2.6vw, 40px); line-height: 1.06; margin: 0;">Plataforma de gestión</h3>
+      <p id="nx-case-desc" style="font-size: 14px; line-height: 1.6; color: #C4BDB4; margin: 0; max-width: 48ch;">Área privada, roles y facturación automatizada.</p>
+    </div>
+  </section>
+
+
+  <section id="nx-contacto" style="max-width: 1360px; margin: 0 auto; padding: 120px 40px 140px; display: grid; gap: 28px; justify-items: start;">
+    <h2 style="font-family: 'Bodoni Moda', Georgia, serif; font-weight: 700; font-size: clamp(34px, 4.6vw, 68px); line-height: 1.02; margin: 0; max-width: 22ch;">¿Analizamos tu proyecto?</h2>
+    <p style="font-size: 17px; line-height: 1.62; color: #C4BDB4; max-width: 56ch; margin: 0;">Cuéntanos qué queréis construir o automatizar y te devolvemos una propuesta técnica con alcance y fases.</p>
+    <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 28px;">
+      <x-import component-from-global-scope="NexMetisDesignSystem.Button" variant="inverse" size="lg" href="mailto:hola@nexmetis.com" hint-size="222px,48px">Escribir a NexMetis</x-import>
+      <a href="mailto:hola@nexmetis.com" style="font-size: 15px; color: #C4BDB4;" style-hover="color: #FDFAF5;">hola@nexmetis.com</a>
+    </div>
+  </section>
+
+  <footer style="border-top: 1px solid rgba(255, 255, 255, 0.08); background: rgba(255, 255, 255, 0.02);">
+    <div style="max-width: 1360px; margin: 0 auto; padding: 72px 40px 48px; display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 48px;">
+      <div style="display: grid; gap: 16px; align-content: start;">
+        <span style="font-family: 'Bodoni Moda', Georgia, serif; font-weight: 700; font-size: 26px; color: #FDFAF5;">NexMetis</span>
+        <p style="font-size: 13px; line-height: 1.65; color: #9B9189; margin: 0; max-width: 34ch;">Ingeniería digital en Barcelona. Estrategia, desarrollo, automatización e inteligencia artificial para hacer crecer tu empresa.</p>
+      </div>
+      <div style="display: grid; gap: 12px; align-content: start;">
+        <span style="font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #C4BDB4;">Servicios</span>
+        <a href="#nx-torre" style="font-size: 13px; color: #9B9189;" style-hover="color: #FDFAF5;">Estrategia digital</a>
+        <a href="#nx-torre" style="font-size: 13px; color: #9B9189;" style-hover="color: #FDFAF5;">Desarrollo web</a>
+        <a href="#nx-torre" style="font-size: 13px; color: #9B9189;" style-hover="color: #FDFAF5;">Automatización</a>
+        <a href="#nx-torre" style="font-size: 13px; color: #9B9189;" style-hover="color: #FDFAF5;">Inteligencia artificial</a>
+        <a href="#nx-torre" style="font-size: 13px; color: #9B9189;" style-hover="color: #FDFAF5;">Evolución tecnológica</a>
+      </div>
+      <div style="display: grid; gap: 12px; align-content: start;">
+        <span style="font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #C4BDB4;">Empresa</span>
+        <a href="#nx-proyectos" style="font-size: 13px; color: #9B9189;" style-hover="color: #FDFAF5;">Proyectos</a>
+        <a href="#nx-contacto" style="font-size: 13px; color: #9B9189;" style-hover="color: #FDFAF5;">Contacto</a>
+        <a href="#" style="font-size: 13px; color: #9B9189;" style-hover="color: #FDFAF5;">Aviso legal</a>
+        <a href="#" style="font-size: 13px; color: #9B9189;" style-hover="color: #FDFAF5;">Política de privacidad</a>
+        <a href="#" style="font-size: 13px; color: #9B9189;" style-hover="color: #FDFAF5;">Cookies</a>
+      </div>
+      <div style="display: grid; gap: 12px; align-content: start;">
+        <span style="font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #C4BDB4;">Contacto</span>
+        <a href="mailto:hola@nexmetis.com" style="font-size: 13px; color: #9B9189;" style-hover="color: #FDFAF5;">hola@nexmetis.com</a>
+        <span style="font-size: 13px; color: #9B9189;">Barcelona, España</span>
+        <div style="display: flex; gap: 14px; margin-top: 4px;">
+          <a href="#" aria-label="LinkedIn" style="display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border: 1px solid rgba(255, 255, 255, 0.18); color: #C4BDB4;" style-hover="border-color: #7FC4FF; color: #7FC4FF;"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.2 8h4.6v14.8H.2V8zm7.6 0h4.4v2h.06c.61-1.16 2.1-2.38 4.33-2.38 4.63 0 5.49 3.05 5.49 7.02v8.16h-4.6v-7.23c0-1.73-.03-3.95-2.41-3.95-2.41 0-2.78 1.88-2.78 3.82v7.36H7.8V8z"></path></svg></a>
+          <a href="#" aria-label="X" style="display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border: 1px solid rgba(255, 255, 255, 0.18); color: #C4BDB4;" style-hover="border-color: #7FC4FF; color: #7FC4FF;"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.66l-5.21-6.82-5.97 6.82H1.67l7.73-8.84L1.25 2.25h6.83l4.71 6.23 5.45-6.23zm-1.16 17.52h1.83L7.08 4.13H5.12l11.96 15.64z"></path></svg></a>
+          <a href="#" aria-label="Instagram" style="display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border: 1px solid rgba(255, 255, 255, 0.18); color: #C4BDB4;" style-hover="border-color: #7FC4FF; color: #7FC4FF;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.4" cy="6.6" r="1" fill="currentColor" stroke="none"></circle></svg></a>
+        </div>
+      </div>
+    </div>
+    <div style="border-top: 1px solid rgba(255, 255, 255, 0.07);">
+      <div style="max-width: 1360px; margin: 0 auto; padding: 20px 40px; display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; font-size: 12px; color: #9B9189;">
+        <span>© 2026 NexMetis S.L. Todos los derechos reservados.</span>
+        <span style="letter-spacing: 0.18em; text-transform: uppercase;">Estrategia · Desarrollo · Automatización · IA</span>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#2E8BFF&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#2E8BFF&quot;,&quot;#00E5FF&quot;,&quot;#7FC4FF&quot;,&quot;#C49A3C&quot;],&quot;section&quot;:&quot;Estilo&quot;},&quot;helixRadius&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:330,&quot;min&quot;:220,&quot;max&quot;:460,&quot;step&quot;:10,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Servicios 3D&quot;},&quot;angleStep&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:64,&quot;min&quot;:36,&quot;max&quot;:100,&quot;step&quot;:2,&quot;unit&quot;:&quot;°&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Servicios 3D&quot;},&quot;unfoldToGrid&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Servicios 3D&quot;},&quot;showConnections&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Servicios 3D&quot;}}">
+class Component extends DCLogic {
+  componentDidMount() {
+    this.names = ['Estrategia digital', 'Desarrollo web', 'Automatización', 'Inteligencia artificial', 'Evolución tecnológica'];
+    this.alive = true;
+    this.reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.onScroll = () => { this.updateHero(); this.update(); this.updateCases(); this.updateGlyphs(); };
+    // audio needs a real user gesture: pre-create the context on the first one
+    this.armAudio = () => {
+      const AC = window.AudioContext || window.webkitAudioContext;
+      if (AC && !this.ac) { try { this.ac = new AC(); } catch (e2) {} }
+      if (this.ac && this.ac.state === 'suspended') this.ac.resume().catch(() => {});
+    };
+    ['pointerdown', 'keydown', 'touchstart', 'wheel'].forEach((ev) => document.addEventListener(ev, this.armAudio, { passive: true }));
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    document.addEventListener('scroll', this.onScroll, { passive: true, capture: true });
+    window.addEventListener('resize', this.onScroll);
+    this.cur = { x: -100, y: -100, tx: -100, ty: -100 };
+    const loop = () => {
+      if (!this.alive) return;
+      this.updateHero();
+      this.update();
+      this.updateCases();
+      this.updateGlyphs();
+      this.moveCursor();
+      this.raf = requestAnimationFrame(loop);
+    };
+    loop();
+    this.initIntro();
+    this.initCursor();
+    this.initReveal();
+    this.initCycle();
+    this.initParallax();
+    this.initGridFocus();
+    this.initCases();
+    this.initSmoke();
+    this.initRunic();
+    this.initUnclip();
+    this.initGlyphs();
+    this.initWipe();
+    this.initVideo();
+  }
+
+  initVideo() {
+    const v = document.getElementById('nx-hero-video');
+    if (!v) return;
+    v.muted = true;
+    v.defaultMuted = true;
+    v.loop = true;
+    v.playbackRate = 0.85;
+    const kick = () => { const p = v.play(); if (p && p.catch) p.catch(() => {}); };
+    this.kickVideo = kick;
+    v.addEventListener('ended', () => { v.currentTime = 0; kick(); });
+    // hold on the first frame until the visitor starts scrolling
+    const hold = () => { v.pause(); v.currentTime = 0; };
+    v.addEventListener('loadeddata', hold, { once: true });
+    v.addEventListener('canplay', () => { if (!this.videoStarted) hold(); }, { once: true });
+    hold();
+    this.videoWatch = setInterval(() => {
+      if (!this.alive) { clearInterval(this.videoWatch); return; }
+      if (this.videoStarted && v.paused && !v.ended) kick();
+    }, 1200);
+
+    const btn = document.getElementById('nx-sound');
+    const icon = document.getElementById('nx-sound-icon');
+    const label = document.getElementById('nx-sound-label');
+    if (!btn) return;
+    btn.addEventListener('click', () => {
+      v.muted = !v.muted;
+      v.volume = 1;
+      kick();
+      if (icon) icon.textContent = v.muted ? '▶' : '❚❚';
+      if (label) label.textContent = v.muted ? 'Activar sonido' : 'Silenciar';
+      btn.style.borderColor = v.muted ? 'rgba(255, 255, 255, 0.32)' : '#7FC4FF';
+      btn.style.color = v.muted ? '#FDFAF5' : '#7FC4FF';
+    });
+  }
+
+  initUnclip() {
+    // the entrance uses overflow:hidden to clip-reveal each line; keeping it
+    // would also clip the title's glow into a visible rectangle
+    const wraps = document.querySelectorAll('[data-clip]');
+    const open = () => wraps.forEach((w) => { w.style.overflow = 'visible'; });
+    setTimeout(open, 2100);
+  }
+
+  applyPalette(u) {
+    // the helix inverts to a light palette as it unfolds into the grid
+    const light = document.getElementById('nx-light');
+    const k = Math.min(Math.max((u - 0.18) / 0.6, 0), 1);
+    if (light) light.style.opacity = k.toFixed(3);
+    const on = k > 0.5;
+    if (this.lightOn === on) return;
+    this.lightOn = on;
+    document.querySelectorAll('#nx-scene [data-card]').forEach((c) => {
+      c.style.transition = 'background 520ms ease, border-color 520ms ease, color 520ms ease';
+      c.style.background = on ? 'linear-gradient(160deg, #111C31 0%, #0B1322 58%, #070C16 100%)' : 'linear-gradient(160deg, rgba(26, 26, 26, 0.94), rgba(10, 10, 10, 0.96))';
+      c.style.borderColor = on ? 'rgba(140, 210, 255, 0.5)' : 'rgba(255, 255, 255, 0.13)';
+      c.style.boxShadow = on ? '0 24px 58px rgba(7, 14, 28, 0.5)' : 'none';
+      c.style.color = on ? '#FFFFFF' : '#FDFAF5';
+      c.querySelectorAll('[data-desc]').forEach((d) => { d.style.transition = 'color 520ms ease'; d.style.color = on ? 'rgba(220, 236, 255, 0.88)' : '#C4BDB4'; });
+      c.querySelectorAll('li').forEach((li) => {
+        li.style.transition = 'color 520ms ease, border-color 520ms ease';
+        li.style.color = on ? 'rgba(180, 214, 255, 0.9)' : '#9B9189';
+        li.style.borderTopColor = on ? 'rgba(160, 205, 255, 0.28)' : 'rgba(255, 255, 255, 0.1)';
+      });
+    });
+    const hud = ['nx-hud-level', 'nx-hud-name', 'nx-hint-text'];
+    hud.forEach((id, i) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.style.transition = 'color 520ms ease';
+      el.style.color = on ? (i === 0 ? '#CFE6FF' : '#9FC4EE') : (i === 0 ? '#FDFAF5' : '#9B9189');
+    });
+    const core = document.getElementById('nx-core');
+    if (core) { core.style.transition = 'opacity 520ms ease'; core.style.opacity = on ? '0' : '1'; }
+    const tex = document.getElementById('nx-gridtex');
+    if (tex) { tex.style.transition = 'opacity 520ms ease'; tex.style.opacity = on ? '0' : '1'; }
+  }
+
+  popChips() {
+    if (this.chipsPopped) return;
+    this.chipsPopped = true;
+    document.querySelectorAll('[data-chip]').forEach((c, i) => {
+      c.style.transition = 'opacity 420ms cubic-bezier(0.34, 1.56, 0.64, 1), transform 420ms cubic-bezier(0.34, 1.56, 0.64, 1)';
+      setTimeout(() => {
+        c.style.opacity = '1';
+        c.style.transform = 'scale(1)';
+        setTimeout(() => { c.style.transition = 'none'; c.style.animation = 'nxFloat ' + (2.6 + i * 0.35) + 's ease-in-out ' + (i * 0.4) + 's infinite'; }, 460);
+      }, 140 * i);
+    });
+  }
+
+  playCrash() {
+    try {
+      if (!this.crashEl) {
+        this.crashEl = new Audio('media/glass-break.mp3');
+        this.crashEl.preload = 'auto';
+        this.crashEl.volume = 0.9;
+      }
+      this.crashEl.currentTime = 0;
+      this.crashEl.play().catch(() => {});
+    } catch (err) { /* audio blocked — silent break */ }
+  }
+
+  shatterHero(k) {
+    // never split before initRunic has installed the opening state — a split on
+    // restored-scroll load would otherwise capture the wrong text
+    if (this.reduced || !this.problemStyle) return;
+    const lines = [...document.querySelectorAll('#nx-h1 [data-runic]'), ...document.querySelectorAll('#nx-hero-mid p[data-reveal]')];
+    if (!lines.length) return;
+    if (k <= 0.0005) {
+      if (this.heroShards) {
+        lines.forEach((el, i) => { el.textContent = this.heroText[i]; el.style.whiteSpace = ''; });
+        (this.ctaShards || []).forEach((el) => { el.style.transform = this.decoded ? 'none' : 'translateY(18px)'; el.style.opacity = this.decoded ? '1' : '0'; el.style.transition = 'opacity 700ms cubic-bezier(0.16, 1, 0.3, 1), transform 700ms cubic-bezier(0.16, 1, 0.3, 1)'; });
+        this.heroShards = null;
+        this.ctaShards = null;
+      }
+      return;
+    }
+    if (this.runicBusy) return;
+    if (!this.heroShards) {
+      document.querySelectorAll('[data-clip]').forEach((w) => { w.style.overflow = 'visible'; });
+      this.heroText = lines.map((el) => el.textContent);
+      this.heroShards = [];
+      const cx = window.innerWidth / 2;
+      lines.forEach((el) => {
+        const txt = el.textContent;
+        el.textContent = '';
+        el.style.whiteSpace = 'pre-wrap';
+        const parts = el.tagName === 'P' ? txt.split(/(\s+)/) : [...txt];
+        for (const part of parts) {
+          const sp = document.createElement('span');
+          sp.textContent = /^\s+$/.test(part) ? '\u00A0' : part;
+          sp.style.display = 'inline-block';
+          sp.style.willChange = 'transform, opacity';
+          el.appendChild(sp);
+          this.heroShards.push(sp);
+        }
+      });
+      // the CTA buttons fly out as whole pieces
+      this.ctaShards = [...document.querySelectorAll('#nx-hero-mid div[data-hero-sub] > a, #nx-hero-mid [data-chip]')];
+      this.ctaShards.forEach((el) => { el.style.transition = 'none'; el.style.animation = 'none'; el.style.willChange = 'transform, opacity'; this.heroShards.push(el); });
+      // each shard is blown sideways, away from the centre of the screen
+      const W = window.innerWidth;
+      this.heroShards.forEach((sp) => {
+        const r = sp.getBoundingClientRect();
+        const off = (r.left + r.width / 2) - cx;
+        const dir = off === 0 ? (Math.random() < 0.5 ? -1 : 1) : Math.sign(off);
+        const push = 0.35 + Math.abs(off) / cx;
+        sp.dataset.dx = (dir * W * 0.62 * push * (0.75 + Math.random() * 0.6)).toFixed(0);
+        sp.dataset.dy = ((Math.random() - 0.55) * 220).toFixed(0);
+        sp.dataset.rz = (dir * (25 + Math.random() * 95)).toFixed(1);
+        sp.dataset.ry = (-dir * (35 + Math.random() * 70)).toFixed(1);
+        sp.dataset.sc = (0.45 + Math.random() * 0.4).toFixed(2);
+        sp.dataset.lag = (Math.random() * 0.3).toFixed(3);
+      });
+    }
+    this.heroShards.forEach((sp) => {
+      const lag = +sp.dataset.lag;
+      const t = Math.min(Math.max((k - lag) / (1 - lag), 0), 1);
+      const e = t * t * (3 - 2 * t);
+      sp.style.transform = 'translate3d(' + (+sp.dataset.dx * e).toFixed(1) + 'px,' + (+sp.dataset.dy * e).toFixed(1) + 'px,0) rotate(' + (+sp.dataset.rz * e).toFixed(1) + 'deg) rotateY(' + (+sp.dataset.ry * e).toFixed(1) + 'deg) scale(' + (1 + (+sp.dataset.sc - 1) * e).toFixed(3) + ')';
+      sp.style.opacity = (1 - Math.pow(e, 1.4) * 0.99).toFixed(3);
+    });
+  }
+
+  initGlyphs() {
+    const h = document.getElementById('nx-arch-title');
+    if (!h || this.reduced) return;
+    const text = h.textContent;
+    h.textContent = '';
+    const spans = [];
+    // words stay whole (no mid-word wrapping); "Descubre" starts its own line
+    text.split(' ').forEach((word, wi) => {
+      if (!word) return;
+      if (word === 'Descubre') h.appendChild(document.createElement('br'));
+      const w = document.createElement('span');
+      w.style.display = 'inline-block';
+      w.style.whiteSpace = 'nowrap';
+      for (const ch of word) {
+        const sp = document.createElement('span');
+        sp.textContent = ch;
+        sp.style.display = 'inline-block';
+        sp.style.willChange = 'transform, opacity, filter';
+        const a = Math.random() * Math.PI * 2;
+        const d = 260 + Math.random() * 460;
+        sp.dataset.dx = (Math.cos(a) * d).toFixed(1);
+        sp.dataset.dy = (Math.sin(a) * d * 0.85).toFixed(1);
+        sp.dataset.rz = ((Math.random() - 0.5) * 210).toFixed(1);
+        sp.dataset.sc = (0.35 + Math.random() * 0.5).toFixed(2);
+        sp.dataset.sp = (Math.random() * 0.5).toFixed(3);
+        sp.dataset.gold = Math.random() < 0.22 ? '1' : '';
+        w.appendChild(sp);
+        spans.push(sp);
+      }
+      h.appendChild(w);
+      h.appendChild(document.createTextNode(' '));
+    });
+    this.glyphs = spans;
+    const apply = (k, fall, vis) => {
+      // k: 0 = assembled, 1 = fully dispersed. fall = px of downward travel
+      spans.forEach((sp, i) => {
+        const lag = (i / spans.length) * 0.45;
+        const t = Math.min(Math.max((k - lag) / (1 - lag), 0), 1);
+        const drift = 1 + (+sp.dataset.sp);
+        const ty = (+sp.dataset.dy * t) + (fall || 0) * drift;
+        sp.style.transform = 'translate(' + (+sp.dataset.dx * t).toFixed(1) + 'px,' + ty.toFixed(1) + 'px) rotate(' + (+sp.dataset.rz * t).toFixed(1) + 'deg) scale(' + (1 + (+sp.dataset.sc - 1) * t).toFixed(3) + ')';
+        sp.style.opacity = ((1 - t * 0.42) * (vis === undefined ? 1 : vis)).toFixed(3);
+        sp.style.filter = t > 0.02 ? 'blur(' + (t * 6).toFixed(1) + 'px)' : 'none';
+        const gold = sp.dataset.gold === '1';
+        sp.style.color = t > 0.15 ? (gold ? 'rgba(245, 196, 82, ' + (0.6 + t * 0.4).toFixed(2) + ')' : 'rgba(140, 232, 255, ' + (0.55 + t * 0.45).toFixed(2) + ')') : '';
+        sp.style.textShadow = t > 0.15 ? (gold ? '0 0 10px rgba(245, 196, 82, ' + (t * 0.9).toFixed(2) + '), 0 0 28px rgba(232, 179, 60, ' + (t * 0.65).toFixed(2) + ')' : '0 0 10px rgba(93, 227, 255, ' + (t * 0.9).toFixed(2) + '), 0 0 28px rgba(46, 139, 255, ' + (t * 0.7).toFixed(2) + ')') : 'none';
+      });
+    };
+    apply(0, 0, 1);
+    this.applyGlyphs = apply;
+  }
+
+  updateGlyphs() {
+    if (!this.applyGlyphs) return;
+    const h = document.getElementById('nx-arch-title');
+    if (!h) return;
+    const vh = window.innerHeight;
+    const y = window.scrollY || window.pageYOffset;
+    if (this.glyphAnchor === undefined) {
+      // page offset at which the title sits 26% down the viewport
+      this.glyphAnchor = h.getBoundingClientRect().top + y - vh * 0.26;
+    }
+    const d = y - this.glyphAnchor;
+    if (d < -vh * 0.6 || d > vh * 7.6) return;
+    // stays readable, then bursts apart and rains down the helix
+    const k = Math.min(Math.max(d / (vh * 0.42), 0), 1);
+    // letters descend the screen: they fall faster than the page scrolls away
+    const fall = Math.max(d, 0) * 1.18;
+    // they stay lit all the way down and only burn out near the bottom of the helix
+    const vis = Math.min(Math.max((vh * 6.8 - d) / (vh * 0.9), 0), 1);
+    this.applyGlyphs(k, fall, vis);
+    const st = document.getElementById('nx-streaks');
+    if (st) {
+      const on = Math.min(Math.max(d / (vh * 0.3), 0), 1) * Math.min(Math.max((vh * 7.0 - d) / (vh * 0.8), 0), 1) * (1 - (this.gridU || 0));
+      st.style.opacity = on.toFixed(3);
+      if (on > 0.001) {
+        st.style.display = '';
+        [...st.children].forEach((sp, i) => {
+          const sp2 = 0.5 + (i % 5) * 0.24;
+          const cycle = vh * (1.7 + (i % 4) * 0.25);
+          sp.style.transform = 'translateY(' + (((d * sp2 + vh * 0.3 + i * vh * 0.31) % cycle) + vh * 0.1).toFixed(0) + 'px)';
+        });
+      } else {
+        st.style.display = 'none';
+      }
+    }
+  }
+
+  initWipe() {
+    const wrap = document.getElementById('nx-wipe');
+    if (!wrap) return;
+    const stripes = [...wrap.children];
+    if (this.reduced) { stripes.forEach((s) => { s.style.transform = 'translateY(-101%)'; }); return; }
+    const set = (open) => stripes.forEach((st) => { st.style.transform = open ? 'translateY(-101%)' : 'translateY(0)'; });
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((en) => {
+        if (en.intersectionRatio > 0.12) {
+          wrap.style.pointerEvents = 'none';
+          set(true);
+        } else if (en.intersectionRatio === 0) {
+          set(false);
+        }
+      });
+    }, { threshold: [0, 0.12, 0.3] });
+    io.observe(document.getElementById('nx-proyectos'));
+  }
+
+  initRunic() {
+    const els = [...document.querySelectorAll('[data-runic]')];
+    if (!els.length) return;
+    const runes = 'ᚠᚢᚦᚨᚱᚲᚷᚹᚺᚾᛁᛃᛇᛈᛉᛊᛏᛒ10ᛖᛗᛚᛜ10ᛞᛟᚸᛝ01ᛠᛡ10';
+    const glow = '0 0 12px rgba(93, 227, 255, 0.95), 0 0 38px rgba(46, 139, 255, 0.6)';
+    const blueShadow = '0 0 8px rgba(190, 245, 255, 0.95), 0 0 22px rgba(93, 227, 255, 0.9), 0 0 54px rgba(46, 160, 255, 0.7), 0 0 110px rgba(25, 110, 240, 0.45)';
+    const BLUE = '#4DA3FF';
+    const BLUE_STROKE = 'rgba(215, 248, 255, 0.95)';
+    const BLUE_FILL = 'rgba(140, 232, 255, 0.97)';
+    const lines = els.map((el) => ({
+      el,
+      target: el.textContent,
+      shadow: el.style.textShadow,
+      fill: el.style.color,
+      stroke: el.style.webkitTextStroke || el.style.WebkitTextStroke || '',
+      size: el.style.fontSize,
+      italic: el.style.fontStyle,
+      spacing: el.style.letterSpacing,
+    }));
+    // opening state: the "problem" phrase, plain grey, sub-content hidden
+    const problem = ['Tareas repetitivas y monótonas,', 'exceso de manualidades, sistemas de trabajo arcaicos…'];
+    const subs = [...document.querySelectorAll('[data-hero-sub]')];
+    subs.forEach((el) => { el.dataset.disp = el.style.display || ''; el.style.display = 'none'; el.style.opacity = '0'; el.style.transform = 'translateY(18px)'; el.style.pointerEvents = 'none'; });
+    const problemStyle = () => lines.forEach((l, i) => {
+      l.el.textContent = problem[i] || '';
+      l.el.style.fontFamily = "'Chalkduster', 'Walter Turncoat', 'Caveat', cursive";
+      l.el.style.fontWeight = '400';
+      l.el.style.fontSize = i === 0 ? '0.46em' : '0.36em';
+      l.el.style.transform = 'rotate(' + (i === 0 ? -2.4 : -1.2) + 'deg)';
+      l.el.style.webkitTextStroke = '0px transparent';
+      l.el.style.fontStyle = 'normal';
+      l.el.style.letterSpacing = '0.01em';
+      l.el.style.webkitTextStroke = '0px transparent';
+      l.el.style.color = '#FFFFFF';
+      l.el.style.textShadow = '0 0 2px rgba(255, 255, 255, 0.9), 0 0 10px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.28), 1px 2px 0 rgba(210, 218, 228, 0.35), 0 3px 22px rgba(4, 7, 15, 0.7)';
+      l.el.style.lineHeight = '1.25';
+    });
+    const bigStyle = () => lines.forEach((l) => {
+      l.el.style.fontFamily = '';
+      l.el.style.fontWeight = '';
+      l.el.style.transform = '';
+      l.el.style.fontSize = l.size;
+      l.el.style.fontStyle = l.italic;
+      l.el.style.letterSpacing = l.spacing;
+      l.el.style.webkitTextStroke = l.stroke;
+      l.el.style.lineHeight = '';
+    });
+    this.decoded = false;
+    const revealSubs = () => {
+      if (this.decoded) return;
+      this.decoded = true;
+      subs.forEach((el) => { el.style.display = el.dataset.disp; el.classList.add('nx-in'); if (!el.hasAttribute('aria-hidden')) el.style.pointerEvents = 'auto'; });
+      const board = document.getElementById('nx-board');
+      if (board) board.style.opacity = '0';
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        subs.forEach((el) => { el.style.transition = 'opacity 700ms cubic-bezier(0.16, 1, 0.3, 1), transform 700ms cubic-bezier(0.16, 1, 0.3, 1)'; el.style.opacity = '1'; el.style.transform = 'none'; });
+      }));
+      // fast typewriter on the subtitle
+      const tw = document.querySelector('[data-typewriter]');
+      if (!tw || this.reduced || this.heroShards) this.popChips();
+      if (tw && !this.reduced && !this.heroShards) {
+        const full = tw.textContent;
+        tw.style.minHeight = tw.offsetHeight + 'px';
+        tw.textContent = '';
+        let i = 0;
+        const iv = setInterval(() => {
+          if (!this.alive || this.heroShards) { clearInterval(iv); tw.textContent = full; return; }
+          i += 1;
+          tw.textContent = full.slice(0, i) + (i < full.length ? '▌' : '');
+          if (i >= full.length) { clearInterval(iv); tw.textContent = full; this.popChips(); }
+        }, 22);
+      }
+    };
+    problemStyle();
+    this.problemStyle = problemStyle;
+    this.revealSubs = revealSubs;
+    const paint = (l, k) => {
+      // k: 0 = original grey glass, 1 = electric blue
+      if (k <= 0) {
+        l.el.style.color = l.fill;
+        if (l.stroke) l.el.style.webkitTextStroke = l.stroke;
+        return;
+      }
+      l.el.style.color = BLUE_FILL;
+      if (l.stroke) l.el.style.webkitTextStroke = '0.7px ' + BLUE_STROKE;
+      l.el.style.opacity = '1';
+      void BLUE;
+    };
+    let running = false;
+
+    const scramble = (l) => {
+      let out = '';
+      for (const ch of l.target) out += ch === ' ' ? ' ' : runes[Math.floor(Math.random() * runes.length)];
+      return out;
+    };
+
+    const run = (hold, dur) => {
+      if (running || this.reduced || this.heroShards) return;
+      running = true;
+      this.runicBusy = true;
+      const bl = document.getElementById('nx-board-list');
+      if (bl) { bl.style.opacity = '0'; bl.style.filter = 'blur(7px)'; }
+      // phase 1 — pure runes, held (already at the big glass size)
+      bigStyle();
+      lines.forEach((l) => { l.el.textContent = scramble(l); l.el.style.textShadow = glow; paint(l, 0); });
+      const cycle = setInterval(() => {
+        lines.forEach((l) => { l.el.textContent = scramble(l); });
+      }, 80);
+      setTimeout(() => {
+        clearInterval(cycle);
+        // phase 2 — decode into the real letters
+        const t0 = Date.now();
+        const iv = setInterval(() => {
+          if (!this.alive) { clearInterval(iv); return; }
+          const t = Math.min((Date.now() - t0) / dur, 1);
+          lines.forEach((l, li) => {
+            const n = l.target.length;
+            const lag = li * 0.14;
+            const lt = Math.min(Math.max((t - lag) / (1 - lag), 0), 1);
+            const settled = Math.floor(Math.pow(lt, 1.55) * n * 1.05);
+            let out = '';
+            for (let i = 0; i < n; i++) {
+              const ch = l.target[i];
+              if (ch === ' ') { out += ' '; continue; }
+              out += i < settled ? ch : runes[Math.floor(Math.random() * runes.length)];
+            }
+            l.el.textContent = out;
+            l.el.style.textShadow = lt < 1 ? glow : blueShadow;
+            paint(l, lt > 0.06 ? 1 : 0);
+          });
+          if (t >= 1) {
+            clearInterval(iv);
+            lines.forEach((l) => {
+              l.el.textContent = l.target;
+              l.el.style.textShadow = blueShadow;
+              paint(l, 1);
+            });
+            running = false;
+            this.runicBusy = false;
+            this.revealSubs();
+          }
+        }, 55);
+      }, hold);
+    };
+
+    const h1 = document.getElementById('nx-h1');
+    if (h1) {
+      h1.style.cursor = 'default';
+      h1.addEventListener('pointerenter', () => run(560, 1350));
+    }
+    // fallback: decode on its own if nobody hovers (touch screens)
+    setTimeout(() => { if (!this.decoded && !this.heroShards) run(560, 1350); }, 10000);
+    if (this.reduced) { bigStyle(); lines.forEach((l) => { l.el.textContent = l.target; paint(l, 1); }); revealSubs(); }
+  }
+
+  initSmoke() {
+    const cv = document.getElementById('nx-smoke');
+    if (!cv) return;
+    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches || this.reduced) {
+      cv.style.display = 'none';
+      return;
+    }
+    const ctx = cv.getContext('2d');
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const fit = () => {
+      cv.width = Math.floor(window.innerWidth * dpr);
+      cv.height = Math.floor(window.innerHeight * dpr);
+      cv.style.width = window.innerWidth + 'px';
+      cv.style.height = window.innerHeight + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+    fit();
+    window.addEventListener('resize', fit);
+
+    const puffs = [];
+    let px = -999, py = -999, has = false;
+    document.addEventListener('pointermove', (e) => {
+      const dx = e.clientX - px, dy = e.clientY - py;
+      const speed = has ? Math.min(Math.hypot(dx, dy), 90) : 0;
+      px = e.clientX; py = e.clientY; has = true;
+      const n = speed > 26 ? 2 : 1;
+      for (let i = 0; i < n; i++) {
+        puffs.push({
+          x: px + (Math.random() - 0.5) * 14,
+          y: py + (Math.random() - 0.5) * 14,
+          vx: dx * 0.055 + (Math.random() - 0.5) * 0.5,
+          vy: dy * 0.055 - 0.22 - Math.random() * 0.3,
+          r: 16 + Math.random() * 22 + speed * 0.22,
+          life: 1,
+          decay: 0.014 + Math.random() * 0.012,
+          hue: Math.random() < 0.34 ? 1 : 0,
+        });
+      }
+      if (puffs.length > 110) puffs.splice(0, puffs.length - 110);
+    }, { passive: true });
+
+    const draw = () => {
+      if (!this.alive) return;
+      ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+      ctx.globalCompositeOperation = 'lighter';
+      for (let i = puffs.length - 1; i >= 0; i--) {
+        const p = puffs[i];
+        p.life -= p.decay;
+        if (p.life <= 0) { puffs.splice(i, 1); continue; }
+        p.x += p.vx; p.y += p.vy;
+        p.vx *= 0.97; p.vy *= 0.97;
+        p.r += 0.9;
+        const al = Math.pow(p.life, 1.6) * 0.17;
+        const g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r);
+        if (p.hue) {
+          g.addColorStop(0, 'rgba(125, 235, 255, ' + al.toFixed(3) + ')');
+          g.addColorStop(0.5, 'rgba(46, 139, 255, ' + (al * 0.6).toFixed(3) + ')');
+          g.addColorStop(1, 'rgba(20, 70, 190, 0)');
+        } else {
+          g.addColorStop(0, 'rgba(46, 139, 255, ' + al.toFixed(3) + ')');
+          g.addColorStop(0.5, 'rgba(30, 96, 220, ' + (al * 0.55).toFixed(3) + ')');
+          g.addColorStop(1, 'rgba(12, 48, 150, 0)');
+        }
+        ctx.fillStyle = g;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.globalCompositeOperation = 'source-over';
+      this.smokeRaf = requestAnimationFrame(draw);
+    };
+    draw();
+  }
+
+  initCases() {
+    const stage = document.getElementById('nx-cases');
+    const ring = document.getElementById('nx-ring');
+    if (!stage || !ring) return;
+    this.cases = [...ring.querySelectorAll('[data-case]')];
+    const N = this.cases.length;
+    this.caseStep = 360 / N;
+    this.ringAngle = 0;
+    this.ringTarget = 0;
+    this.ringVel = 0;
+    this.dragging = false;
+    this.caseActive = -1;
+
+    const snap = (dir) => {
+      const cur = Math.round(-this.ringTarget / this.caseStep);
+      this.ringTarget = -(cur + dir) * this.caseStep;
+      this.ringVel = 0;
+    };
+    const prev = document.getElementById('nx-case-prev');
+    const next = document.getElementById('nx-case-next');
+    if (prev) prev.addEventListener('click', () => snap(-1));
+    if (next) next.addEventListener('click', () => snap(1));
+
+    this.cases.forEach((c, i) => {
+      c.addEventListener('click', () => {
+        if (this.dragMoved) return;
+        const cur = -this.ringTarget / this.caseStep;
+        const k = Math.round((cur - i) / N);
+        this.ringTarget = -(i + k * N) * this.caseStep;
+        this.ringVel = 0;
+      });
+    });
+
+    let lastX = 0;
+    stage.addEventListener('pointerdown', (e) => {
+      this.dragging = true;
+      this.dragMoved = false;
+      lastX = e.clientX;
+      this.ringVel = 0;
+      stage.style.cursor = 'grabbing';
+      stage.setPointerCapture && stage.setPointerCapture(e.pointerId);
+    });
+    stage.addEventListener('pointermove', (e) => {
+      if (!this.dragging) return;
+      const dx = e.clientX - lastX;
+      lastX = e.clientX;
+      if (Math.abs(dx) > 2) this.dragMoved = true;
+      this.ringTarget += dx * 0.28;
+      this.ringVel = dx * 0.28;
+    });
+    const end = () => {
+      if (!this.dragging) return;
+      this.dragging = false;
+      stage.style.cursor = 'grab';
+      this.ringTarget += this.ringVel * 6;
+      const cur = Math.round(-this.ringTarget / this.caseStep);
+      this.ringTarget = -cur * this.caseStep;
+      setTimeout(() => { this.dragMoved = false; }, 60);
+    };
+    stage.addEventListener('pointerup', end);
+    stage.addEventListener('pointercancel', end);
+    stage.addEventListener('pointerleave', end);
+  }
+
+  updateHero() {
+    const track = document.getElementById('nx-hero-track');
+    if (!track || !this.near(track, 120)) return;
+    const vid = document.getElementById('nx-hero-video');
+    const vh = window.innerHeight;
+    const r = track.getBoundingClientRect();
+    let q = Math.min(Math.max(-r.top / Math.max(r.height - vh, 1), 0), 1);
+    if (this.reduced) q = Math.round(q);
+    const e = q * q * (3 - 2 * q);
+    // the glass breaks and the photo clears well before the end of the track,
+    // so the video gets a long stretch of its own
+    const gT = Math.min(e / 0.6, 1);
+    const pT = Math.min(e / 0.42, 1);
+    // glass sequence: intact window → crack web snaps in → explosion bursts out
+    const pane = document.getElementById('nx-pane');
+    if (pane) {
+      const gone = Math.min(e / 0.13, 1);
+      pane.style.opacity = String(0.9 * Math.pow(1 - gone, 1.6));
+      pane.style.transform = 'scale(' + (1 + gone * 0.06) + ')';
+      const board = document.getElementById('nx-board');
+      if (board && !this.decoded) board.style.opacity = String(Math.pow(1 - gone, 1.6));
+      if (gone > 0.14 && !this.crashPlayed) { this.crashPlayed = true; this.playCrash(); }
+      if (e < 0.004) this.crashPlayed = false;
+    }
+    const cracks = document.getElementById('nx-cracks');
+    if (cracks) {
+      const inn = Math.min(Math.max((e - 0.015) / 0.06, 0), 1);
+      const out = Math.min(Math.max((e - 0.2) / 0.2, 0), 1);
+      cracks.style.opacity = String(inn * (1 - out));
+      cracks.style.transform = 'scale(' + (1 + e * 0.9) + ')';
+    }
+    const boom = document.getElementById('nx-boom');
+    if (boom) {
+      const inn = Math.min(Math.max((e - 0.09) / 0.07, 0), 1);
+      const out = Math.min(Math.max((e - 0.4) / 0.32, 0), 1);
+      boom.style.opacity = String(inn * (1 - out));
+      boom.style.transform = 'scale(' + (1 + Math.max(e - 0.09, 0) * 2.8) + ') rotate(' + (Math.max(e - 0.09, 0) * 12).toFixed(1) + 'deg)';
+    }
+    const debris = Math.min(Math.max((e - 0.06) / 0.1, 0), 1);
+    const shards = document.getElementById('nx-shards');
+    if (shards) {
+      shards.style.opacity = String(0.5 * debris * Math.pow(1 - gT, 1.15));
+      shards.style.transform = 'scale(' + (1 + gT * 1.9) + ')';
+      shards.style.filter = 'brightness(1.3) contrast(1.22) drop-shadow(0 10px 26px rgba(0,0,0,0.55)) blur(' + (gT * 5).toFixed(2) + 'px)';
+    }
+    const glint = document.getElementById('nx-shards-glint');
+    if (glint) {
+      glint.style.opacity = String(0.6 * debris * Math.pow(1 - gT, 1.3));
+      glint.style.transform = 'scale(' + (1 + gT * 2.1) + ')';
+    }
+    const photo = document.getElementById('nx-photo');
+    if (photo) {
+      photo.style.opacity = String(Math.pow(1 - pT, 1.3));
+      photo.style.transform = 'scale(' + (1 + pT * 0.14) + ')';
+    }
+    const scrim = document.getElementById('nx-scrim');
+    if (scrim) scrim.style.opacity = String(1 - gT * 0.82);
+    if (vid) {
+      if (e < 0.006) {
+        // parked at the top: first frame, frozen
+        this.videoStarted = false;
+        if (!vid.paused) vid.pause();
+        if (vid.currentTime > 0.05) vid.currentTime = 0;
+      } else if (!this.videoStarted) {
+        this.videoStarted = true;
+        if (this.kickVideo) this.kickVideo();
+      }
+    }
+    this.shatterHero(Math.min(Math.max((e - 0.004) / 0.24, 0), 1));
+    const btn = document.getElementById('nx-sound');
+    if (btn) {
+      const show = Math.min(Math.max((e - 0.3) / 0.18, 0), 1);
+      btn.style.opacity = String(show);
+      btn.style.pointerEvents = show > 0.6 ? 'auto' : 'none';
+    }
+    const mid = document.getElementById('nx-hero-mid');
+    if (mid) {
+      mid.style.opacity = String(Math.max(0, 1 - Math.max(e - 0.3, 0) / 0.3));
+      mid.style.transform = 'translateY(' + (-e * 72).toFixed(1) + 'px)';
+      mid.style.pointerEvents = e > 0.55 ? 'none' : 'auto';
+    }
+  }
+
+  updateCases() {
+    const ring = document.getElementById('nx-ring');
+    if (!ring || !this.cases || !this.cases.length) return;
+    if (!this.near(document.getElementById('nx-cases'), 200)) return;
+    const N = this.cases.length;
+    const step = this.caseStep;
+    const vw = window.innerWidth;
+    const R = Math.max(330, Math.min(vw * 0.40, 560));
+
+    if (!this.dragging && !this.reduced) this.ringTarget -= 0.035;
+    this.ringAngle += (this.ringTarget - this.ringAngle) * 0.09;
+    ring.style.transform = 'rotateY(' + this.ringAngle.toFixed(2) + 'deg)';
+
+    let bestI = 0, bestC = -2;
+    this.cases.forEach((c, i) => {
+      const ang = i * step;
+      c.style.transform = 'rotateY(' + ang + 'deg) translateZ(' + R + 'px)';
+      const eff = (ang + this.ringAngle) * Math.PI / 180;
+      const cos = Math.cos(eff);
+      if (cos > bestC) { bestC = cos; bestI = i; }
+      const front = Math.max(cos, 0);
+      c.style.opacity = String(0.14 + 0.86 * Math.pow(front, 0.85));
+      c.style.filter = front > 0.72 ? 'none' : 'blur(' + ((0.72 - front) * 2.6).toFixed(2) + 'px)';
+      c.style.borderColor = front > 0.985 ? (this.props.accent || '#2E8BFF') : 'rgba(255,255,255,0.14)';
+      c.style.pointerEvents = front > 0.2 ? 'auto' : 'none';
+    });
+
+    if (bestI !== this.caseActive) {
+      this.caseActive = bestI;
+      const c = this.cases[bestI];
+      const t = document.getElementById('nx-case-title');
+      const d = document.getElementById('nx-case-desc');
+      const ix = document.getElementById('nx-case-idx');
+      if (t) t.textContent = c.dataset.title || '';
+      if (d) d.textContent = c.dataset.desc || '';
+      if (ix) ix.textContent = String(bestI + 1).padStart(2, '0') + ' / ' + String(N).padStart(2, '0');
+    }
+  }
+
+  initCycle() {
+    const el = document.getElementById('nx-cycle');
+    if (!el || this.reduced) return;
+    const words = ['Diagnosticar', 'Diseñar', 'Construir', 'Automatizar', 'Escalar'];
+    let i = 0;
+    this.cycleIv = setInterval(() => {
+      if (!this.alive) { clearInterval(this.cycleIv); return; }
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(-8px)';
+      setTimeout(() => {
+        i = (i + 1) % words.length;
+        el.textContent = words[i];
+        el.style.transform = 'translateY(8px)';
+        requestAnimationFrame(() => {
+          el.style.opacity = '1';
+          el.style.transform = 'none';
+        });
+        setTimeout(() => { el.style.opacity = '1'; el.style.transform = 'none'; }, 60);
+      }, 340);
+    }, 2400);
+  }
+
+  initGridFocus() {
+    this.watermarks = [];
+    document.querySelectorAll('#nx-scene [data-card]').forEach((c) => {
+      const i = Number(c.dataset.index);
+      c.addEventListener('pointerenter', () => { this.gridFocus = i; });
+      const wm = document.createElement('span');
+      wm.textContent = String(i + 1).padStart(2, '0');
+      wm.setAttribute('aria-hidden', 'true');
+      wm.style.cssText = 'position:absolute;right:10px;bottom:-18px;font-family:Archivo,sans-serif;font-weight:800;font-size:148px;line-height:1;letter-spacing:-0.05em;color:rgba(93,227,255,0.1);pointer-events:none;user-select:none;';
+      c.style.overflow = 'hidden';
+      c.appendChild(wm);
+      this.watermarks[i] = wm;
+    });
+    const stage = document.getElementById('nx-stage');
+    if (stage) stage.addEventListener('pointerleave', () => { this.gridFocus = null; });
+  }
+
+  initParallax() {
+    const media = document.getElementById('nx-parallax');
+    const h1 = document.getElementById('nx-h1');
+    const hero = document.getElementById('nx-top');
+    if (!hero || this.reduced) return;
+    hero.addEventListener('pointermove', (e) => {
+      const r = hero.getBoundingClientRect();
+      const nx = (e.clientX - r.left) / r.width - 0.5;
+      const ny = (e.clientY - r.top) / r.height - 0.5;
+      if (media) media.style.transform = 'translate3d(' + (nx * 22).toFixed(1) + 'px,' + (ny * 18).toFixed(1) + 'px,0)';
+      if (h1) h1.style.transform = 'translate3d(' + (nx * -12).toFixed(1) + 'px,' + (ny * -8).toFixed(1) + 'px,0)';
+    }, { passive: true });
+    hero.addEventListener('pointerleave', () => {
+      if (media) media.style.transition = 'transform 900ms cubic-bezier(0.16,1,0.3,1)';
+      if (h1) h1.style.transition = 'transform 900ms cubic-bezier(0.16,1,0.3,1)';
+      if (media) media.style.transform = 'none';
+      if (h1) h1.style.transform = 'none';
+      setTimeout(() => {
+        if (media) media.style.transition = '';
+        if (h1) h1.style.transition = '';
+      }, 950);
+    });
+  }
+
+  initIntro() {
+    const veil = document.getElementById('nx-load');
+    const bar = document.getElementById('nx-load-bar');
+    const num = document.getElementById('nx-load-num');
+    if (!veil) return;
+    if (this.reduced || window.__nxIntroDone) {
+      veil.style.display = 'none';
+      return;
+    }
+    window.__nxIntroDone = true;
+    const t0 = Date.now();
+    const dur = 1500;
+    const close = () => {
+      clearInterval(iv);
+      veil.style.opacity = '0';
+      veil.style.visibility = 'hidden';
+      setTimeout(() => { veil.style.display = 'none'; }, 720);
+    };
+    const iv = setInterval(() => {
+      if (!this.alive) { clearInterval(iv); return; }
+      const t = Math.min((Date.now() - t0) / dur, 1);
+      const pct = Math.round((1 - Math.pow(1 - t, 3)) * 100);
+      if (bar) bar.style.width = pct + '%';
+      if (num) num.textContent = String(pct).padStart(3, '0');
+      if (t >= 1) close();
+    }, 40);
+    setTimeout(close, dur + 900);
+  }
+
+  initCursor() {
+    const dot = document.getElementById('nx-cursor');
+    const label = document.getElementById('nx-cursor-label');
+    if (!dot) return;
+    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      dot.style.display = 'none';
+      return;
+    }
+    const accent = this.props.accent || '#2E8BFF';
+    document.addEventListener('pointermove', (e) => {
+      this.cur.tx = e.clientX;
+      this.cur.ty = e.clientY;
+      dot.style.opacity = '1';
+      const hit = e.target && e.target.closest ? e.target.closest('a, button, [data-cursor], [data-card]') : null;
+      const big = !!hit;
+      dot.style.width = big ? '72px' : '12px';
+      dot.style.height = big ? '72px' : '12px';
+      dot.style.margin = big ? '-36px 0 0 -36px' : '-6px 0 0 -6px';
+      dot.style.background = big ? accent : 'transparent';
+      if (label) {
+        label.style.opacity = big ? '1' : '0';
+        label.textContent = (hit && hit.dataset && hit.dataset.cursor) ? hit.dataset.cursor : (hit && hit.hasAttribute('data-card') ? 'Explorar' : 'Ir');
+      }
+    }, { passive: true });
+    document.addEventListener('pointerleave', () => { dot.style.opacity = '0'; });
+  }
+
+  moveCursor() {
+    const dot = document.getElementById('nx-cursor');
+    if (!dot || dot.style.display === 'none') return;
+    this.cur.x += (this.cur.tx - this.cur.x) * 0.18;
+    this.cur.y += (this.cur.ty - this.cur.y) * 0.18;
+    dot.style.transform = 'translate3d(' + this.cur.x.toFixed(1) + 'px,' + this.cur.y.toFixed(1) + 'px,0)';
+  }
+
+  initReveal() {
+    const els = document.querySelectorAll('[data-reveal]');
+    if (!('IntersectionObserver' in window)) {
+      els.forEach((el) => el.classList.add('nx-in'));
+      return;
+    }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((en) => {
+        if (en.isIntersecting) {
+          const i = [...en.target.parentElement.children].indexOf(en.target);
+          en.target.style.transitionDelay = Math.max(0, i) * 90 + 'ms';
+          en.target.classList.add('nx-in');
+          io.unobserve(en.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.15 });
+    els.forEach((el) => io.observe(el));
+    setTimeout(() => {
+      els.forEach((el) => {
+        const r = el.getBoundingClientRect();
+        if (r.top < window.innerHeight && r.bottom > 0) el.classList.add('nx-in');
+      });
+    }, 2500);
+  }
+
+  componentWillUnmount() {
+    this.alive = false;
+    window.removeEventListener('scroll', this.onScroll);
+    document.removeEventListener('scroll', this.onScroll, true);
+    window.removeEventListener('resize', this.onScroll);
+    if (this.raf) cancelAnimationFrame(this.raf);
+    if (this.smokeRaf) cancelAnimationFrame(this.smokeRaf);
+    if (this.cycleIv) clearInterval(this.cycleIv);
+    if (this.videoWatch) clearInterval(this.videoWatch);
+  }
+
+  componentDidUpdate() { this.update(); }
+
+  near(el, pad) {
+    if (!el) return false;
+    const r = el.getBoundingClientRect();
+    return r.bottom > -pad && r.top < window.innerHeight + pad;
+  }
+
+  update() {
+    const root = document.getElementById('nx-root');
+    const track = document.getElementById('nx-scroll');
+    const scene = document.getElementById('nx-scene');
+    if (!root || !track || !scene) return;
+    if (!this.near(track, 200)) return;
+
+    const accent = this.props.accent || '#2E8BFF';
+    root.style.setProperty('--nx-accent', accent);
+
+    const R = this.props.helixRadius ?? 330;
+    const STEP_A = this.props.angleStep ?? 64;
+    const unfold = this.props.unfoldToGrid !== false;
+    const showLinks = this.props.showConnections !== false;
+
+    const cards = scene.querySelectorAll('[data-card]');
+    const N = cards.length;
+    const vh = window.innerHeight;
+    const vw = window.innerWidth;
+
+    const rect = track.getBoundingClientRect();
+    const span = Math.max(rect.height - vh, 1);
+    let p = Math.min(Math.max(-rect.top / span, 0), 1);
+    if (this.reduced) p = 1;
+
+    const UF = unfold ? 0.54 : 1.0001;
+    const travel = Math.min(p / UF, 1);
+    let u = unfold ? Math.min(Math.max((p - UF) / ((1 - UF) * 0.42), 0), 1) : 0;
+    u = u * u * (3 - 2 * u);
+    this.gridU = u;
+
+    const k = Math.min(Math.max(Math.min(vw / 1560, vh / 940), 0.46), 1.1);
+    scene.style.transform = 'scale(' + k + ')';
+    scene.style.transformStyle = 'preserve-3d';
+
+    const STEP_Y = 168;
+    const pos = travel * (N - 1);
+    const active = Math.round(pos);
+    const colW = 500, rowH = 372;
+
+    cards.forEach((card) => {
+      const i = Number(card.dataset.index);
+      const d = i - pos;
+      const angle = d * STEP_A;
+      const rad = angle * Math.PI / 180;
+      const cos = Math.cos(rad);
+      const front = Math.max(cos, 0);
+
+      const row = i < 3 ? 0 : 1;
+      const col = i < 3 ? i : i - 3;
+      const inRow = row === 0 ? 3 : 2;
+      const gx = (col - (inRow - 1) / 2) * colW;
+      const gy = (row - 0.5) * rowH + 24;
+
+      // grid focus: the hovered card eases to the centre and grows
+      const grid = u > 0.5;
+      this.focusMap = this.focusMap || {};
+      const tgt = (grid && this.gridFocus === i) ? 1 : 0;
+      let f = (this.focusMap[i] || 0);
+      f += (tgt - f) * 0.3;
+      if (f < 0.001) f = 0;
+      this.focusMap[i] = f;
+
+      const x = gx * u * (1 - f);
+      const y = (d * STEP_Y * (1 - u) + gy * u) * (1 - f) + 16 * f;
+      const a = angle * (1 - u);
+      const z = R * (1 - u);
+      const s = (1 - 0.08 * u) * (1 + 0.34 * f);
+
+      card.style.transform = 'translate(-50%, -50%) translate3d(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px,0) rotateY(' + a + 'deg) translateZ(' + z + 'px) scale(' + s.toFixed(3) + ')';
+
+      const vFade = Math.min(Math.max(1 - Math.abs(d) / 3.1, 0.05), 1);
+      const helixOp = (0.07 + 0.93 * Math.pow(front, 1.5)) * vFade;
+      const dimOthers = grid && this.gridFocus != null && this.gridFocus !== i ? 0.68 : 0;
+      card.style.opacity = String((helixOp * (1 - u) + 1 * u) * (1 - dimOthers));
+      const blur = (1 - front) * 5.5 * (1 - u);
+      card.style.filter = blur > 0.06 ? 'blur(' + blur.toFixed(2) + 'px)' : 'none';
+      card.style.zIndex = String(600 + Math.round(cos * 180 - Math.abs(d) * 4 + f * 500));
+
+      const isActive = i === active && u < 0.5;
+      if (grid) {
+        card.style.height = '312px';
+        card.style.background = 'linear-gradient(160deg, rgba(17, 28, 49, 0.78), rgba(7, 12, 22, 0.82))';
+        card.style.backdropFilter = 'blur(8px)';
+        card.style.webkitBackdropFilter = 'blur(8px)';
+        // branding blues with a neon edge and real relief
+        card.style.borderColor = 'rgba(140, 210, 255, ' + (0.5 + f * 0.5).toFixed(2) + ')';
+        card.style.boxShadow = '0 0 0 1px rgba(93, 227, 255, ' + (0.35 + f * 0.55).toFixed(2) + '), 0 0 ' + Math.round(18 + f * 30) + 'px rgba(46, 139, 255, ' + (0.35 + f * 0.4).toFixed(2) + '), 0 ' + Math.round(24 + f * 24) + 'px ' + Math.round(56 + f * 40) + 'px -22px rgba(4, 12, 30, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.28)';
+      } else {
+        card.style.height = '';
+        card.style.background = '';
+        card.style.backdropFilter = '';
+        card.style.webkitBackdropFilter = '';
+        card.style.borderColor = isActive ? accent : 'rgba(255,255,255,0.13)';
+        card.style.boxShadow = isActive
+          ? '0 0 0 1px ' + accent + ', 0 30px 90px -30px rgba(46,139,255,0.55)'
+          : 'none';
+      }
+      card.style.pointerEvents = (u > 0.85 || isActive) ? 'auto' : 'none';
+
+      const wm = this.watermarks && this.watermarks[i];
+      if (wm) wm.style.color = 'rgba(93, 227, 255, ' + (0.13 * (1 - u) + u * (0.15 + f * 0.12)).toFixed(3) + ')';
+
+      const r = Math.min(Math.max(1 - Math.abs(d) / 0.62, 0), 1);
+      const desc = card.querySelector('[data-desc]');
+      if (desc) {
+        desc.style.opacity = String(Math.max(r * (1 - u), 0.85 * u));
+        desc.style.transition = 'opacity 320ms cubic-bezier(0.16,1,0.3,1)';
+      }
+      const list = card.querySelector('[data-list]');
+      if (list) {
+        const open = r * (1 - u);
+        list.style.opacity = String(open);
+        list.style.maxHeight = (open * 210) + 'px';
+        list.style.transform = 'translateY(' + ((1 - open) * 10) + 'px)';
+        list.style.transition = 'opacity 340ms cubic-bezier(0.16,1,0.3,1), max-height 420ms cubic-bezier(0.16,1,0.3,1), transform 340ms cubic-bezier(0.16,1,0.3,1)';
+      }
+      const link = card.querySelector('[data-link]');
+      if (link) {
+        const lateral = Math.abs(Math.sin(rad));
+        link.style.opacity = showLinks ? String((1 - u) * vFade * (0.12 + 0.72 * lateral)) : '0';
+        link.style.width = R + 'px';
+        link.style.setProperty('--nx-trace', R + 'px');
+        link.style.height = isActive ? '2px' : '1px';
+      }
+    });
+
+    const core = document.getElementById('nx-core');
+    if (core) {
+      core.style.opacity = String(1 - u);
+      core.style.transform = 'translateX(-1px) scaleY(' + (1 - 0.15 * u) + ')';
+    }
+    const gridTitle = document.getElementById('nx-gridtitle');
+    if (gridTitle) {
+      gridTitle.style.opacity = String(Math.max(0, (u - 0.45) / 0.55));
+      gridTitle.style.transform = 'translateY(' + (1 - u) * 16 + 'px)';
+    }
+    const lvl = document.getElementById('nx-hud-level');
+    const bar = document.getElementById('nx-hud-bar');
+    const nm = document.getElementById('nx-hud-name');
+    const hint = document.getElementById('nx-hint-text');
+    this.applyPalette(u);
+    if (lvl) { lvl.textContent = u > 0.5 ? '' : String(active + 1).padStart(2, '0') + ' / 05'; lvl.style.opacity = u > 0.5 ? '0' : '1'; }
+    if (bar) bar.style.width = (p * 100).toFixed(1) + '%';
+    if (nm) nm.textContent = u > 0.5 ? 'Nuestros servicios' : this.names[active];
+    if (hint) { hint.textContent = u > 0.5 ? 'Selecciona un módulo' : ''; hint.parentElement.style.opacity = u > 0.5 ? '1' : '0'; }
+  }
+
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

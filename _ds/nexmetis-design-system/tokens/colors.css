@@ -1,0 +1,70 @@
+/* Flamenco & Events Barcelona — Color Tokens */
+
+:root {
+  /* ─── Base palette ─── */
+
+  /* Obsidian: brand black — from logo background */
+  --color-obsidian-100: #1a1a1a;
+  --color-obsidian-200: #111111;
+  --color-obsidian-300: #0D0D0D;
+  --color-obsidian:     #0A0A0A;
+
+  /* Ivory: warm off-white — parchment, old Barcelona walls */
+  --color-ivory-100: #FDFAF5;
+  --color-ivory-200: #F8F2E8;
+  --color-ivory:     #F3EDE0;
+  --color-ivory-400: #EBE3D2;
+
+  /* Crimson: Spanish passion — flamenco dress, deep red */
+  --color-crimson-light: #C4344C;
+  --color-crimson:       #9B1B30;
+  --color-crimson-dark:  #6D1022;
+
+  /* Dorado: stage gold — warm light, gilded details */
+  --color-dorado-light: #D9B55A;
+  --color-dorado:       #C49A3C;
+  --color-dorado-dark:  #9B7726;
+
+  /* Humo: smoke/neutral */
+  --color-humo-100: #C4BDB4;
+  --color-humo-200: #9B9189;
+  --color-humo:     #6B6560;
+  --color-humo-400: #4A4440;
+
+  /* Blanco */
+  --color-blanco: #FFFFFF;
+
+  /* ─── Semantic tokens ─── */
+
+  /* Backgrounds */
+  --bg-page:        var(--color-ivory);
+  --bg-dark:        var(--color-obsidian);
+  --bg-card:        var(--color-blanco);
+  --bg-card-dark:   var(--color-obsidian-100);
+  --bg-subtle:      var(--color-ivory-400);
+  --bg-overlay:     rgba(10, 10, 10, 0.60);
+
+  /* Text */
+  --text-primary:   var(--color-obsidian);
+  --text-secondary: var(--color-humo);
+  --text-muted:     var(--color-humo-200);
+  --text-inverse:   var(--color-ivory-100);
+  --text-inverse-muted: var(--color-humo-100);
+  --text-accent:    var(--color-crimson);
+  --text-gold:      var(--color-dorado);
+
+  /* Borders */
+  --border-default: var(--color-ivory-400);
+  --border-strong:  var(--color-humo-200);
+  --border-inverse: rgba(255, 255, 255, 0.15);
+  --border-accent:  var(--color-crimson);
+
+  /* Actions */
+  --action-primary:          var(--color-obsidian);
+  --action-primary-hover:    var(--color-obsidian-100);
+  --action-primary-text:     var(--color-ivory-100);
+  --action-secondary:        transparent;
+  --action-secondary-hover:  var(--color-obsidian);
+  --action-accent:           var(--color-crimson);
+  --action-accent-hover:     var(--color-crimson-dark);
+}
