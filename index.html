@@ -62,12 +62,6 @@
 <helmet>
 <link href="https://fonts.cdnfonts.com/css/sreda" rel="stylesheet">
 <link href="https://fonts.cdnfonts.com/css/chalkduster" rel="stylesheet">
-<link rel="stylesheet" href="_ds/nexmetis-design-system/tokens/colors.css">
-<link rel="stylesheet" href="_ds/nexmetis-design-system/tokens/typography.css">
-<link rel="stylesheet" href="_ds/nexmetis-design-system/tokens/spacing.css">
-<link rel="stylesheet" href="_ds/nexmetis-design-system/tokens/effects.css">
-<link rel="stylesheet" href="_ds/nexmetis-design-system/styles.css">
-<script src="_ds/nexmetis-design-system/_ds_bundle.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Codystar:wght@300;400&family=Gochi+Hand&family=Walter+Turncoat&family=Caveat:wght@500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Archivo:wght@400;500;600;700&display=swap">
 <style>
@@ -572,12 +566,16 @@ class Component extends DCLogic {
     this.reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     this.onScroll = () => { this.updateHero(); this.update(); this.updateCases(); this.updateGlyphs(); };
     // audio needs a real user gesture: pre-create the context on the first one
+    const audioEvents = ['pointerdown', 'keydown', 'touchstart'];
     this.armAudio = () => {
       const AC = window.AudioContext || window.webkitAudioContext;
       if (AC && !this.ac) { try { this.ac = new AC(); } catch (e2) {} }
-      if (this.ac && this.ac.state === 'suspended') this.ac.resume().catch(() => {});
+      if (!this.ac) return;
+      if (this.ac.state === 'suspended') { this.ac.resume().catch(() => {}); return; }
+      // ya esta corriendo: sin gesto real el navegador solo emite avisos
+      audioEvents.forEach((ev) => document.removeEventListener(ev, this.armAudio));
     };
-    ['pointerdown', 'keydown', 'touchstart', 'wheel'].forEach((ev) => document.addEventListener(ev, this.armAudio, { passive: true }));
+    audioEvents.forEach((ev) => document.addEventListener(ev, this.armAudio, { passive: true }));
     window.addEventListener('scroll', this.onScroll, { passive: true });
     document.addEventListener('scroll', this.onScroll, { passive: true, capture: true });
     window.addEventListener('resize', this.onScroll);
