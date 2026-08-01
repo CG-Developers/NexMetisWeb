@@ -112,6 +112,8 @@
     #nx-torre { padding: 72px 20px 24px !important; }
     #nx-proyectos { padding: 76px 20px 0 !important; }
     #nx-contacto { padding: 76px 20px 90px !important; }
+    footer > div:first-child { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)) !important; gap: 26px 20px !important; padding: 48px 20px 28px !important; }
+    footer > div:last-child { padding: 16px 20px !important; }
 
     /* La hélice 3D pasa a lista vertical: en móvil no hay hover ni scroll fino */
     #nx-scroll { height: auto !important; }
@@ -302,7 +304,7 @@ digital de tu empresa:</p>
     <span data-streak style="position: absolute; left: 90%; top: -30vh; width: 1px; height: 36vh; background: linear-gradient(180deg, rgba(46, 139, 255, 0), #5DE3FF 46%, rgba(46, 139, 255, 0)); box-shadow: 0 0 14px rgba(93, 227, 255, 0.85);"></span>
   </div>
 
-  <div id="nx-scroll" style="position: relative; height: 1020vh;">
+  <div id="nx-scroll" style="position: relative; height: 860vh;">
     <div id="nx-stage" style="position: sticky; top: 0; height: 100vh; overflow: hidden; perspective: 1500px; perspective-origin: 50% 50%;">
 
       <div style="position: absolute; inset: 0; background: radial-gradient(58% 46% at 50% 50%, rgba(46, 139, 255, 0.10), rgba(10, 10, 10, 0) 70%), radial-gradient(90% 70% at 50% 120%, rgba(46, 139, 255, 0.09), rgba(10, 10, 10, 0) 70%); pointer-events: none;"></div>
@@ -620,6 +622,13 @@ class Component extends DCLogic {
     v.addEventListener('loadeddata', hold, { once: true });
     v.addEventListener('canplay', () => { if (!this.videoStarted) hold(); }, { once: true });
     hold();
+    // cambiar de pestana tambien corta la musica
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) return;
+      if (!v.muted) { this.soundWasOn = true; v.muted = true; this.syncSoundBtn(); }
+      this.videoStarted = false;
+      if (!v.paused) v.pause();
+    });
     this.videoWatch = setInterval(() => {
       if (!this.alive) { clearInterval(this.videoWatch); return; }
       if (this.videoStarted && v.paused && !v.ended) kick();
@@ -632,11 +641,9 @@ class Component extends DCLogic {
     btn.addEventListener('click', () => {
       v.muted = !v.muted;
       v.volume = 1;
+      this.soundWasOn = false;
       kick();
-      if (icon) icon.textContent = v.muted ? '▶' : '❚❚';
-      if (label) label.textContent = v.muted ? 'Activar sonido' : 'Silenciar';
-      btn.style.borderColor = v.muted ? 'rgba(255, 255, 255, 0.32)' : '#7FC4FF';
-      btn.style.color = v.muted ? '#FDFAF5' : '#7FC4FF';
+      this.syncSoundBtn();
     });
   }
 
@@ -1192,9 +1199,38 @@ class Component extends DCLogic {
     stage.addEventListener('pointerleave', end);
   }
 
+  syncSoundBtn() {
+    const v = document.getElementById('nx-hero-video');
+    const btn = document.getElementById('nx-sound');
+    if (!v || !btn) return;
+    const icon = document.getElementById('nx-sound-icon');
+    const label = document.getElementById('nx-sound-label');
+    if (icon) icon.textContent = v.muted ? '\u25B6' : '\u275A\u275A';
+    if (label) label.textContent = v.muted ? 'Activar sonido' : 'Silenciar';
+    btn.style.borderColor = v.muted ? 'rgba(255, 255, 255, 0.32)' : '#7FC4FF';
+    btn.style.color = v.muted ? '#FDFAF5' : '#7FC4FF';
+  }
+
   updateHero() {
     const track = document.getElementById('nx-hero-track');
-    if (!track || !this.near(track, 120)) return;
+    if (!track) return;
+    // el video (y su musica) solo vive dentro del hero: fuera se para y se silencia
+    const hv = document.getElementById('nx-hero-video');
+    if (hv) {
+      const rr = track.getBoundingClientRect();
+      const onScreen = rr.bottom > window.innerHeight * 0.2 && rr.top < window.innerHeight;
+      if (!onScreen) {
+        if (!hv.muted) { this.soundWasOn = true; hv.muted = true; this.syncSoundBtn(); }
+        this.videoStarted = false;
+        if (!hv.paused) hv.pause();
+      } else if (this.soundWasOn && hv.muted) {
+        this.soundWasOn = false;
+        hv.muted = false;
+        hv.volume = 1;
+        this.syncSoundBtn();
+      }
+    }
+    if (!this.near(track, 120)) return;
     const vid = document.getElementById('nx-hero-video');
     const vh = window.innerHeight;
     const r = track.getBoundingClientRect();
@@ -1512,7 +1548,7 @@ class Component extends DCLogic {
 
     const UF = unfold ? 0.54 : 1.0001;
     const travel = Math.min(p / UF, 1);
-    let u = unfold ? Math.min(Math.max((p - UF) / ((1 - UF) * 0.42), 0), 1) : 0;
+    let u = unfold ? Math.min(Math.max((p - UF) / ((1 - UF) * 0.62), 0), 1) : 0;
     u = u * u * (3 - 2 * u);
     this.gridU = u;
 
