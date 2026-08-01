@@ -1,8 +1,56 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Identidad -->
+<title>NexMetis — Automatización e IA para empresas | Barcelona</title>
+<meta name="description" content="Automatización, IA y arquitectura tecnológica a medida. Estrategia digital, plataformas y apps con rendimiento, seguridad y mantenimiento previsible. Barcelona.">
+<meta name="author" content="NexMetis">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://DOMINIO/">
+
+<!-- Apariencia y privacidad -->
+<meta name="theme-color" content="#0A0A0A">
+<meta name="color-scheme" content="dark">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+
+<!-- Favicons / instalación -->
+<link rel="icon" href="favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+
+<!-- Open Graph / Twitter -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="NexMetis">
+<meta property="og:locale" content="es_ES">
+<meta property="og:title" content="NexMetis — Automatización e IA para empresas">
+<meta property="og:description" content="Estrategia digital, plataformas a medida y procesos automatizados. Barcelona.">
+<meta property="og:url" content="https://DOMINIO/">
+<meta property="og:image" content="https://DOMINIO/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="NexMetis — Automatización e IA para empresas">
+<meta name="twitter:description" content="Estrategia digital, plataformas a medida y procesos automatizados. Barcelona.">
+<meta name="twitter:image" content="https://DOMINIO/og-image.png">
+
+<!-- Datos estructurados -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "NexMetis",
+  "url": "https://DOMINIO/",
+  "logo": "https://DOMINIO/icon-512.png",
+  "description": "Automatización, IA y arquitectura tecnológica para empresas.",
+  "address": { "@type": "PostalAddress", "addressLocality": "Barcelona", "addressCountry": "ES" }
+}
+</script>
+
 <script src="./support.js"></script>
 </head>
 <body>
@@ -40,6 +88,10 @@
   @keyframes nxGlassIn { from { transform: scale(1.14); opacity: 0; } to { transform: scale(1); opacity: 1; } }
     @keyframes nxFlash { 0% { opacity: 0; } 16% { opacity: 0.42; } 100% { opacity: 0; } }
   @keyframes nxLineUp { from { transform: translateY(106%); } to { transform: translateY(0); } }
+  .nx-neon { display: inline-flex; align-items: center; justify-content: center; padding: 11px 24px; border: 1px solid rgba(46, 139, 255, 0.7); border-radius: 999px; font-family: 'Archivo', system-ui, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: #EAF4FF; background: rgba(46, 139, 255, 0.06); white-space: nowrap; cursor: pointer; text-shadow: 0 0 7px rgba(46, 139, 255, 0.9), 0 0 20px rgba(46, 139, 255, 0.45); animation: nxNeonPulse 2.8s ease-in-out infinite; transition: color 250ms, background 250ms, box-shadow 250ms, transform 250ms; }
+  .nx-neon:hover { color: #FFFFFF; background: rgba(46, 139, 255, 0.16); border-color: rgba(46, 139, 255, 1); transform: translateY(-1px); box-shadow: 0 0 0 1px rgba(46, 139, 255, 0.6), 0 0 30px rgba(46, 139, 255, 0.7), inset 0 0 22px rgba(46, 139, 255, 0.25); animation: none; }
+  @keyframes nxNeonPulse { 0%, 100% { box-shadow: 0 0 0 1px rgba(46, 139, 255, 0.22), 0 0 12px rgba(46, 139, 255, 0.3), inset 0 0 12px rgba(46, 139, 255, 0.1); } 50% { box-shadow: 0 0 0 1px rgba(46, 139, 255, 0.55), 0 0 26px rgba(46, 139, 255, 0.6), inset 0 0 20px rgba(46, 139, 255, 0.2); } }
+  @media (prefers-reduced-motion: reduce) { .nx-neon { animation: none; } }
 </style>
 <script src="./image-slot.js"></script>
 </helmet>
@@ -47,7 +99,7 @@
 <div id="nx-root" style="background: #0A0A0A; color: #FDFAF5; font-family: 'Archivo', system-ui, sans-serif;">
 
   <div id="nx-load" style="position: fixed; inset: 0; z-index: 1200; background: #0A0A0A; display: grid; place-content: center; justify-items: center; gap: 34px; transition: opacity 700ms cubic-bezier(0.16, 1, 0.3, 1), visibility 700ms;">
-    <span style="font-family: 'Bodoni Moda', Georgia, serif; font-weight: 700; font-size: clamp(38px, 7vw, 92px); letter-spacing: -0.01em; color: #FDFAF5;">NexMetis</span>
+    <img src="logo-nexmetis.png" alt="Nexmetis Tech" style="width: min(72vw, 460px); height: auto; display: block;">
     <div style="display: flex; align-items: center; gap: 20px;">
       <div style="width: min(46vw, 420px); height: 1px; background: rgba(255, 255, 255, 0.16);">
         <div id="nx-load-bar" style="width: 0%; height: 100%; background: var(--nx-accent, #2E8BFF);"></div>
@@ -64,15 +116,15 @@
   </div>
 
   <header style="position: fixed; top: 0; left: 0; right: 0; z-index: 900; display: flex; align-items: center; justify-content: space-between; gap: 32px; padding: 18px 40px; background: rgba(10, 10, 10, 0.72); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(255, 255, 255, 0.08);">
-    <a href="#nx-top" style="display: flex; align-items: baseline; gap: 10px; color: #FDFAF5;">
-      <span style="font-family: 'Bodoni Moda', Georgia, serif; font-weight: 700; font-size: 22px; letter-spacing: 0.02em;">NexMetis</span>
+    <a href="#nx-top" style="display: flex; align-items: center; gap: 14px; color: #FDFAF5;">
+      <img src="logo-nexmetis.png" alt="Nexmetis Tech" width="1045" height="319" style="height: 36px; width: auto; display: block;">
       <span style="font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: #9B9189;">Barcelona</span>
     </a>
     <nav style="display: flex; align-items: center; gap: 32px;">
       <a href="#nx-torre" style="font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #C4BDB4;" style-hover="color: #FDFAF5;">Servicios</a>
       <a href="#nx-proyectos" style="font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #C4BDB4;" style-hover="color: #FDFAF5;">Proyectos</a>
       <a href="#nx-contacto" style="font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #C4BDB4;" style-hover="color: #FDFAF5;">Contacto</a>
-      <x-import component-from-global-scope="NexMetisDesignSystem.Button" variant="inverse-outline" size="sm" href="#nx-contacto" hint-size="188px,34px">Analizar mi proyecto</x-import>
+      <a href="#nx-contacto" class="nx-neon">Crear proyecto</a>
     </nav>
   </header>
 
