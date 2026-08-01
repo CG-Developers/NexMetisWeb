@@ -1,7 +1,0 @@
-/* Flamenco & Events Barcelona — Design System
-   Root stylesheet: @import only. Link this one file from any consumer. */
-
-@import './tokens/colors.css';
-@import './tokens/typography.css';
-@import './tokens/spacing.css';
-@import './tokens/effects.css';
