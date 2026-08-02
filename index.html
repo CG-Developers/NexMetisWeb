@@ -93,6 +93,9 @@
   @keyframes nxNeonPulse { 0%, 100% { box-shadow: 0 0 0 1px rgba(46, 139, 255, 0.22), 0 0 12px rgba(46, 139, 255, 0.3), inset 0 0 12px rgba(46, 139, 255, 0.1); } 50% { box-shadow: 0 0 0 1px rgba(46, 139, 255, 0.55), 0 0 26px rgba(46, 139, 255, 0.6), inset 0 0 20px rgba(46, 139, 255, 0.2); } }
   @media (prefers-reduced-motion: reduce) { .nx-neon { animation: none; } }
   .nx-neon-lg { padding: 16px 34px; font-size: 12px; }
+  .nx-field { width: 100%; padding: 14px 16px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.16); border-radius: 10px; color: #FDFAF5; font-family: 'Archivo', system-ui, sans-serif; font-size: 15px; line-height: 1.5; outline: none; transition: border-color 200ms, box-shadow 200ms, background 200ms; resize: vertical; }
+  .nx-field::placeholder { color: #7E766E; }
+  .nx-field:focus { border-color: rgba(46, 139, 255, 0.85); background: rgba(46, 139, 255, 0.05); box-shadow: 0 0 0 3px rgba(46, 139, 255, 0.15); }
   .nx-badge { display: inline-flex; align-items: center; padding: 4px 10px; border: 1px solid rgba(46, 139, 255, 0.55); border-radius: 999px; font-size: 9px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #BBD9FF; background: rgba(46, 139, 255, 0.08); white-space: nowrap; }
 
   /* ===== TABLET Y MÓVIL ===== */
@@ -530,10 +533,25 @@ digital de tu empresa:</p>
   <section id="nx-contacto" style="max-width: 1360px; margin: 0 auto; padding: 120px 40px 140px; display: grid; gap: 28px; justify-items: start;">
     <h2 style="font-family: 'Bodoni Moda', Georgia, serif; font-weight: 700; font-size: clamp(34px, 4.6vw, 68px); line-height: 1.02; margin: 0; max-width: 22ch;">¿Analizamos tu proyecto?</h2>
     <p style="font-size: 17px; line-height: 1.62; color: #C4BDB4; max-width: 56ch; margin: 0;">Cuéntanos qué queréis construir o automatizar y te devolvemos una propuesta técnica con alcance y fases.</p>
-    <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 28px;">
-      <a href="mailto:hola@nexmetis.com" class="nx-neon nx-neon-lg">Escribir a Nexmetis</a>
-      <a href="mailto:hola@nexmetis.com" style="font-size: 15px; color: #C4BDB4;" style-hover="color: #FDFAF5;">hola@nexmetis.com</a>
-    </div>
+    <form id="nx-form" method="POST" action="https://formsubmit.co/nexmetis@nexsocial.org" style="width: 100%; max-width: 640px; display: grid; gap: 14px; margin-top: 6px;">
+      <input type="hidden" name="_subject" value="Nueva consulta desde nexmetis.nexsocial.org">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="table">
+      <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="position: absolute; left: -9999px;" aria-hidden="true">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px;">
+        <input class="nx-field" type="text" name="nombre" required="required" placeholder="Nombre y empresa" autocomplete="organization">
+        <input class="nx-field" type="email" name="email" required="required" placeholder="Tu email" autocomplete="email">
+      </div>
+      <textarea class="nx-field" name="mensaje" required="required" rows="4" placeholder="¿Qué queréis construir o automatizar?"></textarea>
+      <label style="display: flex; align-items: flex-start; gap: 10px; font-size: 12px; line-height: 1.5; color: #9B9189; cursor: pointer;">
+        <input type="checkbox" name="consentimiento" required="required" value="si" style="margin-top: 2px; accent-color: #2E8BFF;">
+        <span>Acepto que Nexmetis trate estos datos para responder a mi consulta.</span>
+      </label>
+      <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 20px; margin-top: 4px;">
+        <button type="submit" class="nx-neon nx-neon-lg" style="border-radius: 999px; cursor: pointer;">Enviar consulta</button>
+        <span id="nx-form-msg" style="font-size: 14px; color: #9B9189;"></span>
+      </div>
+    </form>
   </section>
 
   <footer style="border-top: 1px solid rgba(255, 255, 255, 0.08); background: rgba(255, 255, 255, 0.02);">
@@ -560,7 +578,7 @@ digital de tu empresa:</p>
       </div>
       <div style="display: grid; gap: 12px; align-content: start;">
         <span style="font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #C4BDB4;">Contacto</span>
-        <a href="mailto:hola@nexmetis.com" style="font-size: 13px; color: #9B9189;" style-hover="color: #FDFAF5;">hola@nexmetis.com</a>
+        <a href="#nx-contacto" style="font-size: 13px; color: #9B9189;" style-hover="color: #FDFAF5;">Formulario de contacto</a>
         <span style="font-size: 13px; color: #9B9189;">Barcelona, España</span>
         <div style="display: flex; gap: 14px; margin-top: 4px;">
           <a href="#" aria-label="LinkedIn" style="display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border: 1px solid rgba(255, 255, 255, 0.18); color: #C4BDB4;" style-hover="border-color: #7FC4FF; color: #7FC4FF;"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.2 8h4.6v14.8H.2V8zm7.6 0h4.4v2h.06c.61-1.16 2.1-2.38 4.33-2.38 4.63 0 5.49 3.05 5.49 7.02v8.16h-4.6v-7.23c0-1.73-.03-3.95-2.41-3.95-2.41 0-2.78 1.88-2.78 3.82v7.36H7.8V8z"></path></svg></a>
@@ -624,7 +642,38 @@ class Component extends DCLogic {
     this.initGlyphs();
     this.initWipe();
     this.initVideo();
+    this.initForm();
     setTimeout(() => this.auditTail(), 3500);
+  }
+
+  initForm() {
+    const form = document.getElementById('nx-form');
+    const msg = document.getElementById('nx-form-msg');
+    if (!form) return;
+    form.addEventListener('submit', (ev) => {
+      ev.preventDefault();
+      if (this.sending) return;
+      if (!form.checkValidity || !form.checkValidity()) { if (form.reportValidity) form.reportValidity(); return; }
+      const btn = form.querySelector('button[type="submit"]');
+      this.sending = true;
+      if (btn) { btn.disabled = true; btn.textContent = 'Enviando…'; }
+      if (msg) { msg.style.color = '#9B9189'; msg.textContent = ''; }
+      const data = new FormData(form);
+      const endpoint = form.getAttribute('action').replace('formsubmit.co/', 'formsubmit.co/ajax/');
+      fetch(endpoint, { method: 'POST', headers: { Accept: 'application/json' }, body: data })
+        .then((r) => { if (!r.ok) throw new Error('http ' + r.status); return r.json(); })
+        .then(() => {
+          form.reset();
+          if (msg) { msg.style.color = '#7FC4FF'; msg.textContent = 'Mensaje enviado. Te respondemos en 24-48 h.'; }
+        })
+        .catch(() => {
+          if (msg) { msg.style.color = '#FF9B8A'; msg.textContent = 'No se ha podido enviar. Escríbenos a nexmetis@nexsocial.org'; }
+        })
+        .finally(() => {
+          this.sending = false;
+          if (btn) { btn.disabled = false; btn.textContent = 'Enviar consulta'; }
+        });
+    });
   }
 
   auditTail() {
