@@ -1,64 +1,46 @@
-NEXMETIS · patch v6 — hero nou per fases
-=========================================
-ACUMULATIU sobre el v5. Nomes canvia index.html.
+NEXMETIS · patch v7 — llegibilitat del subtitol + fons continu
+==============================================================
+ACUMULATIU sobre el v6. Nomes canvia index.html. Fes-ne copia abans.
 
-  >>> FES COPIA DE L'index.html ACTUAL ABANS DE SOBREESCRIURE'L. <<<
-  Es el canvi mes gros de tota la serie i no l'he pogut obrir al navegador.
-  Amb la copia, tornar enrere son deu segons.
+1) "CONSTRUIMOS" NO ES LLEGIA  — arreglat
+   Causa mesurada: a 31px amb mostreig cada 3px, el traç d'una lletra rep
+   0,9 mostres. Menys d'una. Per aixo sortien punts solts.
+     subtitol 31px -> 45px   ·   mostreig cada 3px -> cada 2px
+     el traç passa a rebre 2 mostres
+     ~636 punts -> ~2.987 punts   (x4,7 de densitat)
+     sostre de particules 4.600 -> 7.600
+   A mes, les particules ara s'engreixen i s'aclareixen a mesura que el text
+   es forma: pols fina quan explota, traç solid quan ja es text.
 
-LA SEQUENCIA
-  1  Pissarra amb el text del problema
-  2  Es trenca el vidre (cracks-white + shards-cyan)
-  3  "Rompamos los esquemas" en volum, amb "Desliza" a sota
-  4  El titol EXPLOTA en particules i les MATEIXES particules es reagrupen
-     escrivint "Construimos la infraestructura digital de tu empresa:"
-  5  Xips i CTA entren
-  6  Seccio de video amb el seu propi lighting de fons
+2) SCRIM DE CONTRAST
+   El fons de linies es molt lluminos justament on cau el text. S'ha afegit
+   una capa fosca radial entre les linies i les particules, que entra amb
+   elles i se'n va amb elles.
 
-  Tot escombrat per l'scroll i reversible: si puges, es desfa.
-  Els llindars son a heroPhase(); es toquen alli i prou.
+3) CTA TRANSLUCIDS
+   rgba(8,16,32,0.30) amb backdrop-filter blur(9px) i vora cian.
 
-COM ESTA FET
-  · Un SOL sistema de particules amb dos destins. No son dos efectes
-    encadenats: la particula i que forma la "R" de Rompamos es la mateixa que
-    acaba formant una lletra del subtitol. Per aixo l'explosio i la formacio
-    son el mateix moviment.
-  · 4.600 particules. Els dos textos no en generen el mateix nombre, aixi que
-    el recompte es fixa i cada llista es remostreja.
-  · Halo en una sola passada, no per particula.
-  · DepthText i FloatingLines, ports vanilla. Sense React, sense three.js,
-    sense npm, sense build. Zero dependencies noves.
+4) FONS DE LINIES A TOTA LA WEB
+   Abans hi havia dues instancies del shader (hero i video). Ara n'hi ha UNA
+   de fixa que cobreix tot el lloc: continuitat visual i una sola capa de GPU
+   en comptes d'una per seccio.
+     base 0,20 a tota la web
+     puja fins a 0,82 dins el hero a partir del trencament
+     torna a la base en sortir-ne
+   El fons de l'escenari del hero s'ha tret perque no el tapi.
 
-EL HERO ANTIC
-  No s'ha esborrat cap metode. S'ha tret el seu DOM, i tots es neutralitzen
-  sols per les guardes que ja tenien:
-    updateHero  -> if (!track) return          (nx-hero-track ja no hi es)
-    initRunic   -> if (!els.length) return
-    shatterHero -> if (!this.problemStyle) return
-    initParallax-> if (!hero) return
-    initVideo / syncSoundBtn -> if (!v) return
-  Comprovat: 0 referencies al DOM, i el JS antic troba null i surt.
-
-  PERDUT, i ho sabies: l'efecte runic de descodificacio i el typewriter.
-  El trencament de vidre esta refet amb els teus assets, no es el codi antic.
-
-VERIFICAT NUMERICAMENT
+VERIFICAT
   · node --check del bloc x-dc: OK
-  · 4.600 particules, 0 valors NaN o infinits al llarg de tot el morph
-  · cost JS del morph: 0,47 ms per fotograma (pressupost 60fps: 16,7 ms)
-  · totes les imatges que fa servir existeixen al repo
+  · 340 tags abans i despres
+  · cost JS del morph a 7.600 particules: 0,78 ms/frame (pressupost 16,7)
+  · cap seccio te fons opac que tapi el canvas fix
 
-NO VERIFICAT  (nomes ho pots fer tu)
-  · que el shader compili. Si el fons es queda negre, consola -> [nx-lines]
-  · que les particules caiguin on toca respecte del text
-  · el ritme de les fases
-
-MOBIL I ACCESSIBILITAT
-  · <=900px o prefers-reduced-motion: sense shader, menys capes de volum,
-    1.600 particules.
-  · El subtitol es queda al DOM per a lectors de pantalla i cercadors.
-  · Els CTA son <a> de veritat, no canvas.
-
-COM APLICAR-HO
-  1. Copia l'index.html actual a index-v5-backup.html (al teu ordinador)
-  2. index.html -> arrel del repo, sobreescriu
+PENDENT  — no hi es, i per que
+  · El disseny de pissarra. El va perdre el v6 en substituir el hero: ara son
+    dues linies de text amb tipografia manuscrita, sense la pissarra.
+  · La descodificacio en passar per sobre. El motor runic segueix sencer al
+    fitxer (initRunic, decode, problemStyle) pero opera sobre el DOM antic.
+    Reconnectar-lo al nou es una feina propia.
+  · Els dos llamps de fons.
+  Van en un patch a part: aquest ja toca densitat, scrim, CTA i el fons de
+  tota la web, i vull que puguis veure que ha canviat cada cosa.
