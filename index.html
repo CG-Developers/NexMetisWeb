@@ -77,6 +77,7 @@
   @keyframes nxBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
   @keyframes nxCoreGlow { 0%, 100% { opacity: 0.45; } 50% { opacity: 0.95; } }
   @keyframes nxTrace { 0% { transform: translateX(0); opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { transform: translateX(var(--nx-trace, 300px)); opacity: 0; } }
+  @keyframes nxChalkBob { 0%, 100% { transform: translateY(0) rotate(-1.6deg); } 50% { transform: translateY(9px) rotate(-1.6deg); } }
   @keyframes nxFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
   @keyframes nxChevA { 0%, 100% { opacity: 0.25; transform: translateY(0); } 50% { opacity: 1; transform: translateY(4px); } }
   @keyframes nxChevB { 0%, 100% { opacity: 1; transform: translateY(4px); } 50% { opacity: 0.25; transform: translateY(0); } }
@@ -188,26 +189,61 @@
 
     <div id="nx2-fb" aria-hidden="true" style="position: absolute; inset: 0; z-index: 0; opacity: 0; pointer-events: none; background: radial-gradient(120% 85% at 20% 10%, rgba(46,139,255,0.26) 0%, transparent 58%), radial-gradient(90% 70% at 82% 90%, rgba(93,227,255,0.16) 0%, transparent 60%);"></div>
 
-    <div id="nx2-ph1" style="position: absolute; inset: 0; z-index: 3; display: grid; place-items: center; text-align: center; padding: 90px 24px;">
-      <div>
-        <p style="font-family: 'Chalkduster', 'Walter Turncoat', 'Caveat', cursive; font-weight: 400; color: rgba(230,226,220,0.86); margin: 0; line-height: 1.35; font-size: clamp(28px, 4.6vw, 62px); transform: rotate(-2.4deg);">Tareas repetitivas y monótonas,</p>
-        <p style="font-family: 'Chalkduster', 'Walter Turncoat', 'Caveat', cursive; font-weight: 400; color: rgba(230,226,220,0.86); margin: 18px 0 0; line-height: 1.35; font-size: clamp(22px, 3.4vw, 46px); transform: rotate(-1.2deg);">exceso de manualidades, sistemas de trabajo arcaicos…</p>
+    <div id="nx2-opaque" aria-hidden="true" style="position: absolute; inset: 0; z-index: 1; background: #0A0A0A; pointer-events: none;"></div>
+
+    <div id="nx2-ph1" style="position: absolute; inset: 0; z-index: 3; display: grid; place-items: center; text-align: center; padding: 90px 24px; font-size: clamp(50px, min(11.5vw, 19vh), 190px);">
+      <div id="nx2-board" style="position: absolute; inset: 0; z-index: 2; background: radial-gradient(62% 54% at 50% 42%, rgba(22, 26, 31, 0.94) 0%, rgba(22, 26, 31, 0.78) 52%, rgba(22, 26, 31, 0.28) 74%, rgba(22, 26, 31, 0) 88%); pointer-events: none; transition: opacity 900ms cubic-bezier(0.16, 1, 0.3, 1); will-change: opacity;">
+        <span style="position: absolute; right: 4%; bottom: 6%; width: 34%; height: 30%; background: radial-gradient(48% 42% at 62% 55%, rgba(214, 220, 226, 0.13), rgba(214, 220, 226, 0.05) 58%, transparent 78%), radial-gradient(30% 26% at 30% 40%, rgba(214, 220, 226, 0.09), transparent 72%); filter: blur(3px); transform: rotate(-7deg);"></span>
+        <span style="position: absolute; right: 12%; bottom: 3%; width: 24%; height: 18%; background: radial-gradient(52% 46% at 45% 50%, rgba(214, 220, 226, 0.1), transparent 74%); filter: blur(5px); transform: rotate(4deg);"></span>
+        <span style="position: absolute; right: 5%; bottom: 14%; width: 26%; height: 5px; background: linear-gradient(90deg, transparent, rgba(222, 228, 234, 0.14) 18%, rgba(222, 228, 234, 0.08) 55%, rgba(222, 228, 234, 0.13) 80%, transparent); filter: blur(1.4px); transform: rotate(-5deg);"></span>
+        <span style="position: absolute; right: 9%; bottom: 9%; width: 20%; height: 4px; background: linear-gradient(90deg, transparent, rgba(222, 228, 234, 0.11) 25%, rgba(222, 228, 234, 0.05) 60%, transparent); filter: blur(1.8px); transform: rotate(-3deg);"></span>
+        <span style="position: absolute; left: 4%; bottom: 30%; width: 22%; height: 5px; background: linear-gradient(90deg, transparent, rgba(222, 228, 234, 0.12) 20%, rgba(222, 228, 234, 0.06) 58%, rgba(222, 228, 234, 0.1) 82%, transparent); filter: blur(1.5px); transform: rotate(6deg);"></span>
+        <span style="position: absolute; left: 7%; bottom: 24%; width: 16%; height: 4px; background: linear-gradient(90deg, transparent, rgba(222, 228, 234, 0.09) 30%, rgba(222, 228, 234, 0.04) 65%, transparent); filter: blur(2px); transform: rotate(8deg);"></span>
+        <span style="position: absolute; left: 10%; top: 16%; width: 14%; height: 4px; background: linear-gradient(90deg, transparent, rgba(222, 228, 234, 0.08) 30%, transparent 80%); filter: blur(2.2px); transform: rotate(-4deg);"></span>
+        <div id="nx2-board-list" style="position: absolute; left: 3.5%; top: 24%; display: grid; gap: 7px; transition: opacity 1100ms ease-out, filter 1100ms ease-out; font-family: 'Chalkduster', 'Walter Turncoat', cursive; font-size: clamp(11px, 1.15vw, 17px); color: rgba(228, 234, 240, 0.34); filter: blur(0.5px); transform: rotate(-3deg); line-height: 1.25;">
+          <span style="font-size: 1.25em; text-decoration: underline; text-underline-offset: 4px; color: rgba(228, 234, 240, 0.4); margin-bottom: 3px;">Pendientes:</span>
+          <span>&#8594; facturas a mano</span>
+          <span>&#8594; copiar datos</span>
+          <span style="opacity: 0.75;">&#8594; contestar emails</span>
+          <span>&#8594; revisar stock</span>
+          <span style="opacity: 0.6;">&#8594; informes excel</span>
+          <span style="opacity: 0.8;">&#8594; llamadas...</span>
+        </div>
+        <span style="position: absolute; left: 5%; bottom: 22%; width: 20%; height: 16%; background: radial-gradient(50% 44% at 50% 50%, rgba(214, 220, 226, 0.07), transparent 76%); filter: blur(6px); transform: rotate(9deg);"></span>
+      </div>
+      <div id="nx2-hint1" style="position: absolute; left: 50%; bottom: 6%; z-index: 4; transform: translateX(-50%); display: grid; justify-items: center; gap: 2px; font-family: 'Chalkduster', 'Walter Turncoat', 'Caveat', cursive; color: rgba(228, 234, 240, 0.62); pointer-events: none; animation: nxChalkBob 2.8s ease-in-out infinite;">
+        <span style="font-size: clamp(17px, 1.7vw, 26px); letter-spacing: 0.02em;">Desliza</span>
+        <svg viewBox="0 0 34 46" aria-hidden="true" style="width: clamp(20px, 1.9vw, 30px); height: auto; overflow: visible;">
+          <path d="M17 2 C 15.4 13, 18.6 24, 17 38" fill="none" stroke="rgba(228,234,240,0.6)" stroke-width="2.4" stroke-linecap="round"></path>
+          <path d="M8 29 C 12 34, 15.4 38, 17 42" fill="none" stroke="rgba(228,234,240,0.6)" stroke-width="2.4" stroke-linecap="round"></path>
+          <path d="M26 29 C 22 34, 18.6 38, 17 42" fill="none" stroke="rgba(228,234,240,0.6)" stroke-width="2.4" stroke-linecap="round"></path>
+        </svg>
+      </div>
+
+      <div style="position: relative; z-index: 3;">
+        <p style="font-family: 'Chalkduster', 'Walter Turncoat', 'Caveat', cursive; font-weight: 400; color: rgba(230,226,220,0.9); margin: 0; line-height: 1.16; font-size: 0.46em; transform: rotate(-2.4deg);">Tareas repetitivas y monótonas,</p>
+        <p style="font-family: 'Chalkduster', 'Walter Turncoat', 'Caveat', cursive; font-weight: 400; color: rgba(230,226,220,0.9); margin: 0.18em 0 0; line-height: 1.16; font-size: 0.36em; transform: rotate(-1.2deg);">exceso de manualidades, sistemas de trabajo arcaicos…</p>
       </div>
     </div>
 
     <div id="nx2-crack" aria-hidden="true" style="position: absolute; inset: 0; z-index: 6; opacity: 0; pointer-events: none; background: url('assets/cracks-white.webp') center/cover no-repeat; mix-blend-mode: screen;"></div>
-    <div id="nx2-shards" aria-hidden="true" style="position: absolute; inset: -8%; z-index: 7; opacity: 0; pointer-events: none; background: url('assets/shards-cyan.webp') center/cover no-repeat; mix-blend-mode: screen;"></div>
+    <div id="nx2-shards" aria-hidden="true" style="position: absolute; inset: -8%; z-index: 7; opacity: 0; pointer-events: none; background: url('assets/shards-alpha.webp') center/cover no-repeat; mix-blend-mode: screen; filter: saturate(0.15) brightness(1.06);"></div>
 
     <div id="nx2-ph2" style="position: absolute; inset: 0; z-index: 4; display: grid; place-items: center; text-align: center; padding: 90px 24px; opacity: 0;">
       <div>
         <h1 id="nx2-h1" style="margin: 0;"></h1>
-        <div id="nx2-hint" style="margin-top: 42px; display: grid; gap: 8px; justify-items: center; font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(196,189,180,0.85);">
-          <span>Desliza</span>
-          <span aria-hidden="true" style="font-size: 15px;">↓</span>
+        <div id="nx2-hint" style="margin-top: 46px; display: grid; gap: 2px; justify-items: center; font-family: 'Chalkduster', 'Walter Turncoat', 'Caveat', cursive; color: rgba(228, 234, 240, 0.62); animation: nxChalkBob 2.8s ease-in-out infinite;">
+          <span style="font-size: clamp(17px, 1.7vw, 26px); letter-spacing: 0.02em;">Desliza</span>
+          <svg viewBox="0 0 34 46" aria-hidden="true" style="width: clamp(20px, 1.9vw, 30px); height: auto; overflow: visible;">
+            <path d="M17 2 C 15.4 13, 18.6 24, 17 38" fill="none" stroke="rgba(228,234,240,0.6)" stroke-width="2.4" stroke-linecap="round"></path>
+            <path d="M8 29 C 12 34, 15.4 38, 17 42" fill="none" stroke="rgba(228,234,240,0.6)" stroke-width="2.4" stroke-linecap="round"></path>
+            <path d="M26 29 C 22 34, 18.6 38, 17 42" fill="none" stroke="rgba(228,234,240,0.6)" stroke-width="2.4" stroke-linecap="round"></path>
+          </svg>
         </div>
       </div>
     </div>
 
+    <canvas id="nx2-bolts" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block; z-index: 4; opacity: 0; pointer-events: none; mix-blend-mode: screen;"></canvas>
     <div id="nx2-scrim" aria-hidden="true" style="position: absolute; inset: 0; z-index: 5; opacity: 0; pointer-events: none; background: radial-gradient(58% 34% at 50% 50%, rgba(2,5,12,0.86) 0%, rgba(2,5,12,0.55) 46%, rgba(2,5,12,0) 78%);"></div>
     <canvas id="nx2-particles" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block; z-index: 8; pointer-events: none; opacity: 0;"></canvas>
 
@@ -215,7 +251,7 @@
       <div style="display: grid; justify-items: center; gap: 26px; width: 100%; max-width: 1240px;">
         <p id="nx2-sub-sr" style="position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap;">Construimos la infraestructura digital de tu empresa:</p>
         <div id="nx2-spacer" style="height: clamp(70px, 11vh, 130px);"></div>
-        <div id="nx2-chips" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 14px 34px; opacity: 0;">
+        <div id="nx2-chips" style="position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap;">
           <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(13px, 1.2vw, 17px); letter-spacing: 0.2em; text-transform: uppercase; color: rgba(140,232,255,0.97); -webkit-text-stroke: 0.6px rgba(215,248,255,0.95); text-shadow: 0 0 8px rgba(190,245,255,0.95), 0 0 22px rgba(93,227,255,0.9), 0 0 54px rgba(46,160,255,0.7);">Estrategia</span>
           <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(13px, 1.2vw, 17px); letter-spacing: 0.2em; text-transform: uppercase; color: rgba(140,232,255,0.97); -webkit-text-stroke: 0.6px rgba(215,248,255,0.95); text-shadow: 0 0 8px rgba(190,245,255,0.95), 0 0 22px rgba(93,227,255,0.9), 0 0 54px rgba(46,160,255,0.7);">Diseño</span>
           <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(13px, 1.2vw, 17px); letter-spacing: 0.2em; text-transform: uppercase; color: rgba(140,232,255,0.97); -webkit-text-stroke: 0.6px rgba(215,248,255,0.95); text-shadow: 0 0 8px rgba(190,245,255,0.95), 0 0 22px rgba(93,227,255,0.9), 0 0 54px rgba(46,160,255,0.7);">Desarrollo web</span>
@@ -1864,6 +1900,7 @@ class Component extends DCLogic {
     this.h2 = {
       track,
       ph1: document.getElementById('nx2-ph1'),
+      opaque: document.getElementById('nx2-opaque'),
       ph2: document.getElementById('nx2-ph2'),
       crack: document.getElementById('nx2-crack'),
       shards: document.getElementById('nx2-shards'),
@@ -1881,6 +1918,7 @@ class Component extends DCLogic {
     /* Un sol shader per tota la web: continuitat visual i una unica capa de
        GPU en comptes d'una per seccio. La intensitat la mou l'scroll. */
     const drawAll = this.initLines('nx2-lines-all');
+    const drawBolts = this.initBolts();
     if (!drawAll && this.h2.fb) { this.h2.fb.style.opacity = '1'; }
 
     const vsh = document.getElementById('nx2-vshell');
@@ -1892,6 +1930,7 @@ class Component extends DCLogic {
       if (!this.alive) return;
       const p = this.heroPhase();
       if (drawAll) drawAll();
+      if (drawBolts && this.h2.boltsOn) drawBolts();
       if (p > 0.5) this.drawMorph();
     };
     this.h2Raf = requestAnimationFrame(loop);
@@ -1966,6 +2005,51 @@ class Component extends DCLogic {
     this.h2TiltRaf = requestAnimationFrame(tick);
   }
 
+  /* ---------- mostreig de diverses linies en un sol camp de particules ---------- */
+  sampleBlock(rows, W, H, step) {
+    const off = document.createElement('canvas');
+    const oc = off.getContext('2d', { willReadFrequently: true });
+    const maxW = W * 0.9;
+    const meas = rows.map((r) => {
+      let font = r.font;
+      oc.font = font;
+      let m = oc.measureText(r.text);
+      if (m.width > maxW) {
+        const size = Math.max(12, parseFloat(font) * (maxW / m.width));
+        font = font.replace(/[\d.]+px/, size + 'px');
+        oc.font = font;
+        m = oc.measureText(r.text);
+      }
+      const asc = Math.ceil(m.actualBoundingBoxAscent || parseFloat(font) * 0.78);
+      const desc = Math.ceil(m.actualBoundingBoxDescent || parseFloat(font) * 0.22);
+      return { text: r.text, font, w: Math.ceil(m.width), asc, desc, gap: r.gap || 0 };
+    });
+    const pad = 12;
+    const totalH = meas.reduce((a, r) => a + r.asc + r.desc + r.gap, 0);
+    off.width = Math.max(...meas.map((r) => r.w)) + pad * 2;
+    off.height = totalH + pad * 2;
+    oc.textAlign = 'center';
+    oc.textBaseline = 'alphabetic';
+    oc.fillStyle = '#fff';
+    let y = pad;
+    meas.forEach((r) => {
+      y += r.gap + r.asc;
+      oc.font = r.font;
+      oc.fillText(r.text, off.width / 2, y);
+      y += r.desc;
+    });
+    const img = oc.getImageData(0, 0, off.width, off.height).data;
+    const out = [];
+    for (let yy = 0; yy < off.height; yy += step) {
+      for (let xx = 0; xx < off.width; xx += step) {
+        if (img[(yy * off.width + xx) * 4 + 3] > 40) {
+          out.push([W / 2 - off.width / 2 + xx, H / 2 - off.height / 2 + yy]);
+        }
+      }
+    }
+    return out;
+  }
+
   /* ---------- mostreig d'un text en objectius de particula ---------- */
   sampleGlyphs(text, font, W, H, step) {
     const off = document.createElement('canvas');
@@ -2022,13 +2106,20 @@ class Component extends DCLogic {
       const subSize = Math.min(46, Math.max(24, W * 0.032));
       const A = this.sampleGlyphs('Rompamos los esquemas',
         "700 " + titleSize + "px 'Bodoni Moda', Georgia, serif", W, H, lite ? 5 : 4);
-      const B = this.sampleGlyphs('Construimos la infraestructura digital de tu empresa:',
-        "600 " + subSize + "px 'Space Grotesk', sans-serif", W, H, lite ? 3 : 2);
+      /* El subtitol i les quatre arees son ara UN SOL camp de particules:
+         la mateixa pols que formava el titular escriu les dues linies. */
+      const areaSize = Math.max(15, subSize * 0.52);
+      const B = this.sampleBlock([
+        { text: 'Construimos la infraestructura digital de tu empresa:',
+          font: "600 " + subSize + "px 'Space Grotesk', sans-serif" },
+        { text: 'ESTRATEGIA    DISEÑO    DESARROLLO WEB    AUTOMATIZACIÓN & IA',
+          font: "700 " + areaSize + "px 'Space Grotesk', sans-serif", gap: subSize * 0.72 }
+      ], W, H, lite ? 3 : 2);
       if (!A.length || !B.length) return;
 
       /* Un sol joc de particules amb dos destins. El recompte es fixa i cada
          llista es remostreja, perque els dos textos no en generen el mateix. */
-      const N = Math.min(lite ? 2400 : 7600, Math.max(A.length, B.length));
+      const N = Math.min(lite ? 3200 : 12000, Math.max(A.length, B.length));
       const pts = new Float32Array(N * 8);
       for (let i = 0; i < N; i++) {
         const a = A[Math.floor(i * A.length / N)];
@@ -2089,6 +2180,91 @@ class Component extends DCLogic {
     ctx.filter = 'none';
   }
 
+  /* ===== Lightning ===========================================================
+     Shader del component Lightning de React Bits, sobre WebGL1 pelat.
+     Copyright (c) 2026 David Haz — MIT + Commons Clause License Condition v1.0.
+     Us permes dins d'un lloc web o producte; prohibida la venda o redistribucio
+     del component, tambe en versio portada.
+
+     El component original dibuixa UN llamp per instancia. Aqui el shader en
+     calcula DOS amb desplaçaments oposats dins la mateixa passada: un sol
+     context WebGL en comptes de dos, i una sola crida de dibuix. */
+
+  initBolts() {
+    const cv = document.getElementById('nx2-bolts');
+    if (!cv || this.reduced || window.innerWidth <= 900) return null;
+    const gl = cv.getContext('webgl', { alpha: true, premultipliedAlpha: false });
+    if (!gl) return null;
+
+    const VS = 'attribute vec2 aP;void main(){gl_Position=vec4(aP,0.0,1.0);}';
+    const FS = [
+      'precision mediump float;',
+      'uniform vec2 iRes;uniform float iTime;uniform float uHue;uniform float uSpeed;',
+      'uniform float uIntensity;uniform float uSize;uniform float uOffA;uniform float uOffB;',
+      'vec3 hsv2rgb(vec3 c){vec3 r=clamp(abs(mod(c.x*6.0+vec3(0.0,4.0,2.0),6.0)-3.0)-1.0,0.0,1.0);',
+      ' return c.z*mix(vec3(1.0),r,c.y);}',
+      'float hash11(float p){p=fract(p*0.1031);p*=p+33.33;p*=p+p;return fract(p);}',
+      'float hash12(vec2 p){vec3 p3=fract(vec3(p.xyx)*0.1031);p3+=dot(p3,p3.yzx+33.33);',
+      ' return fract((p3.x+p3.y)*p3.z);}',
+      'mat2 rot2(float t){float c=cos(t),s=sin(t);return mat2(c,-s,s,c);}',
+      'float noise(vec2 p){vec2 ip=floor(p),fp=fract(p);',
+      ' float a=hash12(ip),b=hash12(ip+vec2(1.0,0.0)),c=hash12(ip+vec2(0.0,1.0)),d=hash12(ip+vec2(1.0,1.0));',
+      ' vec2 t=smoothstep(0.0,1.0,fp);return mix(mix(a,b,t.x),mix(c,d,t.x),t.y);}',
+      'float fbm(vec2 p){float v=0.0,a=0.5;',
+      ' for(int i=0;i<10;++i){v+=a*noise(p);p*=rot2(0.45);p*=2.0;a*=0.5;}return v;}',
+      'vec3 bolt(vec2 uv0,float off,float seed){',
+      ' vec2 uv=uv0;uv.x+=off;',
+      ' uv+=2.0*fbm(uv*uSize+0.8*iTime*uSpeed+seed)-1.0;',
+      ' float d=abs(uv.x);',
+      ' vec3 base=hsv2rgb(vec3(uHue/360.0,0.7,0.8));',
+      ' return base*(mix(0.0,0.07,hash11(iTime*uSpeed+seed))/d)*uIntensity;}',
+      'void main(){',
+      ' vec2 uv=gl_FragCoord.xy/iRes.xy;uv=2.0*uv-1.0;uv.x*=iRes.x/iRes.y;',
+      ' vec3 col=bolt(uv,uOffA,0.0)+bolt(uv,uOffB,17.3);',
+      ' float a=clamp(max(col.r,max(col.g,col.b)),0.0,1.0);',
+      ' gl_FragColor=vec4(col,a);}'
+    ].join('\n');
+
+    const sh = (t, src) => {
+      const x = gl.createShader(t); gl.shaderSource(x, src); gl.compileShader(x);
+      if (!gl.getShaderParameter(x, gl.COMPILE_STATUS)) { console.error('[nx-bolts]', gl.getShaderInfoLog(x)); return null; }
+      return x;
+    };
+    const vs = sh(gl.VERTEX_SHADER, VS), fs = sh(gl.FRAGMENT_SHADER, FS);
+    if (!vs || !fs) return null;
+    const pr = gl.createProgram();
+    gl.attachShader(pr, vs); gl.attachShader(pr, fs); gl.linkProgram(pr);
+    if (!gl.getProgramParameter(pr, gl.LINK_STATUS)) { console.error('[nx-bolts]', gl.getProgramInfoLog(pr)); return null; }
+    gl.useProgram(pr);
+
+    const b = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, b);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+    const aP = gl.getAttribLocation(pr, 'aP');
+    gl.enableVertexAttribArray(aP);
+    gl.vertexAttribPointer(aP, 2, gl.FLOAT, false, 0, 0);
+
+    const U = (n) => gl.getUniformLocation(pr, n);
+    gl.uniform1f(U('uHue'), 205);
+    gl.uniform1f(U('uSpeed'), 0.85);
+    gl.uniform1f(U('uIntensity'), 0.85);
+    gl.uniform1f(U('uSize'), 1.15);
+    gl.uniform1f(U('uOffA'), -0.78);
+    gl.uniform1f(U('uOffB'), 0.86);
+    const uR = U('iRes'), uT = U('iTime');
+    const t0 = performance.now();
+    return () => {
+      const d = Math.min(window.devicePixelRatio || 1, 1.5);
+      const w = Math.round(cv.clientWidth * d), h = Math.round(cv.clientHeight * d);
+      if (!w || !h) return;
+      if (cv.width !== w || cv.height !== h) { cv.width = w; cv.height = h; }
+      gl.viewport(0, 0, cv.width, cv.height);
+      gl.uniform2f(uR, cv.width, cv.height);
+      gl.uniform1f(uT, (performance.now() - t0) / 1000);
+      gl.drawArrays(gl.TRIANGLES, 0, 3);
+    };
+  }
+
   /* ---------- orquestracio per scroll ---------- */
   heroPhase() {
     const h = this.h2;
@@ -2106,6 +2282,10 @@ class Component extends DCLogic {
     const late = mp(p, 0.86, 0.95);
 
     h.ph1.style.opacity = a1.toFixed(3);
+    /* el retol de guix se'n va de seguida: en quant l'usuari toca l'scroll
+       ja ha entes que hi ha recorregut i deixa de fer falta */
+    const hint1 = document.getElementById('nx2-hint1');
+    if (hint1) hint1.style.opacity = (1 - mp(p, 0.015, 0.085)).toFixed(3);
     h.ph1.style.transform = 'translateY(' + (-22 * (1 - a1)).toFixed(1) + 'px)';
     h.crack.style.opacity = (Math.sin(tr * Math.PI) * 0.9).toFixed(3);
     h.shards.style.opacity = (Math.sin(tr * Math.PI) * 0.75).toFixed(3);
@@ -2113,13 +2293,22 @@ class Component extends DCLogic {
     h.ph2.style.opacity = a2.toFixed(3);
     if (h.hint) h.hint.style.opacity = (a2 * (1 - mp(p, 0.44, 0.52))).toFixed(3);
     h.pcv.style.opacity = pa.toFixed(3);
+    /* els llamps nomes a la pantalla final, entrant despres del text */
+    const bolts = document.getElementById('nx2-bolts');
+    if (bolts) {
+      const bk = mp(p, 0.72, 0.90) * (1 - mp(p, 0.985, 1));
+      bolts.style.opacity = (bk * 0.62).toFixed(3);
+      h.boltsOn = bk > 0.02;
+    }
     if (h.scrim) h.scrim.style.opacity = (pa * 0.92).toFixed(3);
-    h.chips.style.opacity = late.toFixed(3);
     h.cta.style.opacity = late.toFixed(3);
     h.cta.style.pointerEvents = late > 0.9 ? 'auto' : 'none';
 
     /* Base baixa a tota la web; puja dins el hero a partir del trencament i
        torna a la base en sortir-ne, aixi el fons no desapareix mai del tot. */
+    /* Al principi la primera pantalla es la pissarra i prou: una capa opaca
+       tapa el fons de linies fins que comença el trencament. */
+    if (h.opaque) h.opaque.style.opacity = (1 - mp(p, 0.14, 0.30)).toFixed(3);
     const all = document.getElementById('nx2-lines-all');
     if (all) {
       const rel = h.track.getBoundingClientRect();
