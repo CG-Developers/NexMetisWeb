@@ -1,52 +1,52 @@
-NEXMETIS · patch v2 (acumulatiu)  —  9 agost 2026
-==================================================
-SUBSTITUEIX el patch v1 (nexmetis-optim-assets). Si encara no has aplicat el v1,
-aplica NOMES aquest: ja el conte sencer.
+NEXMETIS · patch v4 — text nitid a les targetes de projecte
+===========================================================
+ACUMULATIU sobre el v3 (Electric Border inclos). Nomes canvia index.html.
 
-INCLOU DEL v1
-  · Imatges a WebP  ....................  8.371 KB -> 908 KB   (-90%)
-  · Video del hero 720p/CRF30  .........  18.264 KB -> 1.533 KB (-92%)
-  · Poster al video + preload="metadata"
-  · Footer: "NexMetis S.L." -> NexSocial SCCL
-  TOTAL SERVIT: 27,2 MB -> 2,5 MB
+LA CAUSA, MESURADA AL TEU WEB
+  La targeta frontal es maquetava a 420x262 i es mostrava a 787x491.
+  L'escenari te perspective:1200px i cada targeta esta a translateZ(560px):
+      ampliacio = 1200 / (1200 - 560) = 1,875x
+  El navegador rasteritzava el text a 420px d'amplada i despres estirava
+  aquell mapa de pixels un 87%. Igual que ampliar un JPEG petit.
 
-NOU AL v2
-  · image-slot.js FORA (era l'ajudant de l'editor, no ha d'anar a produccio)
-  · Placeholder del formulari #7E766E -> #8C847B  (4,43:1 -> 5,38:1, ara compleix AA)
-  · Text funcional per sota d'11px pujat a 11px: 3 casos de 9px, 15 de 10px
-    (etiquetes NIVEL x/5, tags de projecte, "Arrastra para girar", footer)
+  Per aixo la primera es veia be i la resta no: Chrome rerasteritza la capa
+  que ja tenia composta en carregar; les altres es queden amb la textura d'1x.
 
-  Anti-patrons impeccable: 79 -> 63
+  DESCARTAT abans d'actuar (mesurat, no suposat):
+   · will-change ja estava a 'auto' i s'hi mantenia (mostrejat 9s)
+   · el filter:blur() de les laterals estava a 'none' a la frontal
+   · l'anell si que s'assenta; la rotacio no hi tenia res a veure
+   · el retolat de sota l'anell (#nx-case-title/desc) esta net, sense capes
 
-COM APLICAR-HO (drag & drop a CG-Developers/NexmetisWeb)
-  1. index.html            -> arrel, sobreescriu
-  2. assets/*.webp         -> carpeta assets/
-  3. media/hero-video.mp4  -> carpeta media/, SOBREESCRIU l'antic
-  4. media/hero-poster.webp i media/hero-photo.webp -> carpeta media/
-  5. ESBORRA image-slot.js de l'arrel del repo
+LA CORRECCIO
+  Les 7 targetes es maqueten 1,875x mes grans (420->787,5 · fonts 11/13/25 ->
+  20,6/24,4/46,9 · encoixinats i vores en proporcio) i la transformacio hi
+  afegeix scale(0,5333).
+  La mida projectada NO canvia gens: 787,5 x 0,5333 x 1,875 = 787,5.
+  El que canvia es que el text es rasteritza des d'un layout de 787px.
 
-DESPRES, ESBORRA DEL REPO (ja no es fan servir):
-  assets/boom-shards.png       assets/case-nexlicitia.png
-  assets/case-appajudes.jpg    assets/case-nexsocial.png
-  assets/case-crm.png          assets/cracks-white.png
-  assets/case-flamenco.png     assets/services-bg.png
-  assets/case-flamenco-web.jpg assets/shards-alpha.png
-  assets/case-intranet.png     assets/shards-cyan.png
-  media/hero-photo.png         image-slot.js
+  La contraescala nomes desfa l'inflat, per tant es CONSTANT encara que el
+  radi R sigui dinamic (vw*0,40 fins a 560). Comprovat:
+      vw=1000  R=400  ampliacio 1,500x  escala neta 0,800  projectat 630,0 (abans 630,0)
+      vw=1200  R=480  ampliacio 1,667x  escala neta 0,889  projectat 700,0 (abans 700,0)
+      vw=1400  R=560  ampliacio 1,875x  escala neta 1,000  projectat 787,5 (abans 787,5)
+      vw=1920  R=560  ampliacio 1,875x  escala neta 1,000  projectat 787,5 (abans 787,5)
+  L'escala neta no passa mai d'1: per sota de 1400px de viewport hi ha
+  reduccio, o sigui encara mes nitid.
 
-NO ESBORRIS: media/glass-break.mp3, support.js, logo-nexmetis.png,
-             favicons, og-image.jpg, site.webmanifest
+  MOBIL: a <=900px el 3D esta desactivat i el CSS ja retornava 280x176.
+  S'hi han afegit les mides de tipografia i encoixinat originals, i la
+  contraescala es 1. Al mobil no canvia res.
 
-MIRA-HO TU (no he pogut verificar-ho al navegador, es va desconnectar)
-  Les 18 pujades de mida de text poden afectar etiquetes amb white-space:nowrap.
-  Repassa les etiquetes NIVEL x/5 de les targetes de servei i els tags dels
-  projectes. Si alguna es desborda, digue-m'ho i l'ajusto.
+COM APLICAR-HO
+  index.html -> arrel del repo, sobreescriu. Res mes.
 
-NO S'HA TOCAT (decisio vostra, regla zero)
-  · Els 42 dark-glow i la paleta blava: son la identitat de Nexmetis
-  · Space Grotesk, la graella decorativa, les ombres difuses, les majuscules
+VERIFICAT
+  · node --check del bloc x-dc: OK
+  · 361 tags abans i despres
+  · geometria projectada identica als 4 amples de referencia
 
-PENDENT · BLOQUEJAT PER DADES
-  Pagines legals (avis legal, privacitat, cookies) i els 6 href="#".
-  Calen: NIF, domicili social i num. de registre de NexSocial SCCL.
-  La web de NexSocial tampoc els publica. Incompleix LSSI art. 10 als dos webs.
+MIRA-HO TU
+  Els textos de les targetes han de sortir nitids DES DE LA PRIMERA, sense
+  esperar el segon de reajust. Comprova tambe que la mida de les targetes es
+  exactament la d'abans: si les veus mes grans o mes petites, avisa'm.
