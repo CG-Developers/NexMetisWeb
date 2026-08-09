@@ -1,0 +1,34 @@
+NEXMETIS · patch d'optimització d'assets  —  9 agost 2026
+==========================================================
+
+QUÈ FA
+  · Totes les imatges passen a WebP  ..........  8.371 KB → 908 KB   (-90%)
+  · Vídeo del hero reencodat 720p/CRF30  ......  18.264 KB → 1.533 KB (-92%)
+  · Pòster al vídeo (primer pintat instantani) i preload="metadata"
+  · Footer: "NexMetis S.L." (entitat inexistent) → NexSocial SCCL
+
+  TOTAL SERVIT:  27,2 MB  →  2,5 MB
+
+COM APLICAR-HO (drag & drop al repo CG-Developers/NexmetisWeb)
+  1. index.html            → arrel, sobreescriu
+  2. assets/*.webp         → carpeta assets/ (s'afegeixen, no sobreescriuen)
+  3. media/hero-video.mp4  → carpeta media/, SOBREESCRIU l'antic (mateix nom)
+  4. media/hero-poster.webp i media/hero-photo.webp → carpeta media/
+
+DESPRÉS, ESBORRA DEL REPO (ja no es fan servir):
+  assets/boom-shards.png       assets/case-nexlicitia.png
+  assets/case-appajudes.jpg    assets/case-nexsocial.png
+  assets/case-crm.png          assets/cracks-white.png
+  assets/case-flamenco.png     assets/services-bg.png
+  assets/case-flamenco-web.jpg assets/shards-alpha.png
+  assets/case-intranet.png     assets/shards-cyan.png
+  media/hero-photo.png
+
+NO ESBORRIS: media/glass-break.mp3, logo-nexmetis.png, favicons, og-image.jpg
+
+PENDENT (següent patch)
+  · Pàgines legals: avís legal, privacitat, cookies (ara són href="#")
+  · Enllaços socials LinkedIn / X / Instagram (ara href="#")
+  · BLOQUEIG: cal NIF, domicili social i núm. de registre de NexSocial SCCL.
+    La web de NexSocial tampoc els publica ("número pendent de registre",
+    domicili "Catalunya, Espanya"). Això incompleix LSSI art. 10 als dos webs.
