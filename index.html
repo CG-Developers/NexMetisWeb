@@ -250,16 +250,16 @@
     <div id="nx2-ph3" style="position: absolute; inset: 0; z-index: 9; display: grid; place-items: center; text-align: center; padding: 90px 24px; pointer-events: none;">
       <div style="display: grid; justify-items: center; gap: 26px; width: 100%; max-width: 1240px;">
         <p id="nx2-sub-sr" style="position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap;">Construimos la infraestructura digital de tu empresa:</p>
-        <div id="nx2-spacer" style="height: clamp(70px, 11vh, 130px);"></div>
+
         <div id="nx2-chips" style="position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap;">
           <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(13px, 1.2vw, 17px); letter-spacing: 0.2em; text-transform: uppercase; color: rgba(140,232,255,0.97); -webkit-text-stroke: 0.6px rgba(215,248,255,0.95); text-shadow: 0 0 8px rgba(190,245,255,0.95), 0 0 22px rgba(93,227,255,0.9), 0 0 54px rgba(46,160,255,0.7);">Estrategia</span>
           <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(13px, 1.2vw, 17px); letter-spacing: 0.2em; text-transform: uppercase; color: rgba(140,232,255,0.97); -webkit-text-stroke: 0.6px rgba(215,248,255,0.95); text-shadow: 0 0 8px rgba(190,245,255,0.95), 0 0 22px rgba(93,227,255,0.9), 0 0 54px rgba(46,160,255,0.7);">Diseño</span>
           <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(13px, 1.2vw, 17px); letter-spacing: 0.2em; text-transform: uppercase; color: rgba(140,232,255,0.97); -webkit-text-stroke: 0.6px rgba(215,248,255,0.95); text-shadow: 0 0 8px rgba(190,245,255,0.95), 0 0 22px rgba(93,227,255,0.9), 0 0 54px rgba(46,160,255,0.7);">Desarrollo web</span>
           <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(13px, 1.2vw, 17px); letter-spacing: 0.2em; text-transform: uppercase; color: rgba(140,232,255,0.97); -webkit-text-stroke: 0.6px rgba(215,248,255,0.95); text-shadow: 0 0 8px rgba(190,245,255,0.95), 0 0 22px rgba(93,227,255,0.9), 0 0 54px rgba(46,160,255,0.7);">Automatización &amp; IA</span>
         </div>
-        <div id="nx2-cta" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; opacity: 0; pointer-events: none;">
-          <a href="#nx-contacto" data-cursor="Analizar" style="display: inline-flex; align-items: center; gap: 11px; padding: 16px 28px; border-radius: 999px; font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #EAF4FF; text-decoration: none; background: rgba(8,16,32,0.30); backdrop-filter: blur(9px); -webkit-backdrop-filter: blur(9px); border: 1px solid rgba(190,245,255,0.34);">Analizar mi proyecto <span aria-hidden="true">→</span></a>
-          <a href="#nx-torre" data-cursor="Arquitectura" style="display: inline-flex; align-items: center; gap: 11px; padding: 16px 28px; border-radius: 999px; font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #EAF4FF; text-decoration: none; background: rgba(8,16,32,0.30); backdrop-filter: blur(9px); -webkit-backdrop-filter: blur(9px); border: 1px solid rgba(190,245,255,0.34);">Ver la arquitectura <span aria-hidden="true">↓</span></a>
+        <div id="nx2-cta" style="position: absolute; left: 50%; top: 50%; transform: translateX(-50%); display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; opacity: 0; pointer-events: none;">
+          <a href="#nx-contacto" data-cursor="Analizar" style="display: inline-flex; align-items: center; gap: 11px; padding: 16px 28px; border-radius: 999px; font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #EAF4FF; text-decoration: none; background: rgba(10,20,38,0.16); backdrop-filter: blur(11px) saturate(1.15); -webkit-backdrop-filter: blur(11px) saturate(1.15); border: 1px solid rgba(190,245,255,0.46); box-shadow: inset 0 1px 0 rgba(255,255,255,0.10), 0 8px 30px rgba(4,10,24,0.35);">Analizar mi proyecto <span aria-hidden="true">→</span></a>
+          <a href="#nx-torre" data-cursor="Arquitectura" style="display: inline-flex; align-items: center; gap: 11px; padding: 16px 28px; border-radius: 999px; font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #EAF4FF; text-decoration: none; background: rgba(10,20,38,0.16); backdrop-filter: blur(11px) saturate(1.15); -webkit-backdrop-filter: blur(11px) saturate(1.15); border: 1px solid rgba(190,245,255,0.46); box-shadow: inset 0 1px 0 rgba(255,255,255,0.10), 0 8px 30px rgba(4,10,24,0.35);">Ver la arquitectura <span aria-hidden="true">↓</span></a>
         </div>
       </div>
     </div>
@@ -2038,6 +2038,7 @@ class Component extends DCLogic {
       oc.fillText(r.text, off.width / 2, y);
       y += r.desc;
     });
+    this.lastBlockH = off.height;
     const img = oc.getImageData(0, 0, off.width, off.height).data;
     const out = [];
     for (let yy = 0; yy < off.height; yy += step) {
@@ -2108,12 +2109,12 @@ class Component extends DCLogic {
         "700 " + titleSize + "px 'Bodoni Moda', Georgia, serif", W, H, lite ? 5 : 4);
       /* El subtitol i les quatre arees son ara UN SOL camp de particules:
          la mateixa pols que formava el titular escriu les dues linies. */
-      const areaSize = Math.max(15, subSize * 0.52);
+      const areaSize = Math.max(19, subSize * 0.64);
       const B = this.sampleBlock([
         { text: 'Construimos la infraestructura digital de tu empresa:',
           font: "600 " + subSize + "px 'Space Grotesk', sans-serif" },
         { text: 'ESTRATEGIA    DISEÑO    DESARROLLO WEB    AUTOMATIZACIÓN & IA',
-          font: "700 " + areaSize + "px 'Space Grotesk', sans-serif", gap: subSize * 0.72 }
+          font: "700 " + areaSize + "px 'Space Grotesk', sans-serif", gap: subSize * 0.85 }
       ], W, H, lite ? 3 : 2);
       if (!A.length || !B.length) return;
 
@@ -2135,6 +2136,12 @@ class Component extends DCLogic {
         pts[o + 6] = 0.55 + seed * 0.9;
         pts[o + 7] = seed;
       }
+      /* Els CTA es col·loquen a partir de l'alçada REAL del bloc de particules,
+         no a una distancia fixa. Sense aixo, la linia d'arees i els botons es
+         trepitjaven en quant canviava la mida del text o del viewport. */
+      const cta = document.getElementById('nx2-cta');
+      if (cta) cta.style.marginTop = Math.round((this.lastBlockH || 140) / 2 + 46) + 'px';
+
       this.morph = { ready: true, m: 0, N: N, pts: pts, cv: cv, ctx: ctx, W: W, H: H,
                      gcv: document.createElement('canvas') };
       this.morph.gcv.width = Math.max(1, Math.floor(W / 2));
@@ -2265,6 +2272,37 @@ class Component extends DCLogic {
     };
   }
 
+  /* ---------- so del vidre: dos impactes encavalcats ---------- */
+
+  /* Dos elements <audio> separats, no un de sol reiniciat: amb un de sol el
+     segon cop talla el primer i el que es guanya en repeticio es perd en cua.
+     El segon entra 1s despres, mes fluix i lleugerament mes lent, que fa
+     l'efecte d'un impacte mes gran i mes lluny. */
+  primeCrash() {
+    if (this.crashA) return;
+    this.crashA = new Audio('media/glass-break.mp3');
+    this.crashB = new Audio('media/glass-break.mp3');
+    this.crashA.preload = 'auto';
+    this.crashB.preload = 'auto';
+    this.crashA.volume = 0.55;
+    this.crashB.volume = 0.32;
+    this.crashB.playbackRate = 0.92;
+  }
+
+  playCrashPair() {
+    /* Chrome no considera l'scroll un gest d'usuari: si encara no ha clicat
+       ni premut cap tecla, aixo no sonara i no ha de petar res. */
+    try {
+      this.primeCrash();
+      this.crashA.currentTime = 0;
+      this.crashA.play().catch(() => {});
+      clearTimeout(this.crashTimer);
+      this.crashTimer = setTimeout(() => {
+        try { this.crashB.currentTime = 0; this.crashB.play().catch(() => {}); } catch (e) {}
+      }, 1000);
+    } catch (err) { /* audio bloquejat: el trencament es queda mut */ }
+  }
+
   /* ---------- orquestracio per scroll ---------- */
   heroPhase() {
     const h = this.h2;
@@ -2287,6 +2325,12 @@ class Component extends DCLogic {
     const hint1 = document.getElementById('nx2-hint1');
     if (hint1) hint1.style.opacity = (1 - mp(p, 0.015, 0.085)).toFixed(3);
     h.ph1.style.transform = 'translateY(' + (-22 * (1 - a1)).toFixed(1) + 'px)';
+    /* El so dispara un sol cop. El hero es escombrable endavant i enrere, i
+       sense aixo el vidre petaria a cada passada. Es rearma nomes quan tornes
+       clarament amunt, per si vols tornar a veure l'escena. */
+    if (p > 0.05 && !this.crashA) this.primeCrash();
+    if (tr > 0.18 && !this.crashFired) { this.crashFired = true; this.playCrashPair(); }
+    if (p < 0.10 && this.crashFired) { this.crashFired = false; }
     h.crack.style.opacity = (Math.sin(tr * Math.PI) * 0.9).toFixed(3);
     h.shards.style.opacity = (Math.sin(tr * Math.PI) * 0.75).toFixed(3);
     h.shards.style.transform = 'scale(' + (1 + tr * 0.22).toFixed(3) + ')';
@@ -2357,6 +2401,7 @@ class Component extends DCLogic {
     if (this.smokeRaf) cancelAnimationFrame(this.smokeRaf);
     if (this.ebRaf) cancelAnimationFrame(this.ebRaf);
     if (this.h2Raf) cancelAnimationFrame(this.h2Raf);
+    if (this.crashTimer) clearTimeout(this.crashTimer);
     if (this.h2TiltRaf) cancelAnimationFrame(this.h2TiltRaf);
     if (this.cycleIv) clearInterval(this.cycleIv);
     if (this.videoWatch) clearInterval(this.videoWatch);
