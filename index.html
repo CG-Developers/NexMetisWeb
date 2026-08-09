@@ -249,6 +249,11 @@
 
     <div id="nx2-ph3" style="position: absolute; inset: 0; z-index: 9; display: grid; place-items: center; text-align: center; padding: 90px 24px; pointer-events: none;">
       <div style="display: grid; justify-items: center; gap: 26px; width: 100%; max-width: 1240px;">
+        <div id="nx2-echo" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: grid; justify-items: center; opacity: 0; pointer-events: none; width: 100%;">
+          <span class="nx2-et" data-et="Construimos la infraestructura digital de tu empresa:" style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: clamp(24px, 3.2vw, 46px); letter-spacing: -0.01em;"></span>
+          <span class="nx2-et" data-et="ESTRATEGIA    DISEÑO    DESARROLLO WEB    AUTOMATIZACIÓN &amp; IA" style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(19px, 2.05vw, 29px); letter-spacing: 0.02em; margin-top: clamp(20px, 2.7vw, 38px);"></span>
+        </div>
+
         <p id="nx2-sub-sr" style="position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap;">Construimos la infraestructura digital de tu empresa:</p>
 
         <div id="nx2-chips" style="position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap;">
@@ -258,8 +263,8 @@
           <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(13px, 1.2vw, 17px); letter-spacing: 0.2em; text-transform: uppercase; color: rgba(140,232,255,0.97); -webkit-text-stroke: 0.6px rgba(215,248,255,0.95); text-shadow: 0 0 8px rgba(190,245,255,0.95), 0 0 22px rgba(93,227,255,0.9), 0 0 54px rgba(46,160,255,0.7);">Automatización &amp; IA</span>
         </div>
         <div id="nx2-cta" style="position: absolute; left: 50%; top: 50%; transform: translateX(-50%); display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; opacity: 0; pointer-events: none;">
-          <a href="#nx-contacto" data-cursor="Analizar" style="display: inline-flex; align-items: center; gap: 11px; padding: 16px 28px; border-radius: 999px; font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #EAF4FF; text-decoration: none; background: rgba(10,20,38,0.16); backdrop-filter: blur(11px) saturate(1.15); -webkit-backdrop-filter: blur(11px) saturate(1.15); border: 1px solid rgba(190,245,255,0.46); box-shadow: inset 0 1px 0 rgba(255,255,255,0.10), 0 8px 30px rgba(4,10,24,0.35);">Analizar mi proyecto <span aria-hidden="true">→</span></a>
-          <a href="#nx-torre" data-cursor="Arquitectura" style="display: inline-flex; align-items: center; gap: 11px; padding: 16px 28px; border-radius: 999px; font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #EAF4FF; text-decoration: none; background: rgba(10,20,38,0.16); backdrop-filter: blur(11px) saturate(1.15); -webkit-backdrop-filter: blur(11px) saturate(1.15); border: 1px solid rgba(190,245,255,0.46); box-shadow: inset 0 1px 0 rgba(255,255,255,0.10), 0 8px 30px rgba(4,10,24,0.35);">Ver la arquitectura <span aria-hidden="true">↓</span></a>
+          <a href="#nx-contacto" data-cursor="Analizar" style="display: inline-flex; align-items: center; gap: 11px; padding: 16px 28px; border-radius: 999px; font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #EAF4FF; text-decoration: none; background: rgba(150,200,240,0.25); backdrop-filter: blur(14px) saturate(1.4); -webkit-backdrop-filter: blur(14px) saturate(1.4); border: 1px solid rgba(214,244,255,0.55); box-shadow: inset 0 1px 0 rgba(255,255,255,0.30), inset 0 -1px 0 rgba(120,190,240,0.18), 0 10px 34px rgba(4,10,24,0.32);">Analizar mi proyecto</a>
+          <a href="#nx-torre" data-cursor="Arquitectura" style="display: inline-flex; align-items: center; gap: 11px; padding: 16px 28px; border-radius: 999px; font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #EAF4FF; text-decoration: none; background: rgba(150,200,240,0.25); backdrop-filter: blur(14px) saturate(1.4); -webkit-backdrop-filter: blur(14px) saturate(1.4); border: 1px solid rgba(214,244,255,0.55); box-shadow: inset 0 1px 0 rgba(255,255,255,0.30), inset 0 -1px 0 rgba(120,190,240,0.18), 0 10px 34px rgba(4,10,24,0.32);">Ver la arquitectura</a>
         </div>
       </div>
     </div>
@@ -1914,6 +1919,7 @@ class Component extends DCLogic {
 
     this.buildDepthTitle(lite);
     this.buildMorph(lite);
+    this.initEcho();
 
     /* Un sol shader per tota la web: continuitat visual i una unica capa de
        GPU en comptes d'una per seccio. La intensitat la mou l'scroll. */
@@ -2272,6 +2278,101 @@ class Component extends DCLogic {
     };
   }
 
+  /* ===== EchoText ============================================================
+     Port vanilla del component EchoText de React Bits.
+     Copyright (c) 2026 David Haz — MIT + Commons Clause License Condition v1.0.
+     Us permes dins d'un lloc web o producte; prohibida la venda o redistribucio
+     del component, tambe en versio portada.
+
+     Rellevament: les particules fan l'espectacle de la transicio i, un cop el
+     text esta format, entren aquestes copies de DOM al mateix lloc. A partir
+     d'aqui el text es real: nitid, seleccionable i indexable.
+     El tint de cada capa es calcula en JS en comptes de color-mix(). */
+
+  initEcho() {
+    const wrap = document.getElementById('nx2-echo');
+    if (!wrap) return;
+    const nodes = [...wrap.querySelectorAll('.nx2-et')];
+    if (!nodes.length) return;
+
+    const ECHOES = this.reduced ? 0 : (window.innerWidth <= 900 ? 4 : 9);
+    const OFFSET = 30, FADE = 0.72, BLUR = 3, LAG = 0.24;
+    const FRONT = [234, 250, 255], TINT = [125, 211, 252];
+    this.echoSets = [];
+
+    nodes.forEach((host) => {
+      const txt = host.dataset.et;
+      host.textContent = '';
+      host.style.position = 'relative';
+      host.style.display = 'inline-block';
+      host.style.whiteSpace = 'nowrap';
+      host.style.lineHeight = '1.05';
+      const copies = [];
+      for (let i = ECHOES; i >= 1; i--) {
+        const e = document.createElement('span');
+        e.setAttribute('aria-hidden', 'true');
+        const mix = Math.min(72, 18 + i * 5) / 100;
+        e.style.cssText = 'position:absolute;inset:0;display:block;pointer-events:none;' +
+          'will-change:transform,opacity;backface-visibility:hidden;opacity:0;color:rgb(' +
+          Math.round(TINT[0] * mix + FRONT[0] * (1 - mix)) + ',' +
+          Math.round(TINT[1] * mix + FRONT[1] * (1 - mix)) + ',' +
+          Math.round(TINT[2] * mix + FRONT[2] * (1 - mix)) + ')';
+        e.textContent = txt;
+        host.appendChild(e);
+        copies[i] = e;
+      }
+      const front = document.createElement('span');
+      front.style.cssText = 'position:relative;z-index:2;display:block;color:#EAFAFF;' +
+        'text-shadow:0 0 18px rgba(93,227,255,0.34), 0 0 46px rgba(46,139,255,0.22)';
+      front.textContent = txt;
+      host.appendChild(front);
+      copies[0] = front;
+      this.echoSets.push({ copies: copies, pos: copies.map(() => ({ x: 0, y: 0 })) });
+    });
+
+    let tx = 0, ty = 0;
+    if (!this.reduced && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      window.addEventListener('pointermove', (ev) => {
+        if (!this.h2 || !this.h2.echoOn) return;
+        const r = wrap.getBoundingClientRect();
+        if (!r.width) return;
+        const dx = ev.clientX - (r.left + r.width / 2);
+        const dy = ev.clientY - (r.top + r.height / 2);
+        const d = Math.hypot(dx, dy);
+        const reach = d > 0 ? Math.min(1, d / 320) : 0;
+        tx = (d > 0 ? dx / d : 0) * reach * OFFSET;
+        ty = (d > 0 ? dy / d : 0) * reach * OFFSET * 0.72;
+      }, { passive: true });
+    }
+
+    const tick = () => {
+      this.echoRaf = requestAnimationFrame(tick);
+      if (!this.alive || !this.h2 || !this.h2.echoOn) return;
+      this.echoSets.forEach((set) => {
+        let maxSep = 0;
+        for (let i = 0; i < set.copies.length; i++) {
+          const c = set.copies[i], cur = set.pos[i];
+          if (!c || !cur) continue;
+          const lerp = Math.min(0.36, Math.max(0.018, 0.34 / (1 + i * LAG * 4.2)));
+          cur.x += (tx - cur.x) * lerp;
+          cur.y += (ty - cur.y) * lerp;
+          c.style.transform = 'translate3d(' + cur.x.toFixed(2) + 'px,' + cur.y.toFixed(2) + 'px,0)';
+          if (i > 0) {
+            const f = set.pos[0];
+            maxSep = Math.max(maxSep, Math.hypot(cur.x - f.x, cur.y - f.y));
+            c.style.filter = 'blur(' + (BLUR * (i / set.copies.length)).toFixed(2) + 'px)';
+          }
+        }
+        /* els ecos nomes es veuen quan hi ha moviment: quiets, text net */
+        const act = Math.min(1, maxSep / (OFFSET * 2.25));
+        for (let i = 1; i < set.copies.length; i++) {
+          if (set.copies[i]) set.copies[i].style.opacity = String(Math.pow(FADE, i) * act);
+        }
+      });
+    };
+    this.echoRaf = requestAnimationFrame(tick);
+  }
+
   /* ---------- so del vidre: dos impactes encavalcats ---------- */
 
   /* Dos elements <audio> separats, no un de sol reiniciat: amb un de sol el
@@ -2336,7 +2437,16 @@ class Component extends DCLogic {
     h.shards.style.transform = 'scale(' + (1 + tr * 0.22).toFixed(3) + ')';
     h.ph2.style.opacity = a2.toFixed(3);
     if (h.hint) h.hint.style.opacity = (a2 * (1 - mp(p, 0.44, 0.52))).toFixed(3);
-    h.pcv.style.opacity = pa.toFixed(3);
+    /* Rellevament particules -> text real. Les particules s'apaguen just
+       quan el text de DOM acaba d'entrar, aixi no hi ha ni salt ni doble
+       imatge, i a partir d'aqui el titular es text de veritat. */
+    const hand = mp(p, 0.88, 0.945);
+    const echo = document.getElementById('nx2-echo');
+    if (echo) {
+      echo.style.opacity = hand.toFixed(3);
+      h.echoOn = hand > 0.02;
+    }
+    h.pcv.style.opacity = (pa * (1 - hand)).toFixed(3);
     /* els llamps nomes a la pantalla final, entrant despres del text */
     const bolts = document.getElementById('nx2-bolts');
     if (bolts) {
@@ -2402,6 +2512,7 @@ class Component extends DCLogic {
     if (this.ebRaf) cancelAnimationFrame(this.ebRaf);
     if (this.h2Raf) cancelAnimationFrame(this.h2Raf);
     if (this.crashTimer) clearTimeout(this.crashTimer);
+    if (this.echoRaf) cancelAnimationFrame(this.echoRaf);
     if (this.h2TiltRaf) cancelAnimationFrame(this.h2TiltRaf);
     if (this.cycleIv) clearInterval(this.cycleIv);
     if (this.videoWatch) clearInterval(this.videoWatch);
