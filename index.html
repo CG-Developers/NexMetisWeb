@@ -77,6 +77,14 @@
   @keyframes nxBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
   @keyframes nxCoreGlow { 0%, 100% { opacity: 0.45; } 50% { opacity: 0.95; } }
   @keyframes nxTrace { 0% { transform: translateX(0); opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { transform: translateX(var(--nx-trace, 300px)); opacity: 0; } }
+  .nx-mark { --nxrx:0deg; --nxry:0deg; perspective: 620px; }
+  .nx-mark-i { transform: rotateX(var(--nxrx)) rotateY(var(--nxry)); }
+  .nx-mark:hover .nx-mark-i { filter: drop-shadow(0 0 14px rgba(46,139,255,.55)) brightness(1.08); }
+  @media (hover: none) { .nx-mark-i { transform: none !important; } }
+  @media (prefers-reduced-motion: reduce) {
+    .nx-mark-i { transform: none !important; transition: none !important; }
+  }
+
   @keyframes nxChalkBob { 0%, 100% { transform: translateY(0) rotate(-1.6deg); } 50% { transform: translateY(9px) rotate(-1.6deg); } }
   @keyframes nxFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
   @keyframes nxChevA { 0%, 100% { opacity: 0.25; transform: translateY(0); } 50% { opacity: 1; transform: translateY(4px); } }
@@ -154,7 +162,7 @@
 <div id="nx-root" style="background: #0A0A0A; color: #FDFAF5; font-family: 'Archivo', system-ui, sans-serif;">
 
   <div id="nx-load" style="position: fixed; inset: 0; z-index: 1200; background: #0A0A0A; display: grid; place-content: center; justify-items: center; gap: 34px; transition: opacity 700ms cubic-bezier(0.16, 1, 0.3, 1), visibility 700ms;">
-    <img src="logo-nexmetis.png" alt="Nexmetis Tech" style="width: min(72vw, 460px); height: auto; display: block;">
+    <img src="media/logo-icon.webp" alt="Nexmetis Tech" width="512" height="512" style="width: min(46vw, 190px); height: auto; display: block; mix-blend-mode: screen;">
     <div style="display: flex; align-items: center; gap: 20px;">
       <div style="width: min(46vw, 420px); height: 1px; background: rgba(255, 255, 255, 0.16);">
         <div id="nx-load-bar" style="width: 0%; height: 100%; background: var(--nx-accent, #2E8BFF);"></div>
@@ -172,7 +180,7 @@
 
   <header style="position: fixed; top: 0; left: 0; right: 0; z-index: 900; display: flex; align-items: center; justify-content: space-between; gap: 32px; padding: 18px 40px; background: rgba(10, 10, 10, 0.72); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(255, 255, 255, 0.08);">
     <a href="#nx-top" style="display: flex; align-items: center; gap: 14px; color: #FDFAF5;">
-      <img src="logo-nexmetis.png" alt="Nexmetis Tech" width="1045" height="319" style="height: 36px; width: auto; display: block;">
+      <span class="nx-mark" style="display:inline-flex;align-items:center;gap:11px;text-decoration:none;"><img class="nx-mark-i" src="media/logo-icon.webp" alt="" width="512" height="512" style="width:40px;height:40px;display:block;mix-blend-mode:screen;will-change:transform,filter;transition:filter .35s ease;"><span style="font-family:'Archivo',sans-serif;font-weight:500;font-size:21px;letter-spacing:.2px;color:#FDFAF5;line-height:1;white-space:nowrap;">Nex<b style="font-weight:700;color:#3D97FF;">metis</b><span style="display:block;margin-top:4px;font-size:9px;font-weight:500;letter-spacing:5px;color:#8A8279;">TECH</span></span></span>
       <span style="font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: #9B9189;">Barcelona</span>
     </a>
     <nav style="display: flex; align-items: center; gap: 32px;">
@@ -270,8 +278,8 @@
           <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(13px, 1.2vw, 17px); letter-spacing: 0.2em; text-transform: uppercase; color: rgba(140,232,255,0.97); -webkit-text-stroke: 0.6px rgba(215,248,255,0.95); text-shadow: 0 0 8px rgba(190,245,255,0.95), 0 0 22px rgba(93,227,255,0.9), 0 0 54px rgba(46,160,255,0.7);">Automatización &amp; IA</span>
         </div>
         <div id="nx2-cta" style="position: absolute; left: 50%; top: 50%; transform: translateX(-50%); display: flex; flex-wrap: wrap; justify-content: center; gap: 18px; pointer-events: none;">
-          <a href="#nx-contacto" data-cursor="Analizar" style="display: inline-flex; align-items: center; gap: 11px; padding: 16px 28px; border-radius: 999px; font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #EAF4FF; text-decoration: none; background: linear-gradient(160deg, rgba(226,244,255,0.30), rgba(140,196,240,0.16)); backdrop-filter: blur(18px) saturate(1.6) brightness(1.08); -webkit-backdrop-filter: blur(18px) saturate(1.6) brightness(1.08); border: 1px solid rgba(226,248,255,0.62); box-shadow: inset 0 1px 0 rgba(255,255,255,0.45), inset 0 -1px 0 rgba(150,210,255,0.22), 0 12px 38px rgba(4,10,24,0.34); opacity: 0;">Analizar mi proyecto</a>
-          <a href="#nx-torre" data-cursor="Arquitectura" style="display: inline-flex; align-items: center; gap: 11px; padding: 16px 28px; border-radius: 999px; font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #EAF4FF; text-decoration: none; background: linear-gradient(160deg, rgba(226,244,255,0.30), rgba(140,196,240,0.16)); backdrop-filter: blur(18px) saturate(1.6) brightness(1.08); -webkit-backdrop-filter: blur(18px) saturate(1.6) brightness(1.08); border: 1px solid rgba(226,248,255,0.62); box-shadow: inset 0 1px 0 rgba(255,255,255,0.45), inset 0 -1px 0 rgba(150,210,255,0.22), 0 12px 38px rgba(4,10,24,0.34); opacity: 0;">Ver la arquitectura</a>
+          <a href="#nx-contacto" data-cursor="Analizar" style="display: inline-flex; align-items: center; gap: 11px; padding: 16px 28px; border-radius: 999px; font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #EAF4FF; text-decoration: none; background: linear-gradient(160deg, rgba(226,244,255,0.30), rgba(140,196,240,0.16)); backdrop-filter: blur(18px) saturate(1.6) brightness(1.08); -webkit-backdrop-filter: blur(18px) saturate(1.6) brightness(1.08); border: 1px solid rgba(226,248,255,0.62); box-shadow: inset 0 1px 0 rgba(255,255,255,0.45), inset 0 -1px 0 rgba(150,210,255,0.22), 0 12px 38px rgba(4,10,24,0.34); opacity: 0;">Analiza mi proyecto</a>
+          <a href="#nx-torre" data-cursor="Servicios" style="display: inline-flex; align-items: center; gap: 11px; padding: 16px 28px; border-radius: 999px; font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #EAF4FF; text-decoration: none; background: linear-gradient(160deg, rgba(226,244,255,0.30), rgba(140,196,240,0.16)); backdrop-filter: blur(18px) saturate(1.6) brightness(1.08); -webkit-backdrop-filter: blur(18px) saturate(1.6) brightness(1.08); border: 1px solid rgba(226,248,255,0.62); box-shadow: inset 0 1px 0 rgba(255,255,255,0.45), inset 0 -1px 0 rgba(150,210,255,0.22), 0 12px 38px rgba(4,10,24,0.34); opacity: 0;">Ver servicios</a>
         </div>
       </div>
     </div>
@@ -281,7 +289,7 @@
 
   <section id="nx2-video" style="position: relative; overflow: hidden; padding: 110px 24px 120px;">
     <div style="position: relative; z-index: 2; max-width: 1180px; margin: 0 auto;">
-      <h2 style="font-family: 'Bodoni Moda', Georgia, serif; font-weight: 400; font-size: clamp(28px, 3.6vw, 46px); margin: 0 0 26px;">Cómo trabajamos</h2>
+      <h2 style="font-family: 'Bodoni Moda', Georgia, serif; font-weight: 400; font-size: clamp(28px, 3.6vw, 46px); margin: 0 0 26px;">Áreas de trabajo</h2>
       <div id="nx2-vshell" style="position: relative; border-radius: 14px; overflow: hidden; border: 1px solid rgba(255,255,255,0.13); background: #04070F; aspect-ratio: 16/9;">
         <video id="nx2-video-el" poster="media/hero-poster.webp" muted="muted" playsinline="playsinline" loop="loop" preload="none" style="width: 100%; height: 100%; object-fit: cover; display: block;">
           <source src="media/hero-video.mp4" type="video/mp4">
@@ -575,7 +583,7 @@
   <footer style="border-top: 1px solid rgba(255, 255, 255, 0.08); background: rgba(255, 255, 255, 0.02);">
     <div style="max-width: 1360px; margin: 0 auto; padding: 72px 40px 48px; display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 48px;">
       <div style="display: grid; gap: 16px; align-content: start;">
-        <img src="logo-nexmetis.png" alt="Nexmetis Tech" width="900" height="275" style="width: 190px; height: auto; display: block;">
+        <span class="nx-mark" style="display:inline-flex;align-items:center;gap:13px;text-decoration:none;"><img class="nx-mark-i" src="media/logo-icon.webp" alt="" width="512" height="512" style="width:52px;height:52px;display:block;mix-blend-mode:screen;will-change:transform,filter;transition:filter .35s ease;"><span style="font-family:'Archivo',sans-serif;font-weight:500;font-size:27px;letter-spacing:.2px;color:#FDFAF5;line-height:1;white-space:nowrap;">Nex<b style="font-weight:700;color:#3D97FF;">metis</b><span style="display:block;margin-top:5px;font-size:10px;font-weight:500;letter-spacing:6px;color:#8A8279;">TECH</span></span></span>
         <p style="font-size: 13px; line-height: 1.65; color: #9B9189; margin: 0; max-width: 34ch;">Ingeniería digital en Barcelona. Estrategia, desarrollo, automatización e inteligencia artificial para hacer crecer tu empresa.</p>
       </div>
       <div style="display: grid; gap: 12px; align-content: start;">
@@ -658,6 +666,7 @@ class Component extends DCLogic {
     this.initSmoke();
     this.initRunic();
     this.initHero2();
+    this.initMarkTilt();
     this.initUnclip();
     this.initGlyphs();
     this.initWipe();
@@ -2032,6 +2041,15 @@ class Component extends DCLogic {
     this.h2TiltRaf = requestAnimationFrame(tick);
   }
 
+  /* La mida d'una cadena de font es treu amb regex, no amb parseFloat:
+     parseFloat("700 84px 'Bodoni Moda'") retorna 700, que es el PES.
+     Aquest error feia que el text real es rendritzes a 700px i sortis fora
+     de pantalla; per aixo no es veien lletres. */
+  pxOf(font) {
+    const m = /([\d.]+)px/.exec(font);
+    return m ? parseFloat(m[1]) : 16;
+  }
+
   /* ---------- mostreig de diverses linies en un sol camp de particules ---------- */
   sampleBlock(rows, W, H, step) {
     const off = document.createElement('canvas');
@@ -2042,13 +2060,13 @@ class Component extends DCLogic {
       oc.font = font;
       let m = oc.measureText(r.text);
       if (m.width > maxW) {
-        const size = Math.max(12, parseFloat(font) * (maxW / m.width));
+        const size = Math.max(12, this.pxOf(font) * (maxW / m.width));
         font = font.replace(/[\d.]+px/, size + 'px');
         oc.font = font;
         m = oc.measureText(r.text);
       }
-      const asc = Math.ceil(m.actualBoundingBoxAscent || parseFloat(font) * 0.78);
-      const desc = Math.ceil(m.actualBoundingBoxDescent || parseFloat(font) * 0.22);
+      const asc = Math.ceil(m.actualBoundingBoxAscent || this.pxOf(font) * 0.78);
+      const desc = Math.ceil(m.actualBoundingBoxDescent || this.pxOf(font) * 0.22);
       return { text: r.text, font, w: Math.ceil(m.width), asc, desc, gap: r.gap || 0 };
     });
     const pad = 12;
@@ -2067,7 +2085,7 @@ class Component extends DCLogic {
     });
     /* Es desa la mida FINAL de cada fila, ja encongida per cabre. El text
        real del DOM l'ha de fer servir: si no, el canvas s'ajusta i el DOM no. */
-    this.lastFonts = meas.map((r) => parseFloat(r.font));
+    this.lastFonts = meas.map((r) => this.pxOf(r.font));
     this.lastBlockH = off.height;
     const img = oc.getImageData(0, 0, off.width, off.height).data;
     const out = [];
@@ -2087,7 +2105,7 @@ class Component extends DCLogic {
     const oc = off.getContext('2d', { willReadFrequently: true });
     oc.font = font;
     let m = oc.measureText(text);
-    let size = parseFloat(font);
+    let size = this.pxOf(font);
     const maxW = W * 0.9;
     if (m.width > maxW) {
       size = Math.max(14, size * (maxW / m.width));
@@ -2334,7 +2352,7 @@ class Component extends DCLogic {
       const el = document.createElement('span');
       el.className = 'nx2-et';
       el.dataset.et = r.text;
-      const fs = (this.lastFonts && this.lastFonts[i]) || parseFloat(r.font);
+      const fs = (this.lastFonts && this.lastFonts[i]) || this.pxOf(r.font);
       el.style.cssText = 'font-family:' + (soft(i) ? "'Bodoni Moda',Georgia,serif" : "'Archivo',sans-serif") +
         ';white-space:pre;display:block;font-weight:700;' +
         'font-size:' + fs.toFixed(1) + 'px;' +
@@ -2420,6 +2438,48 @@ class Component extends DCLogic {
       });
     };
     this.echoRaf = requestAnimationFrame(tick);
+  }
+
+  /* ---------- la icona respon al punter ---------- */
+
+  /* Inclinacio 3D suavitzada mentre el punter es a sobre. Un sol rAF per a
+     totes les icones, i nomes corre mentre n'hi ha una d'activa: quiet, zero
+     cost. Al mobil i amb moviment reduit no s'activa. */
+  initMarkTilt() {
+    if (this.reduced || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+    const marks = [...document.querySelectorAll('.nx-mark')];
+    if (!marks.length) return;
+    const MAXX = 13, MAXY = 17;
+    const st = marks.map((m) => ({ el: m, img: m.querySelector('.nx-mark-i'),
+                                   cx: 0, cy: 0, tx: 0, ty: 0, on: false }));
+    st.forEach((o) => {
+      o.el.addEventListener('pointerenter', () => { o.on = true; run(); });
+      o.el.addEventListener('pointermove', (e) => {
+        const r = o.el.getBoundingClientRect();
+        const nx = (e.clientX - (r.left + r.width / 2)) / (r.width / 2);
+        const ny = (e.clientY - (r.top + r.height / 2)) / (r.height / 2);
+        o.ty = Math.max(-1, Math.min(1, nx)) * MAXY;
+        o.tx = -Math.max(-1, Math.min(1, ny)) * MAXX;
+      }, { passive: true });
+      o.el.addEventListener('pointerleave', () => { o.on = false; o.tx = 0; o.ty = 0; });
+    });
+    let raf = null;
+    const run = () => { if (!raf) raf = requestAnimationFrame(step); };
+    const step = () => {
+      raf = null;
+      let alive = false;
+      st.forEach((o) => {
+        o.cx += (o.tx - o.cx) * 0.14;
+        o.cy += (o.ty - o.cy) * 0.14;
+        if (o.img) {
+          o.img.style.setProperty('--nxrx', o.cx.toFixed(2) + 'deg');
+          o.img.style.setProperty('--nxry', o.cy.toFixed(2) + 'deg');
+        }
+        if (o.on || Math.abs(o.cx) > 0.05 || Math.abs(o.cy) > 0.05) alive = true;
+      });
+      if (alive && this.alive) run();
+    };
+    this.markTiltRun = run;
   }
 
   /* ---------- so del vidre: dos impactes encavalcats ---------- */

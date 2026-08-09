@@ -1,43 +1,46 @@
-NEXMETIS · patch v11 — tot el text a particules + 2 llamps
-===========================================================
-ACUMULATIU sobre el v10. Nomes canvia index.html.
+NEXMETIS · patch v22 · ACUMULATIU COMPLET
+==========================================
+Porta index.html, els assets i el LOGO NOU. Puja-ho tot i sobreescriu.
 
-1) EL SUBTITOL I LES 4 AREES SON UN SOL CAMP DE PARTICULES
-   Abans les arees eren text del DOM amb llumetes, al costat d'un subtitol de
-   particules: dos llenguatges diferents a la mateixa pantalla.
-   Ara la mateixa pols que formava el titular escriu les DUES linies.
-     subtitol  45px
-     arees     23px, a 32px per sota
-     ~2.987 + ~899 = ~3.886 punts
-   Els xips segueixen al DOM, nomes per a lectors de pantalla i cercadors.
+EL LOGO
+  He retallat la ICONA de la teva imatge (el quadrat amb el monograma) i l'he
+  passada a WebP: 512px a 35 KB, 192px a 8 KB, 96px a 3 KB.
 
-2) MES DENSITAT
-   Sostre de particules 7.600 -> 12.000.
-   Cost JS del morph: 1,23 ms per fotograma (pressupost 60fps: 16,7 ms).
+  EL LOGOTIP NO ES IMATGE. "Nexmetis TECH" va en text real amb Archivo, que
+  ja carregues. Motius:
+    · nitid a qualsevol zoom i a qualsevol densitat de pantalla
+    · Google el llegeix
+    · pesa zero
+    · si canvies el nom, es una linia
+  Una imatge de text es veu borrosa a 2x i no la llegeix ningu.
 
-3) DOS LLAMPS, UN SOL CONTEXT
-   El component Lightning de React Bits dibuixa UN llamp per instancia: dos
-   llamps son dos <canvas> i dos contextos WebGL.
-   Aqui el shader en calcula DOS dins la mateixa passada, amb desplaçaments
-   oposats (-0,78 i +0,86) i llavors de soroll diferents perque no siguin
-   bessons. Un context i una crida de dibuix en comptes de dos.
+  mix-blend-mode: screen. La imatge porta el fons fosc incrustat; amb aquest
+  mode els pixels foscos desapareixen i nomes queda el metall i la resplendor.
+  Aixi la icona s'integra amb el fons del web en comptes de portar un
+  rectangle negre al darrere.
 
-   Hue 205 per encaixar amb el blau de la marca (l'original ve a 230, mes
-   violeta). Intensitat 0,85 i opacitat maxima 0,62: han d'acompanyar, no
-   competir amb el text.
+  Substituit a TRES llocs: capçalera, peu i pantalla de carrega.
+  logo-nexmetis.png ja no es fa servir enlloc.
 
-   NOMES A LA PANTALLA FINAL: entren entre el 72% i el 90% del recorregut,
-   despres que el text ja estigui format, i se'n van al sortir del hero.
-   Fora d'aquesta finestra no dibuixen: zero GPU.
+EL GEST AL PASSAR PER SOBRE
+  Inclinacio 3D suavitzada que segueix el punter (fins a 13 graus en X i 17
+  en Y) mes un halo blau que s'encen.
+  Un SOL requestAnimationFrame per a totes les icones, i nomes corre mentre
+  n'hi ha una d'activa o encara s'esta recol·locant. Amb el ratoli fora, el
+  bucle s'atura sol: zero cost.
+  Al mobil no s'activa (no hi ha hover) i amb prefers-reduced-motion tampoc.
 
 VERIFICAT
   · node --check del bloc x-dc: OK
-  · 367 -> 368 tags
-  · un sol context per als dos llamps, comprovat al shader
+  · graf de crides: 52 metodes, cap orfe
+  · 374 -> 382 tags
 
-NO VERIFICAT
-  Si el fons queda negre o els llamps no surten, consola: els errors surten
-  marcats amb [nx-lines] o [nx-bolts]. Copia'm la linia.
+MIRA-HO TU
+  Passa el ratoli per la icona de la capçalera. I comprova que amb el mode
+  screen no queda cap vora fosca al voltant: si te un fons diferent del
+  #0A0A0A en algun lloc, avisa'm i faig la versio amb transparencia real.
 
-COM APLICAR-HO
-  index.html -> arrel del repo, sobreescriu.
+QUE QUEDA PENDENT
+  · Pagines legals i enllaços socials, a href="#"
+    BLOQUEJAT: NIF, domicili i num. de registre de NexSocial SCCL
+  · Decodificador runic sobre la pissarra
