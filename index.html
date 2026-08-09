@@ -182,102 +182,68 @@
     </nav>
   </header>
 
-  <div id="nx-hero-track" style="position: relative; height: 420vh;">
-  <section id="nx-top" style="position: sticky; top: 0; height: 100vh; box-sizing: border-box; display: grid; grid-template-rows: auto minmax(0, 1fr) auto; padding-top: 71px; overflow: hidden; background: #04070F;">
+  <div id="nx2-track" style="position: relative; height: 520vh;">
+  <section id="nx2-stage" style="position: sticky; top: 0; height: 100vh; overflow: hidden; isolation: isolate; background: #04070F;">
 
-    <div id="nx-parallax" style="position: absolute; inset: -5%; z-index: 0; will-change: transform;">
-      <div style="position: absolute; inset: 0; animation: nxGlassIn 1900ms cubic-bezier(0.16, 1, 0.3, 1) both;">
-        <video id="nx-hero-video" src="media/hero-video.mp4" poster="media/hero-poster.webp" autoplay muted playsinline preload="metadata" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;"></video>
+    <canvas id="nx2-lines" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block; z-index: 0; opacity: 0; mix-blend-mode: screen; pointer-events: none;"></canvas>
+    <div id="nx2-fb" aria-hidden="true" style="position: absolute; inset: 0; z-index: 0; opacity: 0; pointer-events: none; background: radial-gradient(120% 85% at 20% 10%, rgba(46,139,255,0.26) 0%, transparent 58%), radial-gradient(90% 70% at 82% 90%, rgba(93,227,255,0.16) 0%, transparent 60%);"></div>
+
+    <div id="nx2-ph1" style="position: absolute; inset: 0; z-index: 3; display: grid; place-items: center; text-align: center; padding: 90px 24px;">
+      <div>
+        <p style="font-family: 'Chalkduster', 'Walter Turncoat', 'Caveat', cursive; font-weight: 400; color: rgba(230,226,220,0.86); margin: 0; line-height: 1.35; font-size: clamp(28px, 4.6vw, 62px); transform: rotate(-2.4deg);">Tareas repetitivas y monótonas,</p>
+        <p style="font-family: 'Chalkduster', 'Walter Turncoat', 'Caveat', cursive; font-weight: 400; color: rgba(230,226,220,0.86); margin: 18px 0 0; line-height: 1.35; font-size: clamp(22px, 3.4vw, 46px); transform: rotate(-1.2deg);">exceso de manualidades, sistemas de trabajo arcaicos…</p>
       </div>
     </div>
 
-    <div id="nx-photo" style="position: absolute; inset: -4%; z-index: 1; pointer-events: none; will-change: transform, opacity;"><div style="position: absolute; inset: 0; background-image: url('media/hero-photo.webp'); background-size: cover; background-position: 60% 45%; background-repeat: no-repeat; animation: nxGlassIn 1900ms cubic-bezier(0.16, 1, 0.3, 1) both;"></div></div>
+    <div id="nx2-crack" aria-hidden="true" style="position: absolute; inset: 0; z-index: 6; opacity: 0; pointer-events: none; background: url('assets/cracks-white.webp') center/cover no-repeat; mix-blend-mode: screen;"></div>
+    <div id="nx2-shards" aria-hidden="true" style="position: absolute; inset: -8%; z-index: 7; opacity: 0; pointer-events: none; background: url('assets/shards-cyan.webp') center/cover no-repeat; mix-blend-mode: screen;"></div>
 
-    <div id="nx-scrim" style="position: absolute; inset: 0; z-index: 1; background: radial-gradient(50% 40% at 50% 42%, rgba(4, 7, 15, 0.52), rgba(4, 7, 15, 0.12) 74%, rgba(4, 7, 15, 0.28) 100%), linear-gradient(180deg, rgba(4, 7, 15, 0.55) 0%, rgba(4, 7, 15, 0.05) 34%, rgba(4, 7, 15, 0.62) 100%); pointer-events: none;"></div>
-
-    <div id="nx-pane" style="position: absolute; inset: 0; z-index: 3; border: 1.5px solid rgba(235, 244, 255, 0.4); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12), inset 0 0 60px rgba(200, 226, 255, 0.09), 0 0 26px rgba(160, 210, 255, 0.2); background: linear-gradient(118deg, rgba(214, 228, 244, 0.16) 30%, rgba(240, 248, 255, 0.34) 40.5%, rgba(226, 238, 252, 0.18) 47%, rgba(210, 226, 244, 0.15) 52%, rgba(240, 248, 255, 0.3) 60%, rgba(222, 235, 250, 0.16) 68%, rgba(212, 227, 244, 0.15) 74%, rgba(216, 230, 246, 0.17) 100%); backdrop-filter: blur(14px) saturate(0.85) brightness(1.1); -webkit-backdrop-filter: blur(14px) saturate(0.85) brightness(1.1); pointer-events: none; will-change: transform, opacity;"></div>
-
-    <div id="nx-board" style="position: absolute; inset: 0; z-index: 4; background: radial-gradient(62% 54% at 50% 42%, rgba(22, 26, 31, 0.94) 0%, rgba(22, 26, 31, 0.78) 52%, rgba(22, 26, 31, 0.28) 74%, rgba(22, 26, 31, 0) 88%); pointer-events: none; transition: opacity 900ms cubic-bezier(0.16, 1, 0.3, 1); will-change: opacity;">
-      <span style="position: absolute; right: 4%; bottom: 6%; width: 34%; height: 30%; background: radial-gradient(48% 42% at 62% 55%, rgba(214, 220, 226, 0.13), rgba(214, 220, 226, 0.05) 58%, transparent 78%), radial-gradient(30% 26% at 30% 40%, rgba(214, 220, 226, 0.09), transparent 72%); filter: blur(3px); transform: rotate(-7deg);"></span>
-      <span style="position: absolute; right: 12%; bottom: 3%; width: 24%; height: 18%; background: radial-gradient(52% 46% at 45% 50%, rgba(214, 220, 226, 0.1), transparent 74%); filter: blur(5px); transform: rotate(4deg);"></span>
-      <span style="position: absolute; right: 5%; bottom: 14%; width: 26%; height: 5px; background: linear-gradient(90deg, transparent, rgba(222, 228, 234, 0.14) 18%, rgba(222, 228, 234, 0.08) 55%, rgba(222, 228, 234, 0.13) 80%, transparent); filter: blur(1.4px); transform: rotate(-5deg);"></span>
-      <span style="position: absolute; right: 9%; bottom: 9%; width: 20%; height: 4px; background: linear-gradient(90deg, transparent, rgba(222, 228, 234, 0.11) 25%, rgba(222, 228, 234, 0.05) 60%, transparent); filter: blur(1.8px); transform: rotate(-3deg);"></span>
-      <span style="position: absolute; left: 4%; bottom: 30%; width: 22%; height: 5px; background: linear-gradient(90deg, transparent, rgba(222, 228, 234, 0.12) 20%, rgba(222, 228, 234, 0.06) 58%, rgba(222, 228, 234, 0.1) 82%, transparent); filter: blur(1.5px); transform: rotate(6deg);"></span>
-      <span style="position: absolute; left: 7%; bottom: 24%; width: 16%; height: 4px; background: linear-gradient(90deg, transparent, rgba(222, 228, 234, 0.09) 30%, rgba(222, 228, 234, 0.04) 65%, transparent); filter: blur(2px); transform: rotate(8deg);"></span>
-      <span style="position: absolute; left: 10%; top: 16%; width: 14%; height: 4px; background: linear-gradient(90deg, transparent, rgba(222, 228, 234, 0.08) 30%, transparent 80%); filter: blur(2.2px); transform: rotate(-4deg);"></span>
-      <div id="nx-board-list" style="position: absolute; left: 3.5%; top: 24%; display: grid; gap: 7px; transition: opacity 1100ms ease-out, filter 1100ms ease-out; font-family: 'Chalkduster', 'Walter Turncoat', cursive; font-size: clamp(11px, 1.15vw, 17px); color: rgba(228, 234, 240, 0.34); filter: blur(0.5px); transform: rotate(-3deg); line-height: 1.25;">
-        <span style="font-size: 1.25em; text-decoration: underline; text-underline-offset: 4px; color: rgba(228, 234, 240, 0.4); margin-bottom: 3px;">Pendientes:</span>
-        <span>&#8594; facturas a mano</span>
-        <span>&#8594; copiar datos</span>
-        <span style="opacity: 0.75;">&#8594; contestar emails</span>
-        <span>&#8594; revisar stock</span>
-        <span style="opacity: 0.6;">&#8594; informes excel</span>
-        <span style="opacity: 0.8;">&#8594; llamadas...</span>
-      </div>
-      <span style="position: absolute; left: 5%; bottom: 22%; width: 20%; height: 16%; background: radial-gradient(50% 44% at 50% 50%, rgba(214, 220, 226, 0.07), transparent 76%); filter: blur(6px); transform: rotate(9deg);"></span>
-    </div>
-
-    <div id="nx-cracks" style="position: absolute; inset: -6%; z-index: 3; background-image: url('assets/cracks-white.webp'); background-size: cover; background-position: 50% 48%; background-repeat: no-repeat; opacity: 0; filter: drop-shadow(0 0 10px rgba(140, 232, 255, 0.5)); pointer-events: none; will-change: transform, opacity;"></div>
-
-    <div id="nx-boom" style="position: absolute; inset: -6%; z-index: 3; background-image: url('assets/boom-shards.webp'); background-size: cover; background-position: 50% 50%; background-repeat: no-repeat; opacity: 0; filter: drop-shadow(0 0 12px rgba(140, 232, 255, 0.45)); pointer-events: none; will-change: transform, opacity;"></div>
-
-    <div id="nx-shards" style="position: absolute; inset: -4%; z-index: 2; background-image: url('assets/shards-alpha.webp'); background-size: cover; background-position: 50% 45%; background-repeat: no-repeat; opacity: 0.5; -webkit-mask-image: radial-gradient(54% 46% at 50% 45%, rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0.62) 58%, #000 82%); mask-image: radial-gradient(54% 46% at 50% 45%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 62%, #000 86%); pointer-events: none; will-change: transform, opacity; filter: brightness(1.3) contrast(1.22) drop-shadow(0 10px 26px rgba(0, 0, 0, 0.55));"></div>
-
-    <div id="nx-shards-glint" style="position: absolute; inset: -4%; z-index: 3; background-image: url('assets/shards-cyan.webp'); background-size: cover; background-position: 50% 45%; background-repeat: no-repeat; mix-blend-mode: screen; opacity: 0.95; -webkit-mask-image: radial-gradient(40% 34% at 50% 45%, rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0.62) 58%, #000 82%); mask-image: radial-gradient(54% 46% at 50% 45%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 62%, #000 86%); pointer-events: none; will-change: transform, opacity; filter: drop-shadow(0 0 12px rgba(93, 227, 255, 0.6));"></div>
-
-    <div style="position: absolute; inset: 0; z-index: 4; background: radial-gradient(54% 42% at 50% 45%, rgba(4, 7, 15, 0.82) 0%, rgba(4, 7, 15, 0.62) 42%, rgba(4, 7, 15, 0.22) 68%, rgba(4, 7, 15, 0) 84%); pointer-events: none;"></div>
-
-    <div style="position: absolute; inset: 0; z-index: 4; background: #EAF4FF; opacity: 0; pointer-events: none; animation: nxFlash 900ms ease-out 320ms both;"></div>
-
-    <div style="position: relative; z-index: 5; display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 16px 40px; border-bottom: 1px solid rgba(255, 255, 255, 0.14); backdrop-filter: blur(8px); background: rgba(4, 7, 15, 0.25);">
-      <span style="display: inline-flex; align-items: center; gap: 12px; font-size: 11px; font-weight: 700; letter-spacing: 0.26em; text-transform: uppercase; color: #C0D2E6;">
-        Ingeniería digital · Barcelona
-      </span>
-      <span style="display: inline-flex; align-items: center; gap: 12px; font-size: 11px; font-weight: 700; letter-spacing: 0.26em; text-transform: uppercase; color: #8FA3B8;">
-        <span style="color: #7FC4FF;">✦</span>
-        <span id="nx-cycle" style="color: #FDFAF5; min-width: 108px; display: inline-block; transition: opacity 320ms cubic-bezier(0.16, 1, 0.3, 1), transform 320ms cubic-bezier(0.16, 1, 0.3, 1);">Diagnosticar</span>
-      </span>
-    </div>
-
-    <div id="nx-hero-mid" style="position: relative; z-index: 5; min-height: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 34px; padding: 24px 32px 64px; will-change: transform, opacity;">
-      <h1 id="nx-h1" style="font-family: 'Bodoni Moda', Georgia, serif; font-weight: 700; font-size: clamp(50px, min(11.5vw, 19vh), 190px); line-height: 0.8; letter-spacing: -0.045em; text-align: center; margin: 0; color: #FDFAF5; will-change: transform;">
-        <span data-clip style="display: block; overflow: hidden; padding-bottom: 0.04em;"><span data-runic style="display: block; font-size: 0.56em; letter-spacing: -0.015em; font-style: italic; font-weight: 600; color: rgba(214, 224, 234, 0.24); -webkit-text-stroke: 1.1px rgba(214, 224, 234, 0.9); text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3), 0 -1px 1px rgba(4, 7, 15, 0.7), 0 3px 22px rgba(4, 7, 15, 0.55); paint-order: stroke fill; animation: nxLineUp 1000ms cubic-bezier(0.16, 1, 0.3, 1) 640ms both;">Rompamos</span></span>
-        <span data-clip style="display: block; overflow: hidden; padding-bottom: 0.06em;"><span data-runic style="display: block; font-style: italic; font-weight: 600; color: rgba(214, 224, 234, 0.24); -webkit-text-stroke: 1.4px rgba(214, 224, 234, 0.9); text-shadow: 0 1px 0 rgba(255, 255, 255, 0.32), 0 -1px 1px rgba(4, 7, 15, 0.75), 0 3px 26px rgba(4, 7, 15, 0.6), 0 0 52px rgba(93, 227, 255, 0.3); paint-order: stroke fill; animation: nxLineUp 1000ms cubic-bezier(0.16, 1, 0.3, 1) 780ms both;">los esquemas</span></span>
-      </h1>
-      <p data-hero-sub data-reveal data-typewriter style="font-family: 'Codystar', 'Space Grotesk', sans-serif; font-size: clamp(20px, 2vw, 30px); line-height: 1.7; letter-spacing: 0.07em; font-weight: 400; white-space: pre-line; text-align: center; color: #AFE2FF; text-shadow: 0 0 6px rgba(191, 233, 255, 0.9), 0 0 14px rgba(93, 227, 255, 0.85), 0 0 30px rgba(46, 139, 255, 0.75), 0 0 55px rgba(46, 139, 255, 0.5); margin: 0; text-wrap: pretty;">Construimos la infraestructura
-digital de tu empresa:</p>
-      <div data-hero-sub data-chips style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 18px 52px; padding: 0 16px;">
-        <span data-chip style="display: inline-flex; align-items: center; font-family: 'Space Grotesk', sans-serif; font-size: clamp(14px, 1.7vw, 19px); font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; white-space: nowrap; color: #6FB9FF; -webkit-text-stroke: 0.5px rgba(200, 232, 255, 0.85); text-shadow: 0 0 12px rgba(93, 227, 255, 0.85), 0 0 30px rgba(46, 139, 255, 0.6); opacity: 0; transform: scale(0.4);">Estrategia</span>
-        <span data-chip style="display: inline-flex; align-items: center; font-family: 'Space Grotesk', sans-serif; font-size: clamp(14px, 1.7vw, 19px); font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; white-space: nowrap; color: #6FB9FF; -webkit-text-stroke: 0.5px rgba(200, 232, 255, 0.85); text-shadow: 0 0 12px rgba(93, 227, 255, 0.85), 0 0 30px rgba(46, 139, 255, 0.6); opacity: 0; transform: scale(0.4);">Diseño</span>
-        <span data-chip style="display: inline-flex; align-items: center; font-family: 'Space Grotesk', sans-serif; font-size: clamp(14px, 1.7vw, 19px); font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; white-space: nowrap; color: #6FB9FF; -webkit-text-stroke: 0.5px rgba(200, 232, 255, 0.85); text-shadow: 0 0 12px rgba(93, 227, 255, 0.85), 0 0 30px rgba(46, 139, 255, 0.6); opacity: 0; transform: scale(0.4);">Desarrollo web</span>
-        <span data-chip style="display: inline-flex; align-items: center; font-family: 'Space Grotesk', sans-serif; font-size: clamp(14px, 1.7vw, 19px); font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; white-space: nowrap; color: #6FB9FF; -webkit-text-stroke: 0.5px rgba(200, 232, 255, 0.85); text-shadow: 0 0 12px rgba(93, 227, 255, 0.85), 0 0 30px rgba(46, 139, 255, 0.6); opacity: 0; transform: scale(0.4);">Automatización &amp; IA</span>
-      </div>
-      <div data-hero-sub style="display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-top: 26px;">
-        <a href="#nx-contacto" data-cursor="Ir" style="display: inline-flex; align-items: center; gap: 12px; padding: 15px 30px; border: 1px solid rgba(255, 255, 255, 0.35); border-radius: 999px; color: #FDFAF5; font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; backdrop-filter: blur(6px); background: rgba(255, 255, 255, 0.1); transition: border-color 280ms, color 280ms, background 280ms;" style-hover="border-color: #7FC4FF; color: #7FC4FF; background: rgba(255, 255, 255, 0.16);">
-          Analizar mi proyecto
-          <span style="font-size: 15px;">→</span>
-        </a>
-        <a href="#nx-torre" data-cursor="Bajar" style="display: inline-flex; align-items: center; gap: 12px; padding: 15px 30px; border: 1px solid rgba(255, 255, 255, 0.35); border-radius: 999px; color: #FDFAF5; font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; backdrop-filter: blur(6px); background: rgba(255, 255, 255, 0.1); transition: border-color 280ms, color 280ms, background 280ms;" style-hover="border-color: #7FC4FF; color: #7FC4FF; background: rgba(255, 255, 255, 0.16);">
-          Ver la arquitectura
-          <span style="font-size: 15px;">↓</span>
-        </a>
-      </div>
-      <div data-hero-sub style="display: flex; flex-direction: column; align-items: center; gap: 6px; margin-top: 26px; pointer-events: none;" aria-hidden="true">
-        <span style="font-family: 'Bodoni Moda', Georgia, serif; font-style: italic; font-weight: 600; font-size: 30px; letter-spacing: 0.04em; color: #6FB9FF; -webkit-text-stroke: 0.7px rgba(200, 232, 255, 0.9); text-shadow: 0 0 14px rgba(93, 227, 255, 0.85), 0 0 34px rgba(46, 139, 255, 0.65);">Desliza</span>
-        <svg width="34" height="40" viewBox="0 0 34 40" fill="none" style="display: block; overflow: visible; filter: drop-shadow(0 0 7px rgba(93, 227, 255, 0.95)) drop-shadow(0 0 18px rgba(46, 139, 255, 0.7));">
-          <path d="M6 4 L17 14 L28 4" stroke="#5DE3FF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" style="animation: nxChevA 1.6s ease-in-out infinite;"></path>
-          <path d="M6 20 L17 30 L28 20" stroke="#5DE3FF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" style="animation: nxChevB 1.6s ease-in-out infinite;"></path>
-        </svg>
+    <div id="nx2-ph2" style="position: absolute; inset: 0; z-index: 4; display: grid; place-items: center; text-align: center; padding: 90px 24px; opacity: 0;">
+      <div>
+        <h1 id="nx2-h1" style="margin: 0;"></h1>
+        <div id="nx2-hint" style="margin-top: 42px; display: grid; gap: 8px; justify-items: center; font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(196,189,180,0.85);">
+          <span>Desliza</span>
+          <span aria-hidden="true" style="font-size: 15px;">↓</span>
+        </div>
       </div>
     </div>
 
-    <button id="nx-sound" type="button" data-cursor="Sonido" style="position: absolute; right: 32px; bottom: 32px; z-index: 6; display: inline-flex; align-items: center; gap: 10px; padding: 12px 20px; border: 1px solid rgba(255, 255, 255, 0.32); border-radius: 999px; background: rgba(4, 7, 15, 0.55); backdrop-filter: blur(10px); color: #FDFAF5; font-family: 'Archivo', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; cursor: pointer; opacity: 0; pointer-events: none; transition: opacity 500ms cubic-bezier(0.16, 1, 0.3, 1), border-color 260ms, color 260ms;" style-hover="border-color: #7FC4FF; color: #7FC4FF;">
-      <span id="nx-sound-icon" style="font-size: 13px;">▶</span>
-      <span id="nx-sound-label">Activar sonido</span>
-    </button>
+    <canvas id="nx2-particles" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block; z-index: 8; pointer-events: none; opacity: 0;"></canvas>
+
+    <div id="nx2-ph3" style="position: absolute; inset: 0; z-index: 9; display: grid; place-items: center; text-align: center; padding: 90px 24px; pointer-events: none;">
+      <div style="display: grid; justify-items: center; gap: 26px; width: 100%; max-width: 1240px;">
+        <p id="nx2-sub-sr" style="position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap;">Construimos la infraestructura digital de tu empresa:</p>
+        <div id="nx2-spacer" style="height: clamp(70px, 11vh, 130px);"></div>
+        <div id="nx2-chips" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 14px 34px; opacity: 0;">
+          <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(13px, 1.2vw, 17px); letter-spacing: 0.2em; text-transform: uppercase; color: rgba(140,232,255,0.97); -webkit-text-stroke: 0.6px rgba(215,248,255,0.95); text-shadow: 0 0 8px rgba(190,245,255,0.95), 0 0 22px rgba(93,227,255,0.9), 0 0 54px rgba(46,160,255,0.7);">Estrategia</span>
+          <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(13px, 1.2vw, 17px); letter-spacing: 0.2em; text-transform: uppercase; color: rgba(140,232,255,0.97); -webkit-text-stroke: 0.6px rgba(215,248,255,0.95); text-shadow: 0 0 8px rgba(190,245,255,0.95), 0 0 22px rgba(93,227,255,0.9), 0 0 54px rgba(46,160,255,0.7);">Diseño</span>
+          <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(13px, 1.2vw, 17px); letter-spacing: 0.2em; text-transform: uppercase; color: rgba(140,232,255,0.97); -webkit-text-stroke: 0.6px rgba(215,248,255,0.95); text-shadow: 0 0 8px rgba(190,245,255,0.95), 0 0 22px rgba(93,227,255,0.9), 0 0 54px rgba(46,160,255,0.7);">Desarrollo web</span>
+          <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(13px, 1.2vw, 17px); letter-spacing: 0.2em; text-transform: uppercase; color: rgba(140,232,255,0.97); -webkit-text-stroke: 0.6px rgba(215,248,255,0.95); text-shadow: 0 0 8px rgba(190,245,255,0.95), 0 0 22px rgba(93,227,255,0.9), 0 0 54px rgba(46,160,255,0.7);">Automatización &amp; IA</span>
+        </div>
+        <div id="nx2-cta" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; opacity: 0; pointer-events: none;">
+          <a href="#nx-contacto" data-cursor="Analizar" style="display: inline-flex; align-items: center; gap: 11px; padding: 16px 28px; border-radius: 999px; font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #EAF4FF; text-decoration: none; background: rgba(46,139,255,0.06); border: 1px solid rgba(255,255,255,0.22);">Analizar mi proyecto <span aria-hidden="true">→</span></a>
+          <a href="#nx-torre" data-cursor="Arquitectura" style="display: inline-flex; align-items: center; gap: 11px; padding: 16px 28px; border-radius: 999px; font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #EAF4FF; text-decoration: none; background: rgba(46,139,255,0.06); border: 1px solid rgba(255,255,255,0.22);">Ver la arquitectura <span aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+    </div>
 
   </section>
   </div>
+
+  <section id="nx2-video" style="position: relative; overflow: hidden; padding: 110px 24px 120px;">
+    <canvas id="nx2-lines-v" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block; z-index: 0; opacity: 0.55; mix-blend-mode: screen; pointer-events: none;"></canvas>
+    <div style="position: relative; z-index: 2; max-width: 1180px; margin: 0 auto;">
+      <h2 style="font-family: 'Bodoni Moda', Georgia, serif; font-weight: 400; font-size: clamp(28px, 3.6vw, 46px); margin: 0 0 26px;">Cómo trabajamos</h2>
+      <div id="nx2-vshell" style="position: relative; border-radius: 14px; overflow: hidden; border: 1px solid rgba(255,255,255,0.13); background: #04070F; aspect-ratio: 16/9;">
+        <video id="nx2-video-el" poster="media/hero-poster.webp" muted="muted" playsinline="playsinline" loop="loop" preload="none" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+          <source src="media/hero-video.mp4" type="video/mp4">
+        </video>
+        <button id="nx2-snd" type="button" data-cursor="Sonido" style="position: absolute; right: 16px; bottom: 16px; z-index: 3; display: inline-flex; align-items: center; gap: 9px; padding: 11px 18px; border-radius: 999px; cursor: pointer; font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #EAF4FF; background: rgba(4,7,15,0.74); border: 1px solid rgba(255,255,255,0.22);">
+          <span id="nx2-snd-icon">▶</span><span id="nx2-snd-label">Activar sonido</span>
+        </button>
+      </div>
+    </div>
+  </section>
 
   <div id="nx-torre" style="position: relative; z-index: 5; padding: 120px 40px 40px; max-width: 1360px; margin: 0 auto;">
     <span style="font-size: 11px; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: #9B9189;">Arquitectura NexMetis</span>
@@ -643,6 +609,7 @@ class Component extends DCLogic {
     this.initCases();
     this.initSmoke();
     this.initRunic();
+    this.initHero2();
     this.initUnclip();
     this.initGlyphs();
     this.initWipe();
@@ -1378,6 +1345,7 @@ class Component extends DCLogic {
     }
     const scrim = document.getElementById('nx-scrim');
     if (scrim) scrim.style.opacity = String(1 - gT * 0.82);
+
     if (vid) {
       if (e < 0.006) {
         // parked at the top: first frame, frozen y listo para volver a sonar
@@ -1778,6 +1746,407 @@ class Component extends DCLogic {
     this.ebRaf = requestAnimationFrame(this.ebFrame);
   }
 
+  /* ===== FloatingLines ======================================================
+     Shader del component FloatingLines de React Bits, sobre WebGL2 pelat.
+     Copyright (c) 2026 David Haz — MIT + Commons Clause License Condition v1.0.
+     Us permes dins d'un lloc web o producte; prohibida la venda o redistribucio
+     del component, tambe en versio portada.
+
+     El component original munta el shader amb three.js: un quad a pantalla
+     completa i una camera ortografica. Aqui es fa amb WebGL2 directe i
+     s'estalvien ~150 KB comprimits i una peticio a un CDN extern.
+     Nomes dibuixa quan la capa es visible (this.linesVisible). */
+
+  initLines(id) {
+    const cv = document.getElementById(id);
+    if (!cv || this.reduced || window.innerWidth <= 900) return null;
+
+    const gl = cv.getContext('webgl2', { antialias: true, alpha: false, powerPreference: 'low-power' });
+    if (!gl) return null;
+
+    const VS = '#version 300 es\nin vec2 p;void main(){gl_Position=vec4(p,0.0,1.0);}';
+    const FS = '#version 300 es\nprecision highp float;out vec4 o;' +
+      'uniform float iTime;uniform vec3 iRes;uniform vec2 iMouse;uniform float bInf;' +
+      'uniform vec2 par;uniform vec3 grad[4];' +
+      'mat2 rot(float r){return mat2(cos(r),sin(r),-sin(r),cos(r));}' +
+      'vec3 gc(float t){float c=clamp(t,0.0,0.9999)*3.0;int i=int(floor(c));float f=fract(c);' +
+      ' return mix(grad[i],grad[min(i+1,3)],f)*0.5;}' +
+      'float wv(vec2 uv,float of,vec2 s,vec2 m){' +
+      ' float a=sin(of+iTime*0.2)*0.3;float y=sin(uv.x+of+iTime*0.1)*a;' +
+      ' vec2 d=s-m;y+=(m.y-s.y)*exp(-dot(d,d)*5.0)*(-0.5)*bInf;' +
+      ' return 0.0175/max(abs(uv.y-y)+0.01,1e-3)+0.01;}' +
+      'void main(){vec2 uv=(2.0*gl_FragCoord.xy-iRes.xy)/iRes.y;uv.y*=-1.0;uv+=par;' +
+      ' vec2 m=(2.0*iMouse-iRes.xy)/iRes.y;m.y*=-1.0;vec3 c=vec3(0.0);' +
+      ' for(int i=0;i<16;++i){float fi=float(i);vec2 r=uv*rot(-1.0*log(length(uv)+1.0));' +
+      '  c+=gc(fi/15.0)*wv(r+vec2(0.04*fi+2.0,-0.7),1.5+0.2*fi,uv,m)*0.2;}' +
+      ' for(int i=0;i<12;++i){float fi=float(i);vec2 r=uv*rot(0.2*log(length(uv)+1.0));' +
+      '  c+=gc(fi/11.0)*wv(r+vec2(0.06*fi+5.0,0.0),2.0+0.15*fi,uv,m);}' +
+      ' for(int i=0;i<8;++i){float fi=float(i);vec2 r=uv*rot(-0.4*log(length(uv)+1.0));r.x*=-1.0;' +
+      '  c+=gc(fi/7.0)*wv(r+vec2(0.08*fi+10.0,0.5),1.0+0.2*fi,uv,m)*0.1;}' +
+      ' o=vec4(c,1.0);}';
+
+    const sh = (t, src) => {
+      const x = gl.createShader(t);
+      gl.shaderSource(x, src); gl.compileShader(x);
+      if (!gl.getShaderParameter(x, gl.COMPILE_STATUS)) { console.error('[nx-lines]', gl.getShaderInfoLog(x)); return null; }
+      return x;
+    };
+    const vs = sh(gl.VERTEX_SHADER, VS), fs = sh(gl.FRAGMENT_SHADER, FS);
+    if (!vs || !fs) return null;
+    const pr = gl.createProgram();
+    gl.attachShader(pr, vs); gl.attachShader(pr, fs); gl.linkProgram(pr);
+    if (!gl.getProgramParameter(pr, gl.LINK_STATUS)) { console.error('[nx-lines]', gl.getProgramInfoLog(pr)); return null; }
+    gl.useProgram(pr);
+
+    const buf = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+    const loc = gl.getAttribLocation(pr, 'p');
+    gl.enableVertexAttribArray(loc);
+    gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+
+    const U = (n) => gl.getUniformLocation(pr, n);
+    const rgb = (h) => [parseInt(h.slice(1, 3), 16) / 255, parseInt(h.slice(3, 5), 16) / 255, parseInt(h.slice(5, 7), 16) / 255];
+    const flat = [];
+    ['#12467F', '#2E8BFF', '#7FC4FF', '#5DE3FF'].forEach((h) => { flat.push(...rgb(h)); });
+    gl.uniform3fv(U('grad'), new Float32Array(flat));
+
+    const uT = U('iTime'), uR = U('iRes'), uM = U('iMouse'), uI = U('bInf'), uP = U('par');
+    let tm = [-1000, -1000], cm = [-1000, -1000], ti = 0, ci = 0, tp = [0, 0], cp = [0, 0];
+
+    const resize = () => {
+      const d = Math.min(window.devicePixelRatio || 1, 2);
+      const w = Math.round(cv.clientWidth * d), h = Math.round(cv.clientHeight * d);
+      if (!w || !h) return;
+      if (cv.width !== w || cv.height !== h) { cv.width = w; cv.height = h; gl.viewport(0, 0, w, h); }
+      gl.uniform3f(uR, cv.width, cv.height, 1);
+    };
+    new ResizeObserver(resize).observe(cv);
+    resize();
+
+    window.addEventListener('pointermove', (e) => {
+      const r = cv.getBoundingClientRect();
+      const d = Math.min(window.devicePixelRatio || 1, 2);
+      const x = e.clientX - r.left, y = e.clientY - r.top;
+      tm = [x * d, (r.height - y) * d]; ti = 1;
+      tp = [((x - r.width / 2) / r.width) * 0.2, (-(y - r.height / 2) / r.height) * 0.2];
+    }, { passive: true });
+
+    const t0 = performance.now();
+    /* Retorna la funcio de dibuix; qui la crida decideix quan pintar.
+       Cap instancia dibuixa si la seva capa no es visible. */
+    return () => {
+      cm[0] += (tm[0] - cm[0]) * 0.05; cm[1] += (tm[1] - cm[1]) * 0.05;
+      ci += (ti - ci) * 0.05;
+      cp[0] += (tp[0] - cp[0]) * 0.05; cp[1] += (tp[1] - cp[1]) * 0.05;
+      gl.uniform1f(uT, (performance.now() - t0) / 1000);
+      gl.uniform2f(uM, cm[0], cm[1]);
+      gl.uniform1f(uI, ci);
+      gl.uniform2f(uP, cp[0], cp[1]);
+      gl.drawArrays(gl.TRIANGLES, 0, 3);
+    };
+  }
+
+  /* ===== Hero 2 ==============================================================
+     Seqüencia per fases governada per l'scroll de #nx2-track:
+       1 pissarra  2 trencament  3 titol en volum  4 el titol explota en
+       particules que es reagrupen escrivint el subtitol  5 xips i CTA
+     DepthText i ParticleText son ports vanilla de components de React Bits.
+     Copyright (c) 2026 David Haz — MIT + Commons Clause License Condition v1.0.
+     Us permes dins d'un lloc web o producte; prohibida la venda o redistribucio
+     del component, tambe en versio portada. */
+
+  initHero2() {
+    const track = document.getElementById('nx2-track');
+    if (!track) return;
+    const lite = this.reduced || window.innerWidth <= 900;
+
+    this.h2 = {
+      track,
+      ph1: document.getElementById('nx2-ph1'),
+      ph2: document.getElementById('nx2-ph2'),
+      crack: document.getElementById('nx2-crack'),
+      shards: document.getElementById('nx2-shards'),
+      chips: document.getElementById('nx2-chips'),
+      cta: document.getElementById('nx2-cta'),
+      hint: document.getElementById('nx2-hint'),
+      linesCv: document.getElementById('nx2-lines'),
+      fb: document.getElementById('nx2-fb'),
+      pcv: document.getElementById('nx2-particles'),
+    };
+
+    this.buildDepthTitle(lite);
+    this.buildMorph(lite);
+
+    const drawA = this.initLines('nx2-lines');
+    const drawB = this.initLines('nx2-lines-v');
+    if (!drawA && this.h2.fb) { this.h2.fb.style.opacity = '1'; this.h2.linesCv.style.display = 'none'; }
+
+    const vsh = document.getElementById('nx2-vshell');
+    let vVis = false;
+    if (vsh) new IntersectionObserver((es) => { vVis = es[0].isIntersecting; }, { threshold: 0.2 }).observe(vsh);
+
+    const loop = () => {
+      this.h2Raf = requestAnimationFrame(loop);
+      if (!this.alive) return;
+      const p = this.heroPhase();
+      if (drawA && this.h2.linesOn) drawA();
+      if (drawB && vVis) drawB();
+      if (p > 0.5) this.drawMorph();
+    };
+    this.h2Raf = requestAnimationFrame(loop);
+    this.initHero2Video();
+  }
+
+  /* ---------- titol en volum ---------- */
+  buildDepthTitle(lite) {
+    const host = document.getElementById('nx2-h1');
+    if (!host) return;
+    const LINES = ['Rompamos', 'los esquemas'];
+    const SIZES = ['clamp(46px, 8.4vw, 118px)', 'clamp(56px, 10.4vw, 146px)'];
+    const N = lite ? 12 : 30, D = 2.4;
+    const FACE = [253, 250, 245], DEEP = [46, 139, 255];
+    this.h2Stages = [];
+    LINES.forEach((txt, li) => {
+      const root = document.createElement('span');
+      root.style.cssText = 'display:block;perspective:900px;perspective-origin:50% 48%';
+      const st = document.createElement('span');
+      st.style.cssText = 'position:relative;display:inline-grid;place-items:center;' +
+                         'transform-style:preserve-3d;will-change:transform';
+      const base = 'grid-area:1/1;display:block;font-family:\'Bodoni Moda\',Georgia,serif;font-weight:700;' +
+                   'line-height:.92;letter-spacing:-.02em;white-space:nowrap;user-select:none;' +
+                   'transform-style:preserve-3d;backface-visibility:hidden;font-size:' + SIZES[li] + ';';
+      for (let k = N; k >= 1; k--) {
+        const pr = k / N, e = pr * pr, m = (Math.round((1 - e) * 72 + 4)) / 100;
+        const sp = document.createElement('span');
+        sp.setAttribute('aria-hidden', 'true');
+        sp.textContent = txt;
+        sp.style.cssText = base + 'position:absolute;inset:0;pointer-events:none;' +
+          'filter:saturate(.95) brightness(.92);color:rgb(' +
+          Math.round(FACE[0] * m + DEEP[0] * (1 - m)) + ',' +
+          Math.round(FACE[1] * m + DEEP[1] * (1 - m)) + ',' +
+          Math.round(FACE[2] * m + DEEP[2] * (1 - m)) + ');' +
+          'transform:translateZ(' + (-k * D) + 'px)';
+        st.appendChild(sp);
+      }
+      const face = document.createElement('span');
+      face.textContent = txt;
+      face.style.cssText = base + 'position:relative;z-index:1;color:#FDFAF5;' +
+        'text-shadow:0 22px 34px rgba(46,139,255,.36),0 4px 8px rgba(0,0,0,.28);transform:translateZ(.6px)';
+      st.appendChild(face);
+      root.appendChild(st);
+      host.appendChild(root);
+      this.h2Stages.push(st);
+    });
+    if (lite) return;
+    const TILT = 7.5, b = { x: -TILT * 0.32, y: TILT * 0.42 };
+    const cur = { x: b.x, y: b.y }, tgt = { x: b.x, y: b.y };
+    let act = false, t0 = performance.now();
+    window.addEventListener('pointermove', (e) => {
+      const r = host.getBoundingClientRect();
+      if (!r.width || !r.height) return;
+      act = true;
+      const cl = (v) => Math.max(-1, Math.min(1, v));
+      tgt.x = b.x - cl((e.clientY - (r.top + r.height / 2)) / (r.height * 0.8)) * TILT;
+      tgt.y = b.y + cl((e.clientX - (r.left + r.width / 2)) / (r.width * 0.8)) * TILT;
+    }, { passive: true });
+    const tick = (now) => {
+      this.h2TiltRaf = requestAnimationFrame(tick);
+      if (!this.alive) return;
+      if (!act) {
+        const o = ((now - t0) / 1000) * 0.35 * Math.PI * 2;
+        tgt.x = b.x + Math.sin(o) * TILT * 0.18;
+        tgt.y = b.y + Math.cos(o * 0.85) * TILT * 0.18;
+      }
+      cur.x += (tgt.x - cur.x) * 0.14;
+      cur.y += (tgt.y - cur.y) * 0.14;
+      const t = 'rotateX(' + cur.x.toFixed(3) + 'deg) rotateY(' + cur.y.toFixed(3) + 'deg)';
+      this.h2Stages.forEach((st) => { st.style.transform = t; });
+    };
+    this.h2TiltRaf = requestAnimationFrame(tick);
+  }
+
+  /* ---------- mostreig d'un text en objectius de particula ---------- */
+  sampleGlyphs(text, font, W, H, step) {
+    const off = document.createElement('canvas');
+    const oc = off.getContext('2d', { willReadFrequently: true });
+    oc.font = font;
+    let m = oc.measureText(text);
+    let size = parseFloat(font);
+    const maxW = W * 0.9;
+    if (m.width > maxW) {
+      size = Math.max(14, size * (maxW / m.width));
+      font = font.replace(/[\d.]+px/, size + 'px');
+      oc.font = font;
+      m = oc.measureText(text);
+    }
+    const L = Math.ceil(m.actualBoundingBoxLeft || 0);
+    const R = Math.ceil(m.actualBoundingBoxRight || m.width);
+    const A = Math.ceil(m.actualBoundingBoxAscent || size * 0.78);
+    const Dd = Math.ceil(m.actualBoundingBoxDescent || size * 0.22);
+    const pad = 10;
+    off.width = Math.max(1, L + R) + pad * 2;
+    off.height = Math.max(1, A + Dd) + pad * 2;
+    oc.font = font; oc.textAlign = 'left'; oc.textBaseline = 'alphabetic'; oc.fillStyle = '#fff';
+    oc.fillText(text, pad - L, pad + A);
+    const img = oc.getImageData(0, 0, off.width, off.height).data;
+    const out = [];
+    for (let y = 0; y < off.height; y += step) {
+      for (let x = 0; x < off.width; x += step) {
+        if (img[(y * off.width + x) * 4 + 3] > 40) {
+          out.push([W / 2 - off.width / 2 + x, H / 2 - off.height / 2 + y]);
+        }
+      }
+    }
+    return out;
+  }
+
+  /* ---------- el titol explota i les mateixes particules escriuen el subtitol ---------- */
+  buildMorph(lite) {
+    const cv = this.h2.pcv;
+    if (!cv) return;
+    this.morph = { ready: false, m: 0, N: 0 };
+    const build = () => {
+      const st = document.getElementById('nx2-stage');
+      const W = st.clientWidth, H = st.clientHeight;
+      if (!W || !H) return;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      cv.width = Math.floor(W * dpr); cv.height = Math.floor(H * dpr);
+      const ctx = cv.getContext('2d');
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      const titleSize = Math.min(146, Math.max(56, W * 0.104));
+      const subSize = Math.min(31, Math.max(17, W * 0.023));
+      const A = this.sampleGlyphs('Rompamos los esquemas',
+        "700 " + titleSize + "px 'Bodoni Moda', Georgia, serif", W, H, lite ? 5 : 4);
+      const B = this.sampleGlyphs('Construimos la infraestructura digital de tu empresa:',
+        "500 " + subSize + "px 'Space Grotesk', sans-serif", W, H, lite ? 4 : 3);
+      if (!A.length || !B.length) return;
+
+      /* Un sol joc de particules amb dos destins. El recompte es fixa i cada
+         llista es remostreja, perque els dos textos no en generen el mateix. */
+      const N = Math.min(lite ? 1600 : 4600, Math.max(A.length, B.length));
+      const pts = new Float32Array(N * 8);
+      for (let i = 0; i < N; i++) {
+        const a = A[Math.floor(i * A.length / N)];
+        const b = B[Math.floor(i * B.length / N)];
+        const seed = ((i * 9301 + 49297) % 233280) / 233280;
+        const ang = seed * Math.PI * 2;
+        const amp = 120 + seed * 260;
+        const o = i * 8;
+        pts[o] = a[0]; pts[o + 1] = a[1];
+        pts[o + 2] = b[0]; pts[o + 3] = b[1];
+        pts[o + 4] = Math.cos(ang) * amp;
+        pts[o + 5] = Math.sin(ang) * amp * 0.72;
+        pts[o + 6] = 0.55 + seed * 0.9;
+        pts[o + 7] = seed;
+      }
+      this.morph = { ready: true, m: 0, N: N, pts: pts, cv: cv, ctx: ctx, W: W, H: H,
+                     gcv: document.createElement('canvas') };
+      this.morph.gcv.width = Math.max(1, Math.floor(W / 2));
+      this.morph.gcv.height = Math.max(1, Math.floor(H / 2));
+      this.morph.gctx = this.morph.gcv.getContext('2d');
+    };
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(build).catch(build);
+    else build();
+    let to = null;
+    window.addEventListener('resize', () => { clearTimeout(to); to = setTimeout(build, 220); });
+  }
+
+  drawMorph() {
+    const M = this.morph;
+    if (!M || !M.ready) return;
+    const ctx = M.ctx, m = M.m, N = M.N, pts = M.pts;
+    const e = m < 0.5 ? 4 * m * m * m : 1 - Math.pow(-2 * m + 2, 3) / 2;
+    const bulge = Math.sin(Math.PI * Math.min(1, Math.max(0, m)));
+    ctx.clearRect(0, 0, M.W, M.H);
+    for (let i = 0; i < N; i++) {
+      const o = i * 8;
+      const x = pts[o] + (pts[o + 2] - pts[o]) * e + pts[o + 4] * bulge;
+      const y = pts[o + 1] + (pts[o + 3] - pts[o + 1]) * e + pts[o + 5] * bulge;
+      const s = pts[o + 6];
+      const t = pts[o + 7];
+      ctx.fillStyle = 'rgb(' + Math.round(140 + (46 - 140) * t) + ',' +
+                               Math.round(232 + (139 - 232) * t) + ',255)';
+      ctx.globalAlpha = 0.45 + 0.55 * (1 - bulge * 0.5);
+      ctx.fillRect(x - s / 2, y - s / 2, s, s);
+    }
+    ctx.globalAlpha = 1;
+    /* halo en una sola passada, no per particula */
+    M.gctx.clearRect(0, 0, M.gcv.width, M.gcv.height);
+    M.gctx.drawImage(M.cv, 0, 0, M.gcv.width, M.gcv.height);
+    ctx.save();
+    ctx.globalCompositeOperation = 'lighter';
+    ctx.globalAlpha = 0.5;
+    ctx.filter = 'blur(6px)';
+    ctx.drawImage(M.gcv, 0, 0, M.W, M.H);
+    ctx.restore();
+    ctx.filter = 'none';
+  }
+
+  /* ---------- orquestracio per scroll ---------- */
+  heroPhase() {
+    const h = this.h2;
+    if (!h) return 0;
+    const r = h.track.getBoundingClientRect();
+    const den = h.track.offsetHeight - window.innerHeight;
+    const p = Math.max(0, Math.min(1, den > 0 ? -r.top / den : 0));
+    const mp = (v, a, b) => Math.max(0, Math.min(1, (v - a) / (b - a)));
+
+    const a1 = 1 - mp(p, 0.10, 0.26);
+    const tr = mp(p, 0.16, 0.30);
+    const a2 = mp(p, 0.24, 0.34) * (1 - mp(p, 0.52, 0.60));
+    const mm = mp(p, 0.54, 0.90);
+    const pa = mp(p, 0.50, 0.58);
+    const late = mp(p, 0.86, 0.95);
+
+    h.ph1.style.opacity = a1.toFixed(3);
+    h.ph1.style.transform = 'translateY(' + (-22 * (1 - a1)).toFixed(1) + 'px)';
+    h.crack.style.opacity = (Math.sin(tr * Math.PI) * 0.9).toFixed(3);
+    h.shards.style.opacity = (Math.sin(tr * Math.PI) * 0.75).toFixed(3);
+    h.shards.style.transform = 'scale(' + (1 + tr * 0.22).toFixed(3) + ')';
+    h.ph2.style.opacity = a2.toFixed(3);
+    if (h.hint) h.hint.style.opacity = (a2 * (1 - mp(p, 0.44, 0.52))).toFixed(3);
+    h.pcv.style.opacity = pa.toFixed(3);
+    h.chips.style.opacity = late.toFixed(3);
+    h.cta.style.opacity = late.toFixed(3);
+    h.cta.style.pointerEvents = late > 0.9 ? 'auto' : 'none';
+
+    const lk = mp(p, 0.20, 0.44) * 0.85;
+    h.linesCv.style.opacity = lk.toFixed(3);
+    if (h.fb) h.fb.style.opacity = lk.toFixed(3);
+    h.linesOn = lk > 0.02;
+    if (this.morph) this.morph.m = mm;
+    return p;
+  }
+
+  initHero2Video() {
+    const v = document.getElementById('nx2-video-el');
+    const btn = document.getElementById('nx2-snd');
+    const shell = document.getElementById('nx2-vshell');
+    if (!v || !shell) return;
+    new IntersectionObserver((es) => {
+      es.forEach((en) => {
+        if (en.isIntersecting) { v.play().catch(() => {}); }
+        else if (!v.paused) { v.pause(); if (!v.muted) { v.muted = true; sync(); } }
+      });
+    }, { threshold: 0.35 }).observe(shell);
+    const icon = document.getElementById('nx2-snd-icon');
+    const label = document.getElementById('nx2-snd-label');
+    const sync = () => {
+      if (!icon || !label) return;
+      icon.textContent = v.muted ? '▶' : '❚❚';
+      label.textContent = v.muted ? 'Activar sonido' : 'Silenciar';
+    };
+    if (btn) btn.addEventListener('click', () => {
+      v.muted = !v.muted;
+      if (!v.muted) v.volume = 1;
+      if (v.paused) v.play().catch(() => {});
+      sync();
+    });
+    sync();
+  }
+
   componentWillUnmount() {
     this.alive = false;
     window.removeEventListener('scroll', this.onScroll);
@@ -1786,6 +2155,8 @@ class Component extends DCLogic {
     if (this.raf) cancelAnimationFrame(this.raf);
     if (this.smokeRaf) cancelAnimationFrame(this.smokeRaf);
     if (this.ebRaf) cancelAnimationFrame(this.ebRaf);
+    if (this.h2Raf) cancelAnimationFrame(this.h2Raf);
+    if (this.h2TiltRaf) cancelAnimationFrame(this.h2TiltRaf);
     if (this.cycleIv) clearInterval(this.cycleIv);
     if (this.videoWatch) clearInterval(this.videoWatch);
   }

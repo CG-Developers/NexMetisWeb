@@ -1,52 +1,64 @@
-NEXMETIS · patch v4 — text nitid a les targetes de projecte
-===========================================================
-ACUMULATIU sobre el v3 (Electric Border inclos). Nomes canvia index.html.
+NEXMETIS · patch v6 — hero nou per fases
+=========================================
+ACUMULATIU sobre el v5. Nomes canvia index.html.
 
-LA CAUSA, MESURADA AL TEU WEB
-  La targeta frontal es maquetava a 420x262 i es mostrava a 787x491.
-  L'escenari te perspective:1200px i cada targeta esta a translateZ(560px):
-      ampliacio = 1200 / (1200 - 560) = 1,875x
-  El navegador rasteritzava el text a 420px d'amplada i despres estirava
-  aquell mapa de pixels un 87%. Igual que ampliar un JPEG petit.
+  >>> FES COPIA DE L'index.html ACTUAL ABANS DE SOBREESCRIURE'L. <<<
+  Es el canvi mes gros de tota la serie i no l'he pogut obrir al navegador.
+  Amb la copia, tornar enrere son deu segons.
 
-  Per aixo la primera es veia be i la resta no: Chrome rerasteritza la capa
-  que ja tenia composta en carregar; les altres es queden amb la textura d'1x.
+LA SEQUENCIA
+  1  Pissarra amb el text del problema
+  2  Es trenca el vidre (cracks-white + shards-cyan)
+  3  "Rompamos los esquemas" en volum, amb "Desliza" a sota
+  4  El titol EXPLOTA en particules i les MATEIXES particules es reagrupen
+     escrivint "Construimos la infraestructura digital de tu empresa:"
+  5  Xips i CTA entren
+  6  Seccio de video amb el seu propi lighting de fons
 
-  DESCARTAT abans d'actuar (mesurat, no suposat):
-   · will-change ja estava a 'auto' i s'hi mantenia (mostrejat 9s)
-   · el filter:blur() de les laterals estava a 'none' a la frontal
-   · l'anell si que s'assenta; la rotacio no hi tenia res a veure
-   · el retolat de sota l'anell (#nx-case-title/desc) esta net, sense capes
+  Tot escombrat per l'scroll i reversible: si puges, es desfa.
+  Els llindars son a heroPhase(); es toquen alli i prou.
 
-LA CORRECCIO
-  Les 7 targetes es maqueten 1,875x mes grans (420->787,5 · fonts 11/13/25 ->
-  20,6/24,4/46,9 · encoixinats i vores en proporcio) i la transformacio hi
-  afegeix scale(0,5333).
-  La mida projectada NO canvia gens: 787,5 x 0,5333 x 1,875 = 787,5.
-  El que canvia es que el text es rasteritza des d'un layout de 787px.
+COM ESTA FET
+  · Un SOL sistema de particules amb dos destins. No son dos efectes
+    encadenats: la particula i que forma la "R" de Rompamos es la mateixa que
+    acaba formant una lletra del subtitol. Per aixo l'explosio i la formacio
+    son el mateix moviment.
+  · 4.600 particules. Els dos textos no en generen el mateix nombre, aixi que
+    el recompte es fixa i cada llista es remostreja.
+  · Halo en una sola passada, no per particula.
+  · DepthText i FloatingLines, ports vanilla. Sense React, sense three.js,
+    sense npm, sense build. Zero dependencies noves.
 
-  La contraescala nomes desfa l'inflat, per tant es CONSTANT encara que el
-  radi R sigui dinamic (vw*0,40 fins a 560). Comprovat:
-      vw=1000  R=400  ampliacio 1,500x  escala neta 0,800  projectat 630,0 (abans 630,0)
-      vw=1200  R=480  ampliacio 1,667x  escala neta 0,889  projectat 700,0 (abans 700,0)
-      vw=1400  R=560  ampliacio 1,875x  escala neta 1,000  projectat 787,5 (abans 787,5)
-      vw=1920  R=560  ampliacio 1,875x  escala neta 1,000  projectat 787,5 (abans 787,5)
-  L'escala neta no passa mai d'1: per sota de 1400px de viewport hi ha
-  reduccio, o sigui encara mes nitid.
+EL HERO ANTIC
+  No s'ha esborrat cap metode. S'ha tret el seu DOM, i tots es neutralitzen
+  sols per les guardes que ja tenien:
+    updateHero  -> if (!track) return          (nx-hero-track ja no hi es)
+    initRunic   -> if (!els.length) return
+    shatterHero -> if (!this.problemStyle) return
+    initParallax-> if (!hero) return
+    initVideo / syncSoundBtn -> if (!v) return
+  Comprovat: 0 referencies al DOM, i el JS antic troba null i surt.
 
-  MOBIL: a <=900px el 3D esta desactivat i el CSS ja retornava 280x176.
-  S'hi han afegit les mides de tipografia i encoixinat originals, i la
-  contraescala es 1. Al mobil no canvia res.
+  PERDUT, i ho sabies: l'efecte runic de descodificacio i el typewriter.
+  El trencament de vidre esta refet amb els teus assets, no es el codi antic.
+
+VERIFICAT NUMERICAMENT
+  · node --check del bloc x-dc: OK
+  · 4.600 particules, 0 valors NaN o infinits al llarg de tot el morph
+  · cost JS del morph: 0,47 ms per fotograma (pressupost 60fps: 16,7 ms)
+  · totes les imatges que fa servir existeixen al repo
+
+NO VERIFICAT  (nomes ho pots fer tu)
+  · que el shader compili. Si el fons es queda negre, consola -> [nx-lines]
+  · que les particules caiguin on toca respecte del text
+  · el ritme de les fases
+
+MOBIL I ACCESSIBILITAT
+  · <=900px o prefers-reduced-motion: sense shader, menys capes de volum,
+    1.600 particules.
+  · El subtitol es queda al DOM per a lectors de pantalla i cercadors.
+  · Els CTA son <a> de veritat, no canvas.
 
 COM APLICAR-HO
-  index.html -> arrel del repo, sobreescriu. Res mes.
-
-VERIFICAT
-  · node --check del bloc x-dc: OK
-  · 361 tags abans i despres
-  · geometria projectada identica als 4 amples de referencia
-
-MIRA-HO TU
-  Els textos de les targetes han de sortir nitids DES DE LA PRIMERA, sense
-  esperar el segon de reajust. Comprova tambe que la mida de les targetes es
-  exactament la d'abans: si les veus mes grans o mes petites, avisa'm.
+  1. Copia l'index.html actual a index-v5-backup.html (al teu ordinador)
+  2. index.html -> arrel del repo, sobreescriu
