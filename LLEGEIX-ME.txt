@@ -1,46 +1,48 @@
-NEXMETIS · patch v22 · ACUMULATIU COMPLET
+NEXMETIS · patch v23 · ACUMULATIU COMPLET
 ==========================================
-Porta index.html, els assets i el LOGO NOU. Puja-ho tot i sobreescriu.
+Porta index.html, assets i logo. Puja-ho tot i sobreescriu.
 
-EL LOGO
-  He retallat la ICONA de la teva imatge (el quadrat amb el monograma) i l'he
-  passada a WebP: 512px a 35 KB, 192px a 8 KB, 96px a 3 KB.
+1) EL TEXT PUJA DES DE SOTA
+   L'entrada d'EchoText que faltava. Cada copia fantasma arrenca mes avall
+   que l'anterior i van convergint cap a la de davant, deixant una estela.
+   NO va per temps: va per SCROLL. El text puja mentre el rellevas de les
+   particules, aixi el gest es un de sol i no dos de seguits.
 
-  EL LOGOTIP NO ES IMATGE. "Nexmetis TECH" va en text real amb Archivo, que
-  ja carregues. Motius:
-    · nitid a qualsevol zoom i a qualsevol densitat de pantalla
-    · Google el llegeix
-    · pesa zero
-    · si canvies el nom, es una linia
-  Una imatge de text es veu borrosa a 2x i no la llegeix ningu.
+2) LES 4 AREES: ARA SON 4 XIPS AMB VORA
+   Aixo canvia l'arquitectura, i era necessari.
+   Fins ara les arees formaven part del camp de particules: eren una LINIA de
+   text mostrejada. Per molt que hi poses espais, una linia es llegeix com una
+   linia. No hi havia manera de posar-los vora sense treure'ls d'alli.
 
-  mix-blend-mode: screen. La imatge porta el fons fosc incrustat; amb aquest
-  mode els pixels foscos desapareixen i nomes queda el metall i la resplendor.
-  Aixi la icona s'integra amb el fons del web en comptes de portar un
-  rectangle negre al darrere.
+   Ara les particules nomes escriuen el SUBTITOL, i les arees son quatre
+   elements del DOM amb vidre i vora propia, com els CTA pero mes petits.
+   Quatre capsules separades: es veu que son quatre serveis.
 
-  Substituit a TRES llocs: capçalera, peu i pantalla de carrega.
-  logo-nexmetis.png ja no es fa servir enlloc.
+   ORDRE D'ENTRADA, que abans no existia:
+     0,70-0,78  el subtitol rellevat de les particules, pujant des de sota
+     0,80-0,89  els xips, escalonats un darrere l'altre
+     0,86-0,94  els botons
+   Primer QUE fem, despres l'accio. Tot alhora no diu res.
 
-EL GEST AL PASSAR PER SOBRE
-  Inclinacio 3D suavitzada que segueix el punter (fins a 13 graus en X i 17
-  en Y) mes un halo blau que s'encen.
-  Un SOL requestAnimationFrame per a totes les icones, i nomes corre mentre
-  n'hi ha una d'activa o encara s'esta recol·locant. Amb el ratoli fora, el
-  bucle s'atura sol: zero cost.
-  Al mobil no s'activa (no hi ha hover) i amb prefers-reduced-motion tampoc.
+3) TIPOGRAFIA DEL SUBTITOL: ORBITRON
+   La del teu pantallazo es una font comercial de fosa: no la puc fer servir
+   sense llicencia i no en tinc el fitxer.
+   Orbitron es la que mes s'hi acosta a Google Fonts: geometrica, terminacions
+   planes, traç uniforme, aire tecnic. Quatre pesos, aixi que dona control.
+   Ja va aplicada al subtitol i als xips.
+
+   Si la vols encara MES ampla, Michroma s'assembla mes a la proporcio del
+   teu exemple, pero nomes te un pes. Es una linia i te la canvio.
+
+   Es UNA familia nova a Google Fonts. La mida del subtitol s'ha ajustat
+   perque Orbitron es mes ampla que Bodoni i, a la mateixa mida, no cabia.
 
 VERIFICAT
   · node --check del bloc x-dc: OK
-  · graf de crides: 52 metodes, cap orfe
-  · 374 -> 382 tags
+  · 52 metodes, cap orfe
+  · 24 ids buscats pel JS, 24 al DOM
+  · totes les claus de this.h2 declarades
+  (les tres comprovacions que em van fallar al v18 i al v19)
 
-MIRA-HO TU
-  Passa el ratoli per la icona de la capçalera. I comprova que amb el mode
-  screen no queda cap vora fosca al voltant: si te un fons diferent del
-  #0A0A0A en algun lloc, avisa'm i faig la versio amb transparencia real.
-
-QUE QUEDA PENDENT
-  · Pagines legals i enllaços socials, a href="#"
-    BLOQUEJAT: NIF, domicili i num. de registre de NexSocial SCCL
-  · Decodificador runic sobre la pissarra
+COM APLICAR-HO
+  index.html a l'arrel, assets/ i media/ a les seves carpetes.
