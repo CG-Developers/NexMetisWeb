@@ -1,47 +1,34 @@
-NEXMETIS · patch v24 · ACUMULATIU COMPLET + IDENTITAT
-======================================================
+NEXMETIS · patch v25 · ACUMULATIU COMPLET
+==========================================
 Porta index.html, assets, logo, favicons i Open Graph. Puja-ho tot.
 
-1) ELS CTA, AMB EL LLENGUATGE DEL LOGO
-   Abans eren vidre blanc neutre. Ara porten el mateix material que la icona:
-     degradat diagonal de blau clar a blau profund (150,206,255 -> 12,48,104)
-     aresta superior blanca al 62% i inferior blava al 34%
-     resplendor blava exterior
-     tipografia Orbitron, la mateixa del subtitol
-   En passar-hi per sobre, la resplendor puja, com fa la icona.
-   I baixats: la separacio amb els xips passa de 30 a 52px.
+1) LA FLETXA DE MALLA
+   Fletxa poligonal com la de la teva referencia: silueta amb degradat de
+   blanc a blau, malla interior de 33 arestes i 19 nodes, i resplendor.
+   Tot SVG: 19 punts i 33 linies, cap imatge. Escala sense perdre res i pesa
+   uns pocs centenars de bytes.
+   L'he renderitzada i mirada a 240px i a 52px abans de posar-la: a mida
+   petita la malla es dilueix pero la silueta aguanta, que es el que importa.
 
-   Aixi la icona, els botons i el "Desliza" fan servir el mateix material.
-   Es el que lliga la pagina: no colors semblants, sino la MATEIXA recepta
-   de vidre, aresta i resplendor repetida a tres escales.
+2) ELS CTA, MES SEPARATS
+   Distancia amb els xips de serveis: 52px -> 80px.
 
-2) EL "DESLIZA" DEL TITULAR  — tenies rao, no l'havia canviat
-   Seguia en guix, que es el vocabulari de la PISSARRA. Sobre el fons de
-   linies no hi pinta res.
-   Ara es una capsula amb el mateix vidre que els CTA, text en Orbitron i
-   fletxa amb degradat de blanc a blau. Batec vertical suau.
-   El de la PISSARRA es queda de guix: alli si que li correspon.
-
-3) FAVICON I OPEN GRAPH AMB EL LOGO NOU
-   favicon.ico (16/32/48), favicon-16.png, favicon-32.png,
-   apple-touch-icon.png (180), icon-192.png, icon-512.png
-   og-image.jpg 1200x630, 75 KB, des de la teva imatge sencera
-
-   NO cal tocar l'HTML: els noms de fitxer son els que l'index ja demana.
-   Nomes cal sobreescriure'ls a l'arrel del repo.
-
-   El site.webmanifest apunta a icon-192.png i icon-512.png: comprova que
-   els noms coincideixen amb els teus. Si no, digue-m'ho.
+3) MES VIDRE
+   farciment  0,34 -> 0,20 al primer tram   (menys color, mes transparencia)
+   blur       16px -> 24px
+   brightness afegit a 1,06
+   vora       0,60 -> 0,52
+   aresta interior superior 0,62 -> 0,66
+   Menys pigment i mes desenfocament: es el que fa que sembli vidre gruixut
+   en comptes de plastic tenyit.
 
 VERIFICAT
-  · node --check: OK · 52 metodes, cap orfe · 24 ids, cap absent
-  · 383 -> 388 tags
+  · node --check: OK · cap metode orfe · cap id absent
+  · cap identificador SVG duplicat (nxArrow i nxAg, un de cada)
+  · la fletxa antiga ha desaparegut del tot
+  · 388 -> 446 tags (les 52 linies i cercles de la malla)
 
 COM APLICAR-HO
   index.html, favicon*, apple-touch-icon.png, icon-*.png, og-image.jpg
-    -> arrel del repo, sobreescriu
+    -> arrel del repo
   assets/ i media/ -> a les seves carpetes
-
-  Despres del desplegament, l'Open Graph el pots forçar a refrescar a
-  developers.facebook.com/tools/debug i cards-dev.twitter.com/validator
-  Sense aixo, les xarxes segueixen ensenyant la imatge antiga durant dies.
