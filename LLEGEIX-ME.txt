@@ -1,34 +1,52 @@
-NEXMETIS · patch d'optimització d'assets  —  9 agost 2026
-==========================================================
+NEXMETIS · patch v2 (acumulatiu)  —  9 agost 2026
+==================================================
+SUBSTITUEIX el patch v1 (nexmetis-optim-assets). Si encara no has aplicat el v1,
+aplica NOMES aquest: ja el conte sencer.
 
-QUÈ FA
-  · Totes les imatges passen a WebP  ..........  8.371 KB → 908 KB   (-90%)
-  · Vídeo del hero reencodat 720p/CRF30  ......  18.264 KB → 1.533 KB (-92%)
-  · Pòster al vídeo (primer pintat instantani) i preload="metadata"
-  · Footer: "NexMetis S.L." (entitat inexistent) → NexSocial SCCL
+INCLOU DEL v1
+  · Imatges a WebP  ....................  8.371 KB -> 908 KB   (-90%)
+  · Video del hero 720p/CRF30  .........  18.264 KB -> 1.533 KB (-92%)
+  · Poster al video + preload="metadata"
+  · Footer: "NexMetis S.L." -> NexSocial SCCL
+  TOTAL SERVIT: 27,2 MB -> 2,5 MB
 
-  TOTAL SERVIT:  27,2 MB  →  2,5 MB
+NOU AL v2
+  · image-slot.js FORA (era l'ajudant de l'editor, no ha d'anar a produccio)
+  · Placeholder del formulari #7E766E -> #8C847B  (4,43:1 -> 5,38:1, ara compleix AA)
+  · Text funcional per sota d'11px pujat a 11px: 3 casos de 9px, 15 de 10px
+    (etiquetes NIVEL x/5, tags de projecte, "Arrastra para girar", footer)
 
-COM APLICAR-HO (drag & drop al repo CG-Developers/NexmetisWeb)
-  1. index.html            → arrel, sobreescriu
-  2. assets/*.webp         → carpeta assets/ (s'afegeixen, no sobreescriuen)
-  3. media/hero-video.mp4  → carpeta media/, SOBREESCRIU l'antic (mateix nom)
-  4. media/hero-poster.webp i media/hero-photo.webp → carpeta media/
+  Anti-patrons impeccable: 79 -> 63
 
-DESPRÉS, ESBORRA DEL REPO (ja no es fan servir):
+COM APLICAR-HO (drag & drop a CG-Developers/NexmetisWeb)
+  1. index.html            -> arrel, sobreescriu
+  2. assets/*.webp         -> carpeta assets/
+  3. media/hero-video.mp4  -> carpeta media/, SOBREESCRIU l'antic
+  4. media/hero-poster.webp i media/hero-photo.webp -> carpeta media/
+  5. ESBORRA image-slot.js de l'arrel del repo
+
+DESPRES, ESBORRA DEL REPO (ja no es fan servir):
   assets/boom-shards.png       assets/case-nexlicitia.png
   assets/case-appajudes.jpg    assets/case-nexsocial.png
   assets/case-crm.png          assets/cracks-white.png
   assets/case-flamenco.png     assets/services-bg.png
   assets/case-flamenco-web.jpg assets/shards-alpha.png
   assets/case-intranet.png     assets/shards-cyan.png
-  media/hero-photo.png
+  media/hero-photo.png         image-slot.js
 
-NO ESBORRIS: media/glass-break.mp3, logo-nexmetis.png, favicons, og-image.jpg
+NO ESBORRIS: media/glass-break.mp3, support.js, logo-nexmetis.png,
+             favicons, og-image.jpg, site.webmanifest
 
-PENDENT (següent patch)
-  · Pàgines legals: avís legal, privacitat, cookies (ara són href="#")
-  · Enllaços socials LinkedIn / X / Instagram (ara href="#")
-  · BLOQUEIG: cal NIF, domicili social i núm. de registre de NexSocial SCCL.
-    La web de NexSocial tampoc els publica ("número pendent de registre",
-    domicili "Catalunya, Espanya"). Això incompleix LSSI art. 10 als dos webs.
+MIRA-HO TU (no he pogut verificar-ho al navegador, es va desconnectar)
+  Les 18 pujades de mida de text poden afectar etiquetes amb white-space:nowrap.
+  Repassa les etiquetes NIVEL x/5 de les targetes de servei i els tags dels
+  projectes. Si alguna es desborda, digue-m'ho i l'ajusto.
+
+NO S'HA TOCAT (decisio vostra, regla zero)
+  · Els 42 dark-glow i la paleta blava: son la identitat de Nexmetis
+  · Space Grotesk, la graella decorativa, les ombres difuses, les majuscules
+
+PENDENT · BLOQUEJAT PER DADES
+  Pagines legals (avis legal, privacitat, cookies) i els 6 href="#".
+  Calen: NIF, domicili social i num. de registre de NexSocial SCCL.
+  La web de NexSocial tampoc els publica. Incompleix LSSI art. 10 als dos webs.

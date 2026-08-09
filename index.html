@@ -94,16 +94,16 @@
   @media (prefers-reduced-motion: reduce) { .nx-neon { animation: none; } }
   .nx-neon-lg { padding: 16px 34px; font-size: 12px; }
   .nx-field { width: 100%; padding: 14px 16px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.16); border-radius: 10px; color: #FDFAF5; font-family: 'Archivo', system-ui, sans-serif; font-size: 15px; line-height: 1.5; outline: none; transition: border-color 200ms, box-shadow 200ms, background 200ms; resize: vertical; }
-  .nx-field::placeholder { color: #7E766E; }
+  .nx-field::placeholder { color: #8C847B; }
   .nx-field:focus { border-color: rgba(46, 139, 255, 0.85); background: rgba(46, 139, 255, 0.05); box-shadow: 0 0 0 3px rgba(46, 139, 255, 0.15); }
-  .nx-badge { display: inline-flex; align-items: center; padding: 4px 10px; border: 1px solid rgba(46, 139, 255, 0.55); border-radius: 999px; font-size: 9px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #BBD9FF; background: rgba(46, 139, 255, 0.08); white-space: nowrap; }
+  .nx-badge { display: inline-flex; align-items: center; padding: 4px 10px; border: 1px solid rgba(46, 139, 255, 0.55); border-radius: 999px; font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #BBD9FF; background: rgba(46, 139, 255, 0.08); white-space: nowrap; }
 
   /* ===== TABLET Y MÓVIL ===== */
   @media (max-width: 900px) {
     header { padding: 14px 18px !important; gap: 14px !important; }
     header img { height: 28px !important; }
     header nav { gap: 16px !important; }
-    .nx-neon { padding: 9px 16px !important; font-size: 10px !important; letter-spacing: 0.14em !important; }
+    .nx-neon { padding: 9px 16px !important; font-size: 11px !important; letter-spacing: 0.14em !important; }
     .nx-neon-lg { padding: 14px 24px !important; font-size: 11px !important; }
 
     #nx-top { padding-top: 62px !important; }
@@ -143,7 +143,6 @@
     .nx-neon { animation: none; }
   }
 </style>
-<script src="./image-slot.js"></script>
 </helmet>
 
 <div id="nx-root" style="background: #0A0A0A; color: #FDFAF5; font-family: 'Archivo', system-ui, sans-serif;">
@@ -156,7 +155,7 @@
       </div>
       <span id="nx-load-num" style="font-size: 11px; font-weight: 700; letter-spacing: 0.24em; color: var(--nx-accent, #2E8BFF); min-width: 42px;">000</span>
     </div>
-    <span style="font-size: 10px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: #9B9189;">Inicializando arquitectura</span>
+    <span style="font-size: 11px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: #9B9189;">Inicializando arquitectura</span>
   </div>
 
   <canvas id="nx-smoke" style="position: fixed; inset: 0; z-index: 1090; pointer-events: none;"></canvas>
@@ -168,7 +167,7 @@
   <header style="position: fixed; top: 0; left: 0; right: 0; z-index: 900; display: flex; align-items: center; justify-content: space-between; gap: 32px; padding: 18px 40px; background: rgba(10, 10, 10, 0.72); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(255, 255, 255, 0.08);">
     <a href="#nx-top" style="display: flex; align-items: center; gap: 14px; color: #FDFAF5;">
       <img src="logo-nexmetis.png" alt="Nexmetis Tech" width="1045" height="319" style="height: 36px; width: auto; display: block;">
-      <span style="font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: #9B9189;">Barcelona</span>
+      <span style="font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: #9B9189;">Barcelona</span>
     </a>
     <nav style="display: flex; align-items: center; gap: 32px;">
       <a href="#nx-torre" style="font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #C4BDB4;" style-hover="color: #FDFAF5;">Servicios</a>
@@ -226,10 +225,10 @@
     <div style="position: absolute; inset: 0; z-index: 4; background: #EAF4FF; opacity: 0; pointer-events: none; animation: nxFlash 900ms ease-out 320ms both;"></div>
 
     <div style="position: relative; z-index: 5; display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 16px 40px; border-bottom: 1px solid rgba(255, 255, 255, 0.14); backdrop-filter: blur(8px); background: rgba(4, 7, 15, 0.25);">
-      <span style="display: inline-flex; align-items: center; gap: 12px; font-size: 10px; font-weight: 700; letter-spacing: 0.26em; text-transform: uppercase; color: #C0D2E6;">
+      <span style="display: inline-flex; align-items: center; gap: 12px; font-size: 11px; font-weight: 700; letter-spacing: 0.26em; text-transform: uppercase; color: #C0D2E6;">
         Ingeniería digital · Barcelona
       </span>
-      <span style="display: inline-flex; align-items: center; gap: 12px; font-size: 10px; font-weight: 700; letter-spacing: 0.26em; text-transform: uppercase; color: #8FA3B8;">
+      <span style="display: inline-flex; align-items: center; gap: 12px; font-size: 11px; font-weight: 700; letter-spacing: 0.26em; text-transform: uppercase; color: #8FA3B8;">
         <span style="color: #7FC4FF;">✦</span>
         <span id="nx-cycle" style="color: #FDFAF5; min-width: 108px; display: inline-block; transition: opacity 320ms cubic-bezier(0.16, 1, 0.3, 1), transform 320ms cubic-bezier(0.16, 1, 0.3, 1);">Diagnosticar</span>
       </span>
@@ -317,7 +316,7 @@ digital de tu empresa:</p>
         <div style="position: absolute; left: 50%; width: 7px; height: 7px; margin-left: -3.5px; margin-top: -3.5px; background: #FDFAF5; box-shadow: 0 0 14px 4px rgba(46, 139, 255, 0.9); animation: nxPulseDown 2.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;"></div>
         <div style="position: absolute; left: 50%; width: 7px; height: 7px; margin-left: -3.5px; margin-top: -3.5px; background: #FDFAF5; box-shadow: 0 0 14px 4px rgba(46, 139, 255, 0.9); animation: nxPulseUp 2.6s cubic-bezier(0.4, 0, 0.2, 1) infinite 1.3s;"></div>
         <div style="position: absolute; left: 50%; top: 50%; width: 46px; height: 46px; margin-left: -23px; margin-top: -23px; border: 1px solid rgba(46, 139, 255, 0.45); transform: rotate(45deg);"></div>
-        <div style="position: absolute; left: 22px; top: 50%; transform: translateY(-50%); white-space: nowrap; font-size: 9px; font-weight: 700; letter-spacing: 0.32em; text-transform: uppercase; color: rgba(46, 139, 255, 0.55); writing-mode: vertical-rl;">NexMetis Core</div>
+        <div style="position: absolute; left: 22px; top: 50%; transform: translateY(-50%); white-space: nowrap; font-size: 11px; font-weight: 700; letter-spacing: 0.32em; text-transform: uppercase; color: rgba(46, 139, 255, 0.55); writing-mode: vertical-rl;">NexMetis Core</div>
       </div>
 
       <div id="nx-scene" style="position: absolute; inset: 0; transform-style: preserve-3d;">
@@ -417,7 +416,7 @@ digital de tu empresa:</p>
       </div>
 
       <div id="nx-gridtitle" style="position: absolute; top: 76px; left: 0; right: 0; display: flex; flex-direction: column; align-items: center; gap: 10px; opacity: 0; pointer-events: none;">
-        <span style="font-size: 10px; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; color: var(--nx-accent, #2E8BFF);">NexMetis</span>
+        <span style="font-size: 11px; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; color: var(--nx-accent, #2E8BFF);">NexMetis</span>
         <span style="font-family: 'Bodoni Moda', Georgia, serif; font-weight: 700; font-size: 34px; color: #FDFAF5; text-shadow: 0 2px 18px rgba(4, 9, 22, 0.8);">Nuestros servicios</span>
       </div>
 
@@ -426,10 +425,10 @@ digital de tu empresa:</p>
         <div style="width: 240px; height: 2px; background: rgba(255, 255, 255, 0.14);">
           <div id="nx-hud-bar" style="width: 0%; height: 100%; background: var(--nx-accent, #2E8BFF);"></div>
         </div>
-        <span id="nx-hud-name" style="font-size: 10px; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: #9B9189;">Estrategia digital</span>
+        <span id="nx-hud-name" style="font-size: 11px; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: #9B9189;">Estrategia digital</span>
       </div>
 
-      <div id="nx-hint" style="position: absolute; right: 40px; bottom: 42px; display: flex; align-items: center; gap: 10px; font-size: 10px; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: #9B9189;">
+      <div id="nx-hint" style="position: absolute; right: 40px; bottom: 42px; display: flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: #9B9189;">
         <span style="width: 6px; height: 6px; background: var(--nx-accent, #2E8BFF); animation: nxBlink 1.8s ease-in-out infinite;"></span>
         <span id="nx-hint-text"></span>
       </div>
@@ -461,49 +460,49 @@ digital de tu empresa:</p>
       <div id="nx-ring" style="position: absolute; left: 50%; top: 50%; width: 0; height: 0; transform-style: preserve-3d;">
         <a data-case data-index="0" href="https://nexsocial.cat" target="_blank" rel="noopener" data-title="NexSocial" data-tag="Desarrollo web" data-desc="Web corporativa multiidioma para una cooperativa de acompañamiento sociovital." data-cursor="Ver" style="position: absolute; width: 420px; height: 262px; margin: -131px 0 0 -210px; backface-visibility: hidden; border: 1px solid rgba(255, 255, 255, 0.14); background: #111111 url('assets/case-nexsocial.webp') center top / cover no-repeat; overflow: hidden; will-change: transform, opacity; text-decoration: none;">
           <div style="position: absolute; inset: auto 0 0 0; padding: 74px 20px 18px; background: linear-gradient(180deg, rgba(10, 10, 10, 0) 0%, rgba(8, 10, 14, 0.72) 34%, rgba(8, 10, 14, 0.96) 72%); pointer-events: none;">
-            <span style="display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--nx-accent, #2E8BFF);">Desarrollo web</span>
+            <span style="display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--nx-accent, #2E8BFF);">Desarrollo web</span>
             <span style="display: block; margin-top: 7px; font-family: 'Bodoni Moda', Georgia, serif; font-weight: 700; font-size: 25px; line-height: 1.1; color: #FDFAF5;">NexSocial</span>
             <span style="display: block; margin-top: 8px; font-size: 13px; line-height: 1.45; color: #D6D0C8;">Web corporativa multiidioma para una cooperativa de acompañamiento sociovital.</span>
           </div>
         </a>
         <a data-case data-index="1" href="https://flamencoeventsbarcelona.com" target="_blank" rel="noopener" data-title="Flamenco &amp; Events — Web" data-tag="Desarrollo web" data-desc="Web corporativa multiidioma con agenda de espectáculos, clases, talleres y reserva online." data-cursor="Ver" style="position: absolute; width: 420px; height: 262px; margin: -131px 0 0 -210px; backface-visibility: hidden; border: 1px solid rgba(255, 255, 255, 0.14); background: #111111 url('assets/case-flamenco-web.webp') center top / cover no-repeat; overflow: hidden; will-change: transform, opacity; text-decoration: none;">
           <div style="position: absolute; inset: auto 0 0 0; padding: 74px 20px 18px; background: linear-gradient(180deg, rgba(10, 10, 10, 0) 0%, rgba(8, 10, 14, 0.72) 34%, rgba(8, 10, 14, 0.96) 72%); pointer-events: none;">
-            <span style="display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--nx-accent, #2E8BFF);">Desarrollo web</span>
+            <span style="display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--nx-accent, #2E8BFF);">Desarrollo web</span>
             <span style="display: block; margin-top: 7px; font-family: 'Bodoni Moda', Georgia, serif; font-weight: 700; font-size: 25px; line-height: 1.1; color: #FDFAF5;">Flamenco &amp; Events — Web</span>
             <span style="display: block; margin-top: 8px; font-size: 13px; line-height: 1.45; color: #D6D0C8;">Web corporativa multiidioma con agenda de espectáculos, clases, talleres y reserva online.</span>
           </div>
         </a>
         <a data-case data-index="2" href="https://flamencoeventsbarcelona.com" target="_blank" rel="noopener" data-title="Flamenco &amp; Events Barcelona" data-tag="Plataforma de eventos" data-desc="Gestor de eventos y reservas con venta de entradas y agenda multiidioma." data-cursor="Ver" style="position: absolute; width: 420px; height: 262px; margin: -131px 0 0 -210px; backface-visibility: hidden; border: 1px solid rgba(255, 255, 255, 0.14); background: #111111 url('assets/case-flamenco.webp') center top / cover no-repeat; overflow: hidden; will-change: transform, opacity; text-decoration: none;">
           <div style="position: absolute; inset: auto 0 0 0; padding: 74px 20px 18px; background: linear-gradient(180deg, rgba(10, 10, 10, 0) 0%, rgba(8, 10, 14, 0.72) 34%, rgba(8, 10, 14, 0.96) 72%); pointer-events: none;">
-            <span style="display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--nx-accent, #2E8BFF);">Plataforma de eventos</span>
+            <span style="display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--nx-accent, #2E8BFF);">Plataforma de eventos</span>
             <span style="display: block; margin-top: 7px; font-family: 'Bodoni Moda', Georgia, serif; font-weight: 700; font-size: 25px; line-height: 1.1; color: #FDFAF5;">Flamenco &amp; Events Barcelona</span>
             <span style="display: block; margin-top: 8px; font-size: 13px; line-height: 1.45; color: #D6D0C8;">Gestor de eventos y reservas con venta de entradas y agenda multiidioma.</span>
           </div>
         </a>
         <div data-case data-index="3" data-title="NexlicitIA" data-tag="Gestor automatizado de licitaciones" data-desc="Detección, análisis y seguimiento automático de licitaciones públicas." data-cursor="Ver" style="position: absolute; width: 420px; height: 262px; margin: -131px 0 0 -210px; backface-visibility: hidden; border: 1px solid rgba(255, 255, 255, 0.14); background: #111111 url('assets/case-nexlicitia.webp') center center / cover no-repeat; overflow: hidden; will-change: transform, opacity;">
           <div style="position: absolute; inset: auto 0 0 0; padding: 74px 20px 18px; background: linear-gradient(180deg, rgba(10, 10, 10, 0) 0%, rgba(8, 10, 14, 0.72) 34%, rgba(8, 10, 14, 0.96) 72%); pointer-events: none;">
-            <span style="display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--nx-accent, #2E8BFF);">Gestor automatizado de licitaciones</span>
+            <span style="display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--nx-accent, #2E8BFF);">Gestor automatizado de licitaciones</span>
             <span style="display: block; margin-top: 7px; font-family: 'Bodoni Moda', Georgia, serif; font-weight: 700; font-size: 25px; line-height: 1.1; color: #FDFAF5;">NexlicitIA</span>
             <span style="display: block; margin-top: 8px; font-size: 13px; line-height: 1.45; color: #D6D0C8;">Detección, análisis y seguimiento automático de licitaciones públicas.</span>
           </div>
         </div>
         <div data-case data-index="4" data-title="AppAjudes" data-tag="Gestor automatizado de ayudas y subvenciones AAPP" data-desc="Buscador y cribador de ayudas públicas con alertas de plazos y cobertura local." data-cursor="Ver" style="position: absolute; width: 420px; height: 262px; margin: -131px 0 0 -210px; backface-visibility: hidden; border: 1px solid rgba(255, 255, 255, 0.14); background: #111111 url('assets/case-appajudes.webp') center top / cover no-repeat; overflow: hidden; will-change: transform, opacity;">
           <div style="position: absolute; inset: auto 0 0 0; padding: 74px 20px 18px; background: linear-gradient(180deg, rgba(10, 10, 10, 0) 0%, rgba(8, 10, 14, 0.72) 34%, rgba(8, 10, 14, 0.96) 72%); pointer-events: none;">
-            <span style="display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--nx-accent, #2E8BFF);">Gestor automatizado de ayudas y subvenciones AAPP</span>
+            <span style="display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--nx-accent, #2E8BFF);">Gestor automatizado de ayudas y subvenciones AAPP</span>
             <span style="display: block; margin-top: 7px; font-family: 'Bodoni Moda', Georgia, serif; font-weight: 700; font-size: 25px; line-height: 1.1; color: #FDFAF5;">AppAjudes</span>
             <span style="display: block; margin-top: 8px; font-size: 13px; line-height: 1.45; color: #D6D0C8;">Buscador y cribador de ayudas públicas con alertas de plazos y cobertura local.</span>
           </div>
         </div>
         <div data-case data-index="5" data-title="Portal Corporativo" data-tag="Intranet corporativa y CRM" data-desc="Portal de equipo con gestión de casos, documentos compartidos y accesos por rol." data-cursor="Ver" style="position: absolute; width: 420px; height: 262px; margin: -131px 0 0 -210px; backface-visibility: hidden; border: 1px solid rgba(255, 255, 255, 0.14); background: #111111 url('assets/case-intranet.webp') center center / cover no-repeat; overflow: hidden; will-change: transform, opacity;">
           <div style="position: absolute; inset: auto 0 0 0; padding: 74px 20px 18px; background: linear-gradient(180deg, rgba(10, 10, 10, 0) 0%, rgba(8, 10, 14, 0.72) 34%, rgba(8, 10, 14, 0.96) 72%); pointer-events: none;">
-            <span style="display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--nx-accent, #2E8BFF);">Intranet corporativa y CRM</span>
+            <span style="display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--nx-accent, #2E8BFF);">Intranet corporativa y CRM</span>
             <span style="display: block; margin-top: 7px; font-family: 'Bodoni Moda', Georgia, serif; font-weight: 700; font-size: 25px; line-height: 1.1; color: #FDFAF5;">Portal Corporativo</span>
             <span style="display: block; margin-top: 8px; font-size: 13px; line-height: 1.45; color: #D6D0C8;">Portal de equipo con gestión de casos, documentos compartidos y accesos por rol.</span>
           </div>
         </div>
         <div data-case data-index="6" data-title="TraçaNex" data-tag="CRM a medida" data-desc="CRM a medida: casos, personas, facturación y cuadro de mando en tiempo real." data-cursor="Ver" style="position: absolute; width: 420px; height: 262px; margin: -131px 0 0 -210px; backface-visibility: hidden; border: 1px solid rgba(255, 255, 255, 0.14); background: #111111 url('assets/case-crm.webp') center top / cover no-repeat; overflow: hidden; will-change: transform, opacity;">
           <div style="position: absolute; inset: auto 0 0 0; padding: 74px 20px 18px; background: linear-gradient(180deg, rgba(10, 10, 10, 0) 0%, rgba(8, 10, 14, 0.72) 34%, rgba(8, 10, 14, 0.96) 72%); pointer-events: none;">
-            <span style="display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--nx-accent, #2E8BFF);">CRM a medida</span>
+            <span style="display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--nx-accent, #2E8BFF);">CRM a medida</span>
             <span style="display: block; margin-top: 7px; font-family: 'Bodoni Moda', Georgia, serif; font-weight: 700; font-size: 25px; line-height: 1.1; color: #FDFAF5;">TraçaNex</span>
             <span style="display: block; margin-top: 8px; font-size: 13px; line-height: 1.45; color: #D6D0C8;">CRM a medida: casos, personas, facturación y cuadro de mando en tiempo real.</span>
           </div>
@@ -512,7 +511,7 @@ digital de tu empresa:</p>
     </div>
 
     <div style="display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 18px 0 0;">
-      <div style="display: flex; align-items: center; gap: 10px; font-size: 9px; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: #9B9189;">
+      <div style="display: flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: #9B9189;">
         <span style="width: 6px; height: 6px; background: var(--nx-accent, #2E8BFF); animation: nxBlink 1.8s ease-in-out infinite;"></span>
         Arrastra para girar
       </div>
