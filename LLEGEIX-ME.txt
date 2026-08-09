@@ -1,48 +1,47 @@
-NEXMETIS · patch v23 · ACUMULATIU COMPLET
-==========================================
-Porta index.html, assets i logo. Puja-ho tot i sobreescriu.
+NEXMETIS · patch v24 · ACUMULATIU COMPLET + IDENTITAT
+======================================================
+Porta index.html, assets, logo, favicons i Open Graph. Puja-ho tot.
 
-1) EL TEXT PUJA DES DE SOTA
-   L'entrada d'EchoText que faltava. Cada copia fantasma arrenca mes avall
-   que l'anterior i van convergint cap a la de davant, deixant una estela.
-   NO va per temps: va per SCROLL. El text puja mentre el rellevas de les
-   particules, aixi el gest es un de sol i no dos de seguits.
+1) ELS CTA, AMB EL LLENGUATGE DEL LOGO
+   Abans eren vidre blanc neutre. Ara porten el mateix material que la icona:
+     degradat diagonal de blau clar a blau profund (150,206,255 -> 12,48,104)
+     aresta superior blanca al 62% i inferior blava al 34%
+     resplendor blava exterior
+     tipografia Orbitron, la mateixa del subtitol
+   En passar-hi per sobre, la resplendor puja, com fa la icona.
+   I baixats: la separacio amb els xips passa de 30 a 52px.
 
-2) LES 4 AREES: ARA SON 4 XIPS AMB VORA
-   Aixo canvia l'arquitectura, i era necessari.
-   Fins ara les arees formaven part del camp de particules: eren una LINIA de
-   text mostrejada. Per molt que hi poses espais, una linia es llegeix com una
-   linia. No hi havia manera de posar-los vora sense treure'ls d'alli.
+   Aixi la icona, els botons i el "Desliza" fan servir el mateix material.
+   Es el que lliga la pagina: no colors semblants, sino la MATEIXA recepta
+   de vidre, aresta i resplendor repetida a tres escales.
 
-   Ara les particules nomes escriuen el SUBTITOL, i les arees son quatre
-   elements del DOM amb vidre i vora propia, com els CTA pero mes petits.
-   Quatre capsules separades: es veu que son quatre serveis.
+2) EL "DESLIZA" DEL TITULAR  — tenies rao, no l'havia canviat
+   Seguia en guix, que es el vocabulari de la PISSARRA. Sobre el fons de
+   linies no hi pinta res.
+   Ara es una capsula amb el mateix vidre que els CTA, text en Orbitron i
+   fletxa amb degradat de blanc a blau. Batec vertical suau.
+   El de la PISSARRA es queda de guix: alli si que li correspon.
 
-   ORDRE D'ENTRADA, que abans no existia:
-     0,70-0,78  el subtitol rellevat de les particules, pujant des de sota
-     0,80-0,89  els xips, escalonats un darrere l'altre
-     0,86-0,94  els botons
-   Primer QUE fem, despres l'accio. Tot alhora no diu res.
+3) FAVICON I OPEN GRAPH AMB EL LOGO NOU
+   favicon.ico (16/32/48), favicon-16.png, favicon-32.png,
+   apple-touch-icon.png (180), icon-192.png, icon-512.png
+   og-image.jpg 1200x630, 75 KB, des de la teva imatge sencera
 
-3) TIPOGRAFIA DEL SUBTITOL: ORBITRON
-   La del teu pantallazo es una font comercial de fosa: no la puc fer servir
-   sense llicencia i no en tinc el fitxer.
-   Orbitron es la que mes s'hi acosta a Google Fonts: geometrica, terminacions
-   planes, traç uniforme, aire tecnic. Quatre pesos, aixi que dona control.
-   Ja va aplicada al subtitol i als xips.
+   NO cal tocar l'HTML: els noms de fitxer son els que l'index ja demana.
+   Nomes cal sobreescriure'ls a l'arrel del repo.
 
-   Si la vols encara MES ampla, Michroma s'assembla mes a la proporcio del
-   teu exemple, pero nomes te un pes. Es una linia i te la canvio.
-
-   Es UNA familia nova a Google Fonts. La mida del subtitol s'ha ajustat
-   perque Orbitron es mes ampla que Bodoni i, a la mateixa mida, no cabia.
+   El site.webmanifest apunta a icon-192.png i icon-512.png: comprova que
+   els noms coincideixen amb els teus. Si no, digue-m'ho.
 
 VERIFICAT
-  · node --check del bloc x-dc: OK
-  · 52 metodes, cap orfe
-  · 24 ids buscats pel JS, 24 al DOM
-  · totes les claus de this.h2 declarades
-  (les tres comprovacions que em van fallar al v18 i al v19)
+  · node --check: OK · 52 metodes, cap orfe · 24 ids, cap absent
+  · 383 -> 388 tags
 
 COM APLICAR-HO
-  index.html a l'arrel, assets/ i media/ a les seves carpetes.
+  index.html, favicon*, apple-touch-icon.png, icon-*.png, og-image.jpg
+    -> arrel del repo, sobreescriu
+  assets/ i media/ -> a les seves carpetes
+
+  Despres del desplegament, l'Open Graph el pots forçar a refrescar a
+  developers.facebook.com/tools/debug i cards-dev.twitter.com/validator
+  Sense aixo, les xarxes segueixen ensenyant la imatge antiga durant dies.
