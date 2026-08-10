@@ -222,6 +222,7 @@
       <video id="nx2-hvideo" playsinline="playsinline" muted="muted" preload="auto" poster="media/hero-nm-poster.webp" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; z-index: 2;">
         <source src="media/hero-nm-720.mp4" type="video/mp4">
       </video>
+      <audio id="nx2-haudio" preload="auto" src="media/hero-nm-audio.m4a"></audio>
       <div aria-hidden="true" style="position: absolute; inset: 0; z-index: 3; pointer-events: none; background: radial-gradient(72% 62% at 50% 46%, transparent 0%, rgba(3,6,12,0.44) 62%, rgba(3,6,12,0.88) 100%);"></div>
 
       <div id="nx2-type" style="position: absolute; left: 50%; top: 9vh; z-index: 4; transform: translateX(-50%); width: min(78vw, 1080px); text-align: center;">
@@ -250,9 +251,9 @@
     <div id="nx2-shards" aria-hidden="true" style="position: absolute; inset: -8%; z-index: 7; opacity: 0; pointer-events: none; background: url('assets/shards-alpha.webp') center/cover no-repeat; mix-blend-mode: screen; filter: saturate(0.15) brightness(1.06);"></div>
 
     <div id="nx2-ph2" style="position: absolute; inset: 0; z-index: 4; display: grid; place-items: center; text-align: center; padding: 90px 24px; opacity: 0;">
-      <div id="nx2-turb" aria-hidden="true" style="position: absolute; left: 50%; bottom: -14%; z-index: 0; width: 1px; height: 1px; transform: translateX(-50%); perspective: 1700px; perspective-origin: 50% 42%; opacity: 0; pointer-events: none;">
-        <div id="nx2-turb-rig" style="position: relative; width: 1px; height: 1px; transform-style: preserve-3d; transform: rotateX(-14deg);">
-          <div id="nx2-turb-spin" style="position: absolute; inset: 0; transform-style: preserve-3d; animation: nxTurb 26s linear infinite;"></div>
+      <div id="nx2-turb" aria-hidden="true" style="position: absolute; left: 50%; top: 56%; z-index: 0; width: 1px; height: 1px; transform: translateX(-50%); perspective: 2100px; perspective-origin: 50% 50%; opacity: 0; pointer-events: none;">
+        <div id="nx2-turb-rig" style="position: relative; width: 1px; height: 1px; transform-style: preserve-3d; transform: rotateZ(90deg) rotateX(-11deg);">
+          <div id="nx2-turb-spin" style="position: absolute; inset: 0; transform-style: preserve-3d; animation: nxTurb 44s linear infinite;"></div>
         </div>
       </div>
 
@@ -2462,7 +2463,7 @@ class Component extends DCLogic {
     const spin = document.getElementById('nx2-turb-spin');
     if (!spin || this.reduced || window.innerWidth <= 900) return;
 
-    const B = 12, P = 14, ST = 3, R = 128, PR = 152, H = 430;
+    const B = 12, P = 14, ST = 3, R = 150, PR = 176, H = 620;
     const TOP = -H / 2, GAP = H / (ST + 1);
     const el = (cls, css) => {
       const d = document.createElement('div');
@@ -2567,10 +2568,15 @@ class Component extends DCLogic {
         if (AC && !ac) ac = new AC();
         if (ac && ac.state === 'suspended') ac.resume().catch(() => {});
       } catch (e) {}
-      v.muted = false;
-      v.volume = 0.85;
+      /* La musica va en una PISTA A PART. El video es queda mut i nomes
+         aporta la imatge, que si que fa bucle. Abans el bucle del video
+         reiniciava tambe la musica i se sentia el salt just quan
+         s'escrivien les lletres. */
+      const au = document.getElementById('nx2-haudio');
+      if (au) { au.volume = 0.85; au.currentTime = 0; au.play().catch(() => {}); }
+      v.muted = true;
       v.currentTime = 0;
-      v.play().catch(() => { v.muted = true; v.play().catch(() => {}); });
+      v.play().catch(() => {});
       this.audioArmed = true;
     };
     if (gate) gate.addEventListener('click', enter, { once: true });
@@ -2709,8 +2715,14 @@ class Component extends DCLogic {
                         ') blur(' + (mp(p, 0.18, 0.44) * 7).toFixed(1) + 'px)';
       /* nomes s'atura quan el hero ja no es a pantalla: mentre es vegi,
          el video segueix sonant encara que la imatge estigui congelada */
-      if (a1 < 0.02) { if (!hv.paused) hv.pause(); }
-      else if (hv.paused && hv.readyState > 2 && this.audioArmed) hv.play().catch(() => {});
+      const ha = document.getElementById('nx2-haudio');
+      if (a1 < 0.02) {
+        if (!hv.paused) hv.pause();
+        if (ha && !ha.paused) ha.pause();
+      } else if (this.audioArmed) {
+        if (hv.paused && hv.readyState > 2) hv.play().catch(() => {});
+        if (ha && ha.paused) ha.play().catch(() => {});
+      }
     }
     /* El retol el governa initHeroVideo: nomes apareix quan el text ja s'ha
        acabat d'escriure. Aqui nomes se'n va en començar a baixar. */
