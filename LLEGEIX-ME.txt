@@ -1,34 +1,52 @@
-NEXMETIS · patch v25 · ACUMULATIU COMPLET
-==========================================
-Porta index.html, assets, logo, favicons i Open Graph. Puja-ho tot.
+NEXMETIS · patch v26 · HERO DE BIBLIOTECA · ACUMULATIU COMPLET
+===============================================================
+Puja-ho tot i sobreescriu. Fes copia de l'index.html actual abans.
 
-1) LA FLETXA DE MALLA
-   Fletxa poligonal com la de la teva referencia: silueta amb degradat de
-   blanc a blau, malla interior de 33 arestes i 19 nodes, i resplendor.
-   Tot SVG: 19 punts i 33 linies, cap imatge. Escala sense perdre res i pesa
-   uns pocs centenars de bytes.
-   L'he renderitzada i mirada a 240px i a 52px abans de posar-la: a mida
-   petita la malla es dilueix pero la silueta aguanta, que es el que importa.
+QUE CANVIA
+  La PISSARRA desapareix. La primera pantalla passa a ser el video de la
+  biblioteca, i el text del problema s'escriu A MAQUINA sobre la imatge.
+  La resta de la seqüencia no es toca: trencament de vidre, "Rompamos los
+  esquemas", particules, xips, CTA, video de "Áreas de trabajo" i serveis.
 
-2) ELS CTA, MES SEPARATS
-   Distancia amb els xips de serveis: 52px -> 80px.
+EL RITME
+  · La maquina d'escriure entra al segon 5,6 del clip. Tall mesurat
+    fotograma a fotograma, no a ull.
+  · El text arrenca EXACTAMENT alli, no abans.
+  · 85 caracters a 13 per segon = 6,5s. La maquina nomes surt 3,45s, aixi
+    que en acabar el video torna al segon 5,8 i es queda EN BUCLE sobre el
+    pupitre mentre s'acaba d'escriure.
+  · El video es desenfoca i s'apaga a mesura que es trenca el vidre, i
+    S'ATURA quan surt de pantalla: no te sentit descodificar fotogrames que
+    ningu mira.
 
-3) MES VIDRE
-   farciment  0,34 -> 0,20 al primer tram   (menys color, mes transparencia)
-   blur       16px -> 24px
-   brightness afegit a 1,06
-   vora       0,60 -> 0,52
-   aresta interior superior 0,62 -> 0,66
-   Menys pigment i mes desenfocament: es el que fa que sembli vidre gruixut
-   en comptes de plastic tenyit.
+PES  — mira aixo abans de desplegar
+  original que em vas passar   9.748 KB  1920x1080
+  el que va al repo            1.764 KB  1280px   (-82%)
+  poster                          68 KB
+
+  El poster es pinta a l'instant i el video entra per sobre. Aixi la primera
+  imatge NO espera el video, que es el que ens va matar l'LCP la primera
+  vegada amb els 18,7 MB.
+
+  Aixo dit: la pagina passa d'uns 2,5 MB a uns 4,3. Es el preu de l'intro
+  immersiu i el pagues a la primera pantalla, que es on Google mesura.
+  Si vols, tinc una versio de 1600px a 2.664 KB per a pantalla gran; no
+  l'he inclosa perque duplicaria el cost.
+
+ACCESSIBILITAT
+  Amb prefers-reduced-motion el text surt sencer d'entrada i el video es
+  queda quiet al fotograma del pupitre.
 
 VERIFICAT
-  · node --check: OK · cap metode orfe · cap id absent
-  · cap identificador SVG duplicat (nxArrow i nxAg, un de cada)
-  · la fletxa antiga ha desaparegut del tot
-  · 388 -> 446 tags (les 52 linies i cercles de la malla)
+  · node --check del bloc x-dc: OK
+  · 53 metodes, cap orfe
+  · 28 ids buscats pel JS, 28 al DOM
+  · cap referencia a la pissarra (nx2-board) ni al text de guix
 
-COM APLICAR-HO
+COM PUJAR-HO
   index.html, favicon*, apple-touch-icon.png, icon-*.png, og-image.jpg
     -> arrel del repo
-  assets/ i media/ -> a les seves carpetes
+  assets/*.webp          -> assets/
+  media/*                -> media/   (hero-nm-720.mp4 i hero-nm-poster.webp
+                                      son NOUS)
+  media/hero-video.mp4 segueix fent falta: es el de "Áreas de trabajo".
