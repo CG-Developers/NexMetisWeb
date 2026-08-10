@@ -88,6 +88,19 @@
     .nx-mark-i { transform: none !important; transition: none !important; }
   }
 
+  @keyframes nxTurb { to { transform: rotateY(360deg); } }
+  .nxt { position: absolute; transform-style: preserve-3d; pointer-events: none; }
+  .nxt-ring { border-radius: 50%; border: 2px solid rgba(150,220,255,.62);
+    box-shadow: 0 0 20px rgba(60,160,255,.45), inset 0 0 20px rgba(60,160,255,.28); }
+  .nxt-panel { background: linear-gradient(180deg, rgba(150,206,255,.20), rgba(12,48,104,.30));
+    border: 1px solid rgba(190,235,255,.34); box-shadow: inset 0 1px 0 rgba(255,255,255,.28); }
+  .nxt-blade { border-radius: 3px 12px 12px 3px; transform-origin: 0 50%;
+    background: linear-gradient(100deg, rgba(200,238,255,.85), rgba(46,139,255,.38) 46%, rgba(8,34,78,.24));
+    box-shadow: 0 0 12px rgba(70,170,255,.45), inset 0 1px 0 rgba(255,255,255,.55); }
+  .nxt-hub { border-radius: 50%; box-shadow: 0 0 26px rgba(90,190,255,.5);
+    background: radial-gradient(circle at 38% 32%, #EAF7FF, #4CA3FF 38%, #0B2A5A 78%); }
+  @media (prefers-reduced-motion: reduce) { #nx2-turb-spin { animation: none !important; } }
+
   @keyframes nxCaret { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
   @keyframes nxHintPulse { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
   @keyframes nxChalkBob { 0%, 100% { transform: translateY(0) rotate(-1.6deg); } 50% { transform: translateY(9px) rotate(-1.6deg); } }
@@ -209,16 +222,15 @@
       <video id="nx2-hvideo" playsinline="playsinline" muted="muted" preload="auto" poster="media/hero-nm-poster.webp" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; z-index: 2;">
         <source src="media/hero-nm-720.mp4" type="video/mp4">
       </video>
-      <canvas id="nx2-hfreeze" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: none; z-index: 2;"></canvas>
       <div aria-hidden="true" style="position: absolute; inset: 0; z-index: 3; pointer-events: none; background: radial-gradient(72% 62% at 50% 46%, transparent 0%, rgba(3,6,12,0.44) 62%, rgba(3,6,12,0.88) 100%);"></div>
 
       <div id="nx2-type" style="position: absolute; left: 50%; top: 9vh; z-index: 4; transform: translateX(-50%); width: min(78vw, 1080px); text-align: center;">
         <p style="font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-weight: 400; margin: 0; font-size: clamp(23px, 3.4vw, 54px); line-height: 1.34; color: #F6EEE0; text-shadow: 0 2px 12px rgba(0,0,0,0.9), 0 0 30px rgba(0,0,0,0.7), 0 0 60px rgba(0,0,0,0.5);"><span id="nx2-typetx"></span><span id="nx2-cur" style="display: inline-block; width: 0.06em; height: 0.92em; vertical-align: -0.12em; margin-left: 0.08em; background: #F6EEE0; animation: nxCaret 0.9s step-end infinite;"></span></p>
       </div>
 
-      <div id="nx2-hint1" style="position: absolute; left: 50%; bottom: 6%; z-index: 5; transform: translateX(-50%); display: grid; justify-items: center; gap: 2px; opacity: 0; transition: opacity .9s ease; pointer-events: none;">
-        <span style="font-family: 'Pinyon Script', cursive; font-size: clamp(28px, 3.2vw, 50px); color: #F6EEE0; text-shadow: 0 2px 12px rgba(0,0,0,0.9), 0 0 26px rgba(0,0,0,0.6); line-height: 1;">Desliza</span>
-        <svg viewBox="0 0 60 110" aria-hidden="true" style="width: clamp(30px, 3vw, 46px); height: auto; overflow: visible; filter: drop-shadow(0 2px 8px rgba(0,0,0,.8));">
+      <div id="nx2-hint1" style="position: absolute; left: 50%; bottom: 5%; z-index: 5; transform: translateX(-50%); display: grid; justify-items: center; gap: 6px; opacity: 0; transition: opacity .9s ease; pointer-events: none;">
+        <span style="font-family: 'Pinyon Script', cursive; font-size: clamp(46px, 5.4vw, 88px); color: #F6EEE0; text-shadow: 0 2px 12px rgba(0,0,0,0.9), 0 0 26px rgba(0,0,0,0.6); line-height: 1;">Desliza</span>
+        <svg viewBox="0 0 60 110" aria-hidden="true" style="width: clamp(40px, 4vw, 62px); height: auto; overflow: visible; filter: drop-shadow(0 2px 8px rgba(0,0,0,.8));">
           <g fill="none" stroke="#F0E4D2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M30 6 C 14 24, 46 40, 30 58 C 18 72, 36 80, 30 94" stroke-width="2.6"/>
             <path d="M22 84 L30 96 L38 84" stroke-width="2.4"/>
@@ -238,7 +250,13 @@
     <div id="nx2-shards" aria-hidden="true" style="position: absolute; inset: -8%; z-index: 7; opacity: 0; pointer-events: none; background: url('assets/shards-alpha.webp') center/cover no-repeat; mix-blend-mode: screen; filter: saturate(0.15) brightness(1.06);"></div>
 
     <div id="nx2-ph2" style="position: absolute; inset: 0; z-index: 4; display: grid; place-items: center; text-align: center; padding: 90px 24px; opacity: 0;">
-      <div>
+      <div id="nx2-turb" aria-hidden="true" style="position: absolute; left: 50%; bottom: -14%; z-index: 0; width: 1px; height: 1px; transform: translateX(-50%); perspective: 1700px; perspective-origin: 50% 42%; opacity: 0; pointer-events: none;">
+        <div id="nx2-turb-rig" style="position: relative; width: 1px; height: 1px; transform-style: preserve-3d; transform: rotateX(-14deg);">
+          <div id="nx2-turb-spin" style="position: absolute; inset: 0; transform-style: preserve-3d; animation: nxTurb 26s linear infinite;"></div>
+        </div>
+      </div>
+
+      <div style="position: relative; z-index: 2;">
         <h1 id="nx2-h1" style="margin: 0;"></h1>
         <div id="nx2-hint" style="margin-top: 54px; display: inline-grid; justify-items: center; gap: 12px; padding: 14px 26px 16px; border-radius: 999px; background: linear-gradient(163deg, rgba(150,206,255,0.26) 0%, rgba(46,124,220,0.15) 46%, rgba(12,48,104,0.24) 100%); backdrop-filter: blur(14px) saturate(1.4); -webkit-backdrop-filter: blur(14px) saturate(1.4); border: 1px solid rgba(198,238,255,0.46); box-shadow: inset 0 1.4px 0 rgba(255,255,255,0.52), inset 0 -1.4px 0 rgba(90,170,255,0.28), 0 8px 26px rgba(4,12,30,0.4), 0 0 22px rgba(60,150,255,0.26); animation: nxHintPulse 2.9s ease-in-out infinite;">
           <span style="font-family: 'Orbitron', 'Archivo', sans-serif; font-size: clamp(11px, 1vw, 14px); font-weight: 600; letter-spacing: 0.26em; text-transform: uppercase; color: #F2FAFF;">Desliza</span>
@@ -275,9 +293,13 @@
     <div style="position: relative; z-index: 2; max-width: 1180px; margin: 0 auto;">
       <h2 style="font-family: 'Bodoni Moda', Georgia, serif; font-weight: 400; font-size: clamp(28px, 3.6vw, 46px); margin: 0 0 26px;">Áreas de trabajo</h2>
       <div id="nx2-vshell" style="position: relative; border-radius: 14px; overflow: hidden; border: 1px solid rgba(255,255,255,0.13); background: #04070F; aspect-ratio: 16/9;">
-        <video id="nx2-video-el" poster="media/hero-poster.webp" muted="muted" playsinline="playsinline" loop="loop" preload="none" style="width: 100%; height: 100%; object-fit: cover; display: block;">
-          <source src="media/hero-video.mp4" type="video/mp4">
+        <video id="nx2-video-el" poster="media/corp-poster.webp" muted="muted" playsinline="playsinline" loop="loop" preload="none" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+          <source src="media/corp-720.mp4" type="video/mp4">
         </video>
+        <button id="nx2-full" type="button" data-cursor="Pantalla" style="position: absolute; right: 16px; top: 16px; z-index: 3; display: inline-flex; align-items: center; gap: 9px; padding: 11px 18px; border-radius: 999px; cursor: pointer; font-family: 'Orbitron', 'Archivo', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: #F2FAFF; background: linear-gradient(163deg, rgba(170,218,255,0.20) 0%, rgba(60,140,230,0.10) 48%, rgba(14,52,110,0.16) 100%); backdrop-filter: blur(16px) saturate(1.6); -webkit-backdrop-filter: blur(16px) saturate(1.6); border: 1px solid rgba(206,242,255,0.52); box-shadow: inset 0 1.6px 0 rgba(255,255,255,0.6), 0 10px 30px rgba(4,12,30,0.4);">
+          <svg viewBox="0 0 24 24" aria-hidden="true" style="width: 13px; height: 13px;"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 9V4h5"></path><path d="M20 9V4h-5"></path><path d="M4 15v5h5"></path><path d="M20 15v5h-5"></path></g></svg>
+          <span id="nx2-full-label">Pantalla completa</span>
+        </button>
         <button id="nx2-snd" type="button" data-cursor="Sonido" style="position: absolute; right: 16px; bottom: 16px; z-index: 3; display: inline-flex; align-items: center; gap: 9px; padding: 11px 18px; border-radius: 999px; cursor: pointer; font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #EAF4FF; background: rgba(4,7,15,0.74); border: 1px solid rgba(255,255,255,0.22);">
           <span id="nx2-snd-icon">▶</span><span id="nx2-snd-label">Activar sonido</span>
         </button>
@@ -652,6 +674,7 @@ class Component extends DCLogic {
     this.initHero2();
     this.initMarkTilt();
     this.initHeroVideo();
+    this.initHeroTurbine();
     this.initUnclip();
     this.initGlyphs();
     this.initWipe();
@@ -1957,6 +1980,7 @@ class Component extends DCLogic {
     };
     this.h2Raf = requestAnimationFrame(loop);
     this.initHero2Video();
+    this.initFullscreen();
   }
 
   /* ---------- titol en volum ---------- */
@@ -2428,6 +2452,60 @@ class Component extends DCLogic {
     this.echoRaf = requestAnimationFrame(tick);
   }
 
+  /* ---------- turbina de fons a la fase del titular ---------- */
+
+  /* La mateixa construccio de la maqueta, pero podada: aquesta va DARRERE el
+     titular i competeix amb les particules i dos shaders. 3 etapes en comptes
+     de 5, 12 pales i 14 panells: de 194 elements a 103.
+     No s'activa al mobil ni amb moviment reduit. */
+  initHeroTurbine() {
+    const spin = document.getElementById('nx2-turb-spin');
+    if (!spin || this.reduced || window.innerWidth <= 900) return;
+
+    const B = 12, P = 14, ST = 3, R = 128, PR = 152, H = 430;
+    const TOP = -H / 2, GAP = H / (ST + 1);
+    const el = (cls, css) => {
+      const d = document.createElement('div');
+      d.className = 'nxt ' + cls;
+      d.style.cssText += css;
+      spin.appendChild(d);
+    };
+
+    const rings = [[TOP - 30, PR * 2.02], [TOP + H + 30, PR * 1.68]];
+    for (let i = 0; i < ST; i++) rings.push([TOP + GAP * (i + 1), PR * (2.1 - i * 0.07)]);
+    rings.forEach((r) => {
+      el('nxt-ring', 'width:' + r[1].toFixed(0) + 'px;height:' + r[1].toFixed(0) + 'px;' +
+        'left:' + (-r[1] / 2).toFixed(0) + 'px;top:' + (-r[1] / 2).toFixed(0) + 'px;' +
+        'transform:translateY(' + r[0].toFixed(0) + 'px) rotateX(90deg)');
+    });
+
+    const pw = 2 * Math.PI * PR / P * 0.86;
+    [[TOP + H * 0.24, H * 0.40], [TOP + H * 0.72, H * 0.32]].forEach((band) => {
+      for (let i = 0; i < P; i++) {
+        el('nxt-panel', 'width:' + pw.toFixed(1) + 'px;height:' + band[1].toFixed(0) + 'px;' +
+          'left:' + (-pw / 2).toFixed(1) + 'px;top:' + (-band[1] / 2).toFixed(0) + 'px;' +
+          'transform:translateY(' + band[0].toFixed(0) + 'px) rotateY(' + (i * 360 / P).toFixed(2) + 'deg) translateZ(' + PR + 'px)');
+      }
+    });
+
+    for (let j = 0; j < ST; j++) {
+      const y = TOP + GAP * (j + 1), len = R * (1 - j * 0.08), pitch = j % 2 ? -7 : 7;
+      for (let i = 0; i < B; i++) {
+        const a = (i + (j % 2 ? 0.5 : 0)) * 360 / B;
+        el('nxt-blade', 'width:' + len.toFixed(0) + 'px;height:' + (20 - j * 2) + 'px;left:0;' +
+          'top:' + (-(20 - j * 2) / 2) + 'px;opacity:' + (1 - j * 0.08).toFixed(2) + ';' +
+          'transform:translateY(' + y.toFixed(0) + 'px) rotateY(' + a.toFixed(2) + 'deg) rotateX(' + (90 + pitch) + 'deg)');
+      }
+      const hs = 54 - j * 8;
+      el('nxt-hub', 'width:' + hs + 'px;height:' + hs + 'px;left:' + (-hs / 2) + 'px;top:' + (-hs / 2) + 'px;' +
+        'transform:translateY(' + y.toFixed(0) + 'px)');
+    }
+
+    el('', 'width:12px;height:' + (H + 70) + 'px;left:-6px;top:' + (TOP - 35) + 'px;border-radius:6px;' +
+      'background:linear-gradient(180deg, rgba(190,232,255,.45), rgba(46,139,255,.24), rgba(12,48,104,.36));' +
+      'box-shadow:0 0 16px rgba(70,170,255,.4)');
+  }
+
   /* ---------- hero: video de biblioteca + text a maquina ---------- */
 
   /* La maquina d'escriure entra al segon 5,6 del clip (tall mesurat fotograma
@@ -2445,8 +2523,8 @@ class Component extends DCLogic {
     if (!v || !tx) return;
 
     const TXT = 'Tareas repetitivas y monótonas, exceso de manualidades, sistemas de trabajo arcaicos…';
-    const START = 12.1, FREEZE = 12.6, CPS = 11;
-    let typed = -1, t0 = null, frozen = false;
+    const START = 12.1, LOOP_IN = 12.3, CPS = 12;
+    let typed = -1, t0 = null;
 
     v.addEventListener('loadeddata', () => {
       if (po) { po.style.transition = 'opacity .6s ease'; po.style.opacity = '0'; }
@@ -2501,7 +2579,7 @@ class Component extends DCLogic {
       tx.textContent = TXT;
       if (cur) cur.style.display = 'none';
       if (hint) hint.style.opacity = '1';
-      try { v.currentTime = FREEZE; v.pause(); } catch (e) {}
+      try { v.currentTime = LOOP_IN; v.pause(); } catch (e) {}
       return;
     }
 
@@ -2510,20 +2588,12 @@ class Component extends DCLogic {
       if (!this.alive) return;
       const t = v.currentTime || 0;
 
-      /* Congela la IMATGE, no el video. Abans feia pause() i amb el video
-         s'aturava tambe la musica: per aixo se't tallava quan sortien les
-         lletres. Ara el fotograma es copia a un canvas que tapa el video, el
-         video segueix sonant per sota i es posa en bucle perque la musica no
-         s'acabi mentre s'escriu. */
-      if (!frozen && t >= FREEZE) {
-        frozen = true;
-        const cv = document.getElementById('nx2-hfreeze');
-        if (cv && v.videoWidth) {
-          cv.width = v.videoWidth; cv.height = v.videoHeight;
-          try { cv.getContext('2d').drawImage(v, 0, 0); cv.style.display = 'block'; } catch (e) {}
-        }
-        v.loop = true;
-      }
+      /* NO es congela res. Les mans han de seguir teclejant mentre s'escriu.
+         El pla de la maquina dura de 12,1 a 15,5 i el text triga 7,7 s, aixi
+         que en arribar al final es torna a 12,3: el bucle passa DINS DEL
+         MATEIX PLA, amb el mateix enquadrament i les mans en moviment, i no
+         es llegeix com un tall. La musica no s'atura en cap moment. */
+      if (t >= v.duration - 0.08) { try { v.currentTime = LOOP_IN; } catch (e) {} }
       if (t < START) return;
 
       if (t0 === null) t0 = performance.now();
@@ -2642,10 +2712,10 @@ class Component extends DCLogic {
       if (a1 < 0.02) { if (!hv.paused) hv.pause(); }
       else if (hv.paused && hv.readyState > 2 && this.audioArmed) hv.play().catch(() => {});
     }
-    /* el retol de guix se'n va de seguida: en quant l'usuari toca l'scroll
-       ja ha entes que hi ha recorregut i deixa de fer falta */
+    /* El retol el governa initHeroVideo: nomes apareix quan el text ja s'ha
+       acabat d'escriure. Aqui nomes se'n va en començar a baixar. */
     const hint1 = document.getElementById('nx2-hint1');
-    if (hint1) hint1.style.opacity = (1 - mp(p, 0.015, 0.085)).toFixed(3);
+    if (hint1 && p > 0.02) hint1.style.opacity = '0';
     h.ph1.style.transform = 'translateY(' + (-22 * (1 - a1)).toFixed(1) + 'px)';
     /* El so dispara un sol cop. El hero es escombrable endavant i enrere, i
        sense aixo el vidre petaria a cada passada. Es rearma nomes quan tornes
@@ -2657,6 +2727,10 @@ class Component extends DCLogic {
     h.shards.style.opacity = (Math.sin(tr * Math.PI) * 0.75).toFixed(3);
     h.shards.style.transform = 'scale(' + (1 + tr * 0.22).toFixed(3) + ')';
     h.ph2.style.opacity = a2.toFixed(3);
+    /* la turbina entra amb el titular i se'n va amb ell, un pel mes tard
+       perque no arribi alhora que el text */
+    const turb = document.getElementById('nx2-turb');
+    if (turb) turb.style.opacity = (a2 * 0.62).toFixed(3);
     if (h.hint) h.hint.style.opacity = (a2 * (1 - mp(p, 0.44, 0.52))).toFixed(3);
     /* Rellevament particules -> text real. Les particules s'apaguen just
        quan el text de DOM acaba d'entrar, aixi no hi ha ni salt ni doble
@@ -2710,6 +2784,49 @@ class Component extends DCLogic {
     if (h.fb) h.fb.style.opacity = mp(p, 0.20, 0.44).toFixed(3);
     if (this.morph) this.morph.m = mm;
     return p;
+  }
+
+  /* Pantalla completa nativa: l'API demana un gest d'usuari, per aixo va en
+     un boto i no automatic. En entrar-hi es desactiva el silenci, que es el
+     motiu pel qual la vols. En sortir es torna a silenciar per no deixar so
+     sonant per la pagina. */
+  initFullscreen() {
+    const btn = document.getElementById('nx2-full');
+    const shell = document.getElementById('nx2-vshell');
+    const v = document.getElementById('nx2-video-el');
+    const label = document.getElementById('nx2-full-label');
+    if (!btn || !shell || !v) return;
+
+    const req = shell.requestFullscreen || shell.webkitRequestFullscreen || shell.msRequestFullscreen;
+    const exit = document.exitFullscreen || document.webkitExitFullscreen || document.msExitFullscreen;
+    const isFull = () => document.fullscreenElement || document.webkitFullscreenElement;
+
+    btn.addEventListener('click', () => {
+      if (isFull()) { if (exit) exit.call(document); return; }
+      if (req) {
+        const r = req.call(shell);
+        if (r && r.catch) r.catch(() => {});
+      } else if (v.webkitEnterFullscreen) {
+        /* iPhone no deixa posar en pantalla completa un contenidor:
+           nomes l'element <video>. Aquest es el cami que hi funciona. */
+        v.muted = false; v.play().catch(() => {}); v.webkitEnterFullscreen(); return;
+      }
+      v.muted = false;
+      v.volume = 1;
+      v.play().catch(() => {});
+    });
+
+    const sync = () => {
+      const f = !!isFull();
+      if (label) label.textContent = f ? 'Salir' : 'Pantalla completa';
+      shell.style.aspectRatio = f ? 'auto' : '16/9';
+      shell.style.height = f ? '100%' : '';
+      if (!f) { v.muted = true; }
+      const sb = document.getElementById('nx2-snd-icon'), sl = document.getElementById('nx2-snd-label');
+      if (sb && sl) { sb.textContent = v.muted ? '▶' : '❚❚'; sl.textContent = v.muted ? 'Activar sonido' : 'Silenciar'; }
+    };
+    ['fullscreenchange', 'webkitfullscreenchange'].forEach((e) => document.addEventListener(e, sync));
+    sync();
   }
 
   initHero2Video() {

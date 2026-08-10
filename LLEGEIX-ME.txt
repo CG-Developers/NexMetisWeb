@@ -1,37 +1,39 @@
-NEXMETIS · patch v28 · video definitiu
-=======================================
-Puja-ho tot i sobreescriu. media/hero-nm-720.mp4 i el poster son NOUS.
+NEXMETIS · patch v31 · video corporatiu + pantalla completa
+============================================================
+Nomes el que ha canviat. Els favicons, l'OG, els assets i el video del hero
+ja els tens desplegats i NO cal tornar-los a pujar.
 
-1) VIDEO NOU
-   15,52 s (abans 9,05). Original 16.072 KB -> web 2.304 KB a 1280px.
-   Poster 68 KB.
+QUE PUJAR
+  index.html            -> arrel del repo, sobreescriu
+  media/corp-720.mp4    -> media/   (NOU)
+  media/corp-poster.webp-> media/   (NOU)
 
-2) QUAN COMENÇA A ESCRIURE
-   Tall a la maquina mesurat fotograma a fotograma: SEGON 12,1 (abans 5,6).
-   El text arrenca alli. La imatge es congela a 12,6.
+  Despres pots ESBORRAR del repo:
+    media/hero-video.mp4     (el corporatiu antic, ja no es fa servir)
+    media/hero-poster.webp   (el seu poster)
+    media/hero-photo.webp    (no el fa servir ningu des del v6)
 
-3) LA MUSICA JA NO ES TALLA  — era un error meu
-   Congelava la imatge amb v.pause(), i pausar el video atura tambe l'audio.
-   Per aixo la musica se't tallava just quan sortien les lletres.
-   Ara el fotograma es copia a un CANVAS que tapa el video; el video segueix
-   reproduint-se per sota, nomes se'n sent el so.
-   I com que el text triga 7,7 s i el video acaba 4,3 s abans, el video es
-   posa en BUCLE en congelar-se: la imatge esta quieta, aixi que el bucle no
-   es veu, nomes manté la musica viva.
-   Si en el punt de tall del bucle notes un salt a la musica, digue-m'ho i
-   trio un altre punt de retorn en comptes del principi.
+1) VIDEO NOU A "AREAS DE TRABAJO"
+   25,19 s. Original 6.732 KB -> 1.976 KB a 1280px. Poster propi de 20 KB.
+   Segueix amb preload="none": no baixa fins que t'hi acostes.
 
-4) LA FLETXA
-   Un SOL traç ondulant amb una punta petita a baix. L'anterior tenia dos
-   traços que es trobaven i per aixo semblava un triangle.
+2) PANTALLA COMPLETA
+   Boto nou a dalt a la dreta del video, amb el mateix vidre que la resta.
+   En entrar-hi es TREU EL SILENCI automaticament, que es el motiu pel qual
+   la volies. En sortir-ne torna a silenciar-se, per no deixar so sonant per
+   la pagina mentre segueixes baixant.
 
-5) LA PORTA
-   "Work inside". Fora "con sonido".
+   Va en un boto i no automatic perque l'API de pantalla completa exigeix un
+   gest de l'usuari; cap navegador la concedeix sense clic.
+
+   iPhone: Safari a l'iPhone NO deixa posar un contenidor en pantalla
+   completa, nomes l'element <video>. El codi ho detecta i alli fa servir
+   webkitEnterFullscreen, que es l'unic cami que hi funciona. Aixi que a
+   l'iPhone veuras el reproductor natiu d'Apple en comptes del teu marc: es
+   aixi a totes les webs, no es cosa nostra.
 
 VERIFICAT
   · node --check: OK · cap metode orfe · cap id absent
-  · el video nomes s'atura quan el hero surt de pantalla
+  · el video antic ja no es referenciat enlloc
 
-COM PUJAR-HO
-  index.html, favicon*, apple-touch-icon.png, icon-*.png, og-image.jpg -> arrel
-  assets/*.webp -> assets/    media/* -> media/
+I SI, tens rao: a partir d'ara nomes t'envio el que canvia.
