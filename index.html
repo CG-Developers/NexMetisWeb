@@ -209,6 +209,7 @@
       <video id="nx2-hvideo" playsinline="playsinline" muted="muted" preload="auto" poster="media/hero-nm-poster.webp" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; z-index: 2;">
         <source src="media/hero-nm-720.mp4" type="video/mp4">
       </video>
+      <canvas id="nx2-hfreeze" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: none; z-index: 2;"></canvas>
       <div aria-hidden="true" style="position: absolute; inset: 0; z-index: 3; pointer-events: none; background: radial-gradient(72% 62% at 50% 46%, transparent 0%, rgba(3,6,12,0.44) 62%, rgba(3,6,12,0.88) 100%);"></div>
 
       <div id="nx2-type" style="position: absolute; left: 50%; top: 9vh; z-index: 4; transform: translateX(-50%); width: min(78vw, 1080px); text-align: center;">
@@ -217,13 +218,10 @@
 
       <div id="nx2-hint1" style="position: absolute; left: 50%; bottom: 6%; z-index: 5; transform: translateX(-50%); display: grid; justify-items: center; gap: 2px; opacity: 0; transition: opacity .9s ease; pointer-events: none;">
         <span style="font-family: 'Pinyon Script', cursive; font-size: clamp(28px, 3.2vw, 50px); color: #F6EEE0; text-shadow: 0 2px 12px rgba(0,0,0,0.9), 0 0 26px rgba(0,0,0,0.6); line-height: 1;">Desliza</span>
-        <svg viewBox="0 0 120 96" aria-hidden="true" style="width: clamp(56px, 6vw, 92px); height: auto; overflow: visible; filter: drop-shadow(0 2px 8px rgba(0,0,0,.8));">
+        <svg viewBox="0 0 60 110" aria-hidden="true" style="width: clamp(30px, 3vw, 46px); height: auto; overflow: visible; filter: drop-shadow(0 2px 8px rgba(0,0,0,.8));">
           <g fill="none" stroke="#F0E4D2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M14 12 C 42 30, 44 58, 60 82" stroke-width="2.6"/>
-            <path d="M60 82 C 66 62, 82 44, 106 30" stroke-width="2.6"/>
-            <path d="M46 66 C 52 74, 57 79, 60 84" stroke-width="2.2"/>
-            <path d="M76 64 C 70 72, 63 79, 60 84" stroke-width="2.2"/>
-            <circle cx="14" cy="12" r="2.4" fill="#F0E4D2" stroke="none"/>
+            <path d="M30 6 C 14 24, 46 40, 30 58 C 18 72, 36 80, 30 94" stroke-width="2.6"/>
+            <path d="M22 84 L30 96 L38 84" stroke-width="2.4"/>
           </g>
         </svg>
       </div>
@@ -231,9 +229,8 @@
 
     <div id="nx2-gate" style="position: absolute; inset: 0; z-index: 12; display: grid; place-items: center; cursor: pointer; background: rgba(4,7,15,0.34); backdrop-filter: blur(2px); transition: opacity .8s ease;">
       <div style="display: grid; justify-items: center; gap: 20px; text-align: center; padding: 0 24px;">
-        <span style="font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: clamp(20px, 2.2vw, 32px); color: #F6EEE0; text-shadow: 0 2px 14px rgba(0,0,0,.9);">La biblioteca te espera</span>
+        <span style="font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: clamp(20px, 2.2vw, 32px); color: #F6EEE0; text-shadow: 0 2px 14px rgba(0,0,0,.9);">Work inside</span>
         <span id="nx2-gate-btn" style="font-family: 'Pinyon Script', cursive; font-size: clamp(34px, 4vw, 62px); color: #F6EEE0; line-height: 1; text-shadow: 0 2px 16px rgba(0,0,0,.9), 0 0 34px rgba(190,235,255,.28);">Entrar</span>
-        <span style="font-family: 'Orbitron', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: .24em; text-transform: uppercase; color: rgba(214,226,236,.7);">con sonido</span>
       </div>
     </div>
 
@@ -2448,7 +2445,7 @@ class Component extends DCLogic {
     if (!v || !tx) return;
 
     const TXT = 'Tareas repetitivas y monótonas, exceso de manualidades, sistemas de trabajo arcaicos…';
-    const START = 5.6, FREEZE = 6.2, CPS = 11;
+    const START = 12.1, FREEZE = 12.6, CPS = 11;
     let typed = -1, t0 = null, frozen = false;
 
     v.addEventListener('loadeddata', () => {
@@ -2513,8 +2510,20 @@ class Component extends DCLogic {
       if (!this.alive) return;
       const t = v.currentTime || 0;
 
-      /* congela sobre les mans: la imatge es queda fixa, no fa bucle */
-      if (!frozen && t >= FREEZE) { frozen = true; try { v.pause(); } catch (e) {} }
+      /* Congela la IMATGE, no el video. Abans feia pause() i amb el video
+         s'aturava tambe la musica: per aixo se't tallava quan sortien les
+         lletres. Ara el fotograma es copia a un canvas que tapa el video, el
+         video segueix sonant per sota i es posa en bucle perque la musica no
+         s'acabi mentre s'escriu. */
+      if (!frozen && t >= FREEZE) {
+        frozen = true;
+        const cv = document.getElementById('nx2-hfreeze');
+        if (cv && v.videoWidth) {
+          cv.width = v.videoWidth; cv.height = v.videoHeight;
+          try { cv.getContext('2d').drawImage(v, 0, 0); cv.style.display = 'block'; } catch (e) {}
+        }
+        v.loop = true;
+      }
       if (t < START) return;
 
       if (t0 === null) t0 = performance.now();
@@ -2628,8 +2637,10 @@ class Component extends DCLogic {
     if (hv) {
       hv.style.filter = 'brightness(' + (1 - mp(p, 0.14, 0.40) * 0.55).toFixed(2) +
                         ') blur(' + (mp(p, 0.18, 0.44) * 7).toFixed(1) + 'px)';
-      /* congelat sobre les mans a partir del segon 6,2: no cal reprendre'l */
-      if (a1 < 0.02 && !hv.paused) hv.pause();
+      /* nomes s'atura quan el hero ja no es a pantalla: mentre es vegi,
+         el video segueix sonant encara que la imatge estigui congelada */
+      if (a1 < 0.02) { if (!hv.paused) hv.pause(); }
+      else if (hv.paused && hv.readyState > 2 && this.audioArmed) hv.play().catch(() => {});
     }
     /* el retol de guix se'n va de seguida: en quant l'usuari toca l'scroll
        ja ha entes que hi ha recorregut i deixa de fer falta */
