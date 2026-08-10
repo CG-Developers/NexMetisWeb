@@ -1,52 +1,52 @@
-NEXMETIS · patch v26 · HERO DE BIBLIOTECA · ACUMULATIU COMPLET
-===============================================================
-Puja-ho tot i sobreescriu. Fes copia de l'index.html actual abans.
+NEXMETIS · patch v27 · hero amb so
+===================================
+Puja-ho tot i sobreescriu. Copia l'index.html actual abans.
 
-QUE CANVIA
-  La PISSARRA desapareix. La primera pantalla passa a ser el video de la
-  biblioteca, i el text del problema s'escriu A MAQUINA sobre la imatge.
-  La resta de la seqüencia no es toca: trencament de vidre, "Rompamos los
-  esquemas", particules, xips, CTA, video de "Áreas de trabajo" i serveis.
+1) LA MUSICA JA HI ERA
+   El video que em vas passar PORTA AUDIO: estereu, 48 kHz, maxim -4,6 dB.
+   No calia afegir res, calia desbloquejar-lo.
 
-EL RITME
-  · La maquina d'escriure entra al segon 5,6 del clip. Tall mesurat
-    fotograma a fotograma, no a ull.
-  · El text arrenca EXACTAMENT alli, no abans.
-  · 85 caracters a 13 per segon = 6,5s. La maquina nomes surt 3,45s, aixi
-    que en acabar el video torna al segon 5,8 i es queda EN BUCLE sobre el
-    pupitre mentre s'acaba d'escriure.
-  · El video es desenfoca i s'apaga a mesura que es trenca el vidre, i
-    S'ATURA quan surt de pantalla: no te sentit descodificar fotogrames que
-    ningu mira.
+2) PER QUE CAL EL CLIC  — no es una decisio de disseny
+   Cap navegador reprodueix so sense una interaccio de l'usuari. Es politica
+   de Chrome, Safari i Firefox, i no te volta.
+   Per aixo la teva idea del poster amb clic era l'unica sortida: ara hi ha
+   una porta amb "La biblioteca te espera / Entrar / con sonido".
+   Aquell clic desbloqueja TOT alhora: la musica del video, les tecles i el
+   vidre trencant-se despres. Sense ell, el trencament tambe seria mut.
 
-PES  — mira aixo abans de desplegar
-  original que em vas passar   9.748 KB  1920x1080
-  el que va al repo            1.764 KB  1280px   (-82%)
-  poster                          68 KB
+3) LES TECLES, SINTETITZADES
+   No hi ha cap fitxer de so. Cada pulsacio es genera amb WebAudio: un pols
+   de soroll filtrat mes un cop greu a sota. 73 tecles, una per lletra, els
+   espais no sonen.
+   Pesa ZERO i va sempre sincronitzat amb la lletra que apareix, cosa que amb
+   un mp3 en bucle no passaria mai.
 
-  El poster es pinta a l'instant i el video entra per sobre. Aixi la primera
-  imatge NO espera el video, que es el que ens va matar l'LCP la primera
-  vegada amb els 18,7 MB.
+4) IMATGE FIXA, NO BUCLE
+   El video CONGELA al segon 6,2, amb les mans sobre les tecles. Abans feia
+   un bucle de 3 s que es notava. Ara la imatge es queda quieta i el que es
+   mou es nomes el text.
 
-  Aixo dit: la pagina passa d'uns 2,5 MB a uns 4,3. Es el preu de l'intro
-  immersiu i el pagues a la primera pantalla, que es on Google mesura.
-  Si vols, tinc una versio de 1600px a 2.664 KB per a pantalla gran; no
-  l'he inclosa perque duplicaria el cost.
+5) EL TEXT
+   A DALT i centrat, en Cormorant Garamond cursiva.
+   NO he fet servir una cal·ligrafia pura per al text llarg: 85 caracters en
+   lletra d'escrivania son molt dificils de llegir sobre imatge. La cursiva
+   d'aquesta serif dona el to antic i es llegeix. La cal·ligrafia de veritat
+   (Pinyon Script) la porten "Entrar" i "Desliza", que son curts.
+   Ritme 11 caracters/s: 7,7 s per escriure'l.
 
-ACCESSIBILITAT
-  Amb prefers-reduced-motion el text surt sencer d'entrada i el video es
-  queda quiet al fotograma del pupitre.
+6) EL "DESLIZA"
+   Nomes surt QUAN EL TEXT JA ESTA ESCRIT, no abans.
+   Cal·ligrafia i fletxa corba dibuixada a ma, amb el punt de sortida de la
+   ploma marcat. Cap fletxa de teclat.
+
+7) EL VIDRE
+   Ja sonava des del v13, pero el navegador el bloquejava. Amb la porta
+   d'entrada, ara se sent.
 
 VERIFICAT
-  · node --check del bloc x-dc: OK
-  · 53 metodes, cap orfe
-  · 28 ids buscats pel JS, 28 al DOM
-  · cap referencia a la pissarra (nx2-board) ni al text de guix
+  · node --check: OK · cap metode orfe · cap id absent
+  · el video congela abans que acabi: no hi ha bucle
 
 COM PUJAR-HO
-  index.html, favicon*, apple-touch-icon.png, icon-*.png, og-image.jpg
-    -> arrel del repo
-  assets/*.webp          -> assets/
-  media/*                -> media/   (hero-nm-720.mp4 i hero-nm-poster.webp
-                                      son NOUS)
-  media/hero-video.mp4 segueix fent falta: es el de "Áreas de trabajo".
+  index.html, favicon*, apple-touch-icon.png, icon-*.png, og-image.jpg -> arrel
+  assets/*.webp -> assets/    media/* -> media/
