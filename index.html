@@ -90,13 +90,13 @@
 
   @keyframes nxTurb { to { transform: rotateY(360deg); } }
   .nxt { position: absolute; transform-style: preserve-3d; pointer-events: none; }
-  .nxt-ring { border-radius: 50%; border: 2px solid rgba(150,220,255,.62);
-    box-shadow: 0 0 20px rgba(60,160,255,.45), inset 0 0 20px rgba(60,160,255,.28); }
-  .nxt-panel { background: linear-gradient(180deg, rgba(150,206,255,.10), rgba(12,48,104,.16));
-    border: 1px solid rgba(190,235,255,.40); box-shadow: inset 0 1px 0 rgba(255,255,255,.22); }
+  .nxt-ring { border-radius: 50%; border: 2px solid rgba(140,215,255,.92);
+    box-shadow: 0 0 26px rgba(60,165,255,.8), inset 0 0 26px rgba(60,165,255,.5); }
+  .nxt-panel { background: linear-gradient(180deg, rgba(120,190,255,.16), rgba(12,48,104,.22));
+    border: 1px solid rgba(150,220,255,.66); box-shadow: inset 0 1px 0 rgba(255,255,255,.3), 0 0 14px rgba(46,139,255,.35); }
   .nxt-blade { border-radius: 3px 12px 12px 3px; transform-origin: 0 50%;
     background: linear-gradient(100deg, rgba(200,238,255,.85), rgba(46,139,255,.38) 46%, rgba(8,34,78,.24));
-    box-shadow: 0 0 12px rgba(70,170,255,.45), inset 0 1px 0 rgba(255,255,255,.55); }
+    box-shadow: 0 0 18px rgba(70,175,255,.7), inset 0 1px 0 rgba(255,255,255,.7); }
   .nxt-hub { border-radius: 50%; box-shadow: 0 0 26px rgba(90,190,255,.5);
     background: radial-gradient(circle at 38% 32%, #EAF7FF, #4CA3FF 38%, #0B2A5A 78%); }
   @media (prefers-reduced-motion: reduce) { #nx2-turb-spin { animation: none !important; } }
@@ -251,6 +251,7 @@
     <div id="nx2-shards" aria-hidden="true" style="position: absolute; inset: -8%; z-index: 7; opacity: 0; pointer-events: none; background: url('assets/shards-alpha.webp') center/cover no-repeat; mix-blend-mode: screen; filter: saturate(0.15) brightness(1.06);"></div>
 
     <div id="nx2-ph2" style="position: absolute; inset: 0; z-index: 4; display: grid; place-items: center; text-align: center; padding: 90px 24px; opacity: 0;">
+      <div id="nx2-turb-labels" aria-hidden="true" style="position: absolute; inset: 0; z-index: 1; pointer-events: none; opacity: 0;"></div>
       <div id="nx2-turb" aria-hidden="true" style="position: absolute; left: 50%; top: 56%; z-index: 0; width: 1px; height: 1px; transform: translateX(-50%); perspective: 2100px; perspective-origin: 50% 50%; opacity: 0; pointer-events: none;">
         <div id="nx2-turb-rig" style="position: relative; width: 1px; height: 1px; transform-style: preserve-3d; transform: rotateZ(90deg) rotateX(-11deg);">
           <div id="nx2-turb-spin" style="position: absolute; inset: 0; transform-style: preserve-3d; animation: nxTurb 44s linear infinite;"></div>
@@ -2463,7 +2464,7 @@ class Component extends DCLogic {
     const spin = document.getElementById('nx2-turb-spin');
     if (!spin || this.reduced || window.innerWidth <= 900) return;
 
-    const B = 16, P = 22, ST = 5, R = 196, PR = 228, H = 1180;
+    const B = 16, P = 26, ST = 5, R = 208, PR = 242, H = 1560;
     const TOP = -H / 2, GAP = H / (ST + 1);
     const el = (cls, css) => {
       const d = document.createElement('div');
@@ -2511,6 +2512,34 @@ class Component extends DCLogic {
         'background:linear-gradient(180deg, rgba(200,238,255,.42), rgba(46,139,255,.20), rgba(12,48,104,.34));' +
         'box-shadow:0 0 10px rgba(70,170,255,.35);' +
         'transform:rotateY(' + (i * 30) + 'deg) translateZ(' + (PR + 6) + 'px)');
+    }
+
+    /* ── retols de seccio, en 2D ──
+       Van FORA del 3D a posta: dins hi girarien amb la turbina i el text
+       deixaria de ser llegible. Aqui es queden quiets, com les crides d'un
+       plànol, i alternen amunt i avall al llarg de l'eix. */
+    const host = document.getElementById('nx2-turb-labels');
+    if (host) {
+      const NAMES = ['Estrategia', 'Diseño', 'Desarrollo web', 'Automatización & IA', 'Evolución'];
+      host.innerHTML = '';
+      NAMES.forEach((t, i) => {
+        const up = i % 2 === 0;
+        const x = TOP + GAP * (i + 1);          /* posicio al llarg de l'eix */
+        const d = document.createElement('div');
+        d.style.cssText = 'position:absolute;left:50%;top:50%;white-space:nowrap;' +
+          'transform:translate(-50%,-50%) translateX(' + x.toFixed(0) + 'px) translateY(' +
+          (up ? -PR - 96 : PR + 96) + 'px);display:grid;justify-items:center;gap:6px;' +
+          'font-family:\'Orbitron\',\'Archivo\',sans-serif;font-size:10px;font-weight:600;' +
+          'letter-spacing:.2em;text-transform:uppercase;color:#CDEBFF;' +
+          'text-shadow:0 0 12px rgba(4,12,30,.9)';
+        const line = '<svg viewBox="0 0 12 64" style="width:12px;height:52px;overflow:visible">' +
+          '<g fill="none" stroke="rgba(150,220,255,.85)" stroke-width="1.4" stroke-linecap="round">' +
+          '<path d="M6 ' + (up ? 4 : 60) + ' L6 ' + (up ? 52 : 12) + '"/>' +
+          '<path d="M2 ' + (up ? 46 : 18) + ' L6 ' + (up ? 58 : 6) + ' L10 ' + (up ? 46 : 18) + '"/>' +
+          '</g><circle cx="6" cy="' + (up ? 4 : 60) + '" r="2.2" fill="#CDEBFF"/></svg>';
+        d.innerHTML = up ? ('<span>' + t + '</span>' + line) : (line + '<span>' + t + '</span>');
+        host.appendChild(d);
+      });
     }
 
     el('', 'width:12px;height:' + (H + 70) + 'px;left:-6px;top:' + (TOP - 35) + 'px;border-radius:6px;' +
@@ -2753,7 +2782,9 @@ class Component extends DCLogic {
     /* la turbina entra amb el titular i se'n va amb ell, un pel mes tard
        perque no arribi alhora que el text */
     const turb = document.getElementById('nx2-turb');
-    if (turb) turb.style.opacity = (a2 * 0.72).toFixed(3);
+    if (turb) turb.style.opacity = (a2 * 0.88).toFixed(3);
+    const tlab = document.getElementById('nx2-turb-labels');
+    if (tlab) tlab.style.opacity = (a2 * 0.9).toFixed(3);
     if (h.hint) h.hint.style.opacity = (a2 * (1 - mp(p, 0.44, 0.52))).toFixed(3);
     /* Rellevament particules -> text real. Les particules s'apaguen just
        quan el text de DOM acaba d'entrar, aixi no hi ha ni salt ni doble
