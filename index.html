@@ -92,8 +92,8 @@
   .nxt { position: absolute; transform-style: preserve-3d; pointer-events: none; }
   .nxt-ring { border-radius: 50%; border: 2px solid rgba(150,220,255,.62);
     box-shadow: 0 0 20px rgba(60,160,255,.45), inset 0 0 20px rgba(60,160,255,.28); }
-  .nxt-panel { background: linear-gradient(180deg, rgba(150,206,255,.20), rgba(12,48,104,.30));
-    border: 1px solid rgba(190,235,255,.34); box-shadow: inset 0 1px 0 rgba(255,255,255,.28); }
+  .nxt-panel { background: linear-gradient(180deg, rgba(150,206,255,.10), rgba(12,48,104,.16));
+    border: 1px solid rgba(190,235,255,.40); box-shadow: inset 0 1px 0 rgba(255,255,255,.22); }
   .nxt-blade { border-radius: 3px 12px 12px 3px; transform-origin: 0 50%;
     background: linear-gradient(100deg, rgba(200,238,255,.85), rgba(46,139,255,.38) 46%, rgba(8,34,78,.24));
     box-shadow: 0 0 12px rgba(70,170,255,.45), inset 0 1px 0 rgba(255,255,255,.55); }
@@ -2463,7 +2463,7 @@ class Component extends DCLogic {
     const spin = document.getElementById('nx2-turb-spin');
     if (!spin || this.reduced || window.innerWidth <= 900) return;
 
-    const B = 12, P = 14, ST = 3, R = 150, PR = 176, H = 620;
+    const B = 16, P = 22, ST = 5, R = 196, PR = 228, H = 1180;
     const TOP = -H / 2, GAP = H / (ST + 1);
     const el = (cls, css) => {
       const d = document.createElement('div');
@@ -2472,8 +2472,11 @@ class Component extends DCLogic {
       spin.appendChild(d);
     };
 
-    const rings = [[TOP - 30, PR * 2.02], [TOP + H + 30, PR * 1.68]];
-    for (let i = 0; i < ST; i++) rings.push([TOP + GAP * (i + 1), PR * (2.1 - i * 0.07)]);
+    const rings = [[TOP - 34, PR * 2.04], [TOP + H + 34, PR * 1.66],
+                   [TOP - 76, PR * 1.42], [TOP + H + 76, PR * 1.22]];
+    for (let i = 0; i < ST; i++) rings.push([TOP + GAP * (i + 1), PR * (2.12 - i * 0.05)]);
+    /* anells intermedis: marquen les seccions com les cotes d'un planol */
+    for (let i = 0; i < ST + 1; i++) rings.push([TOP + GAP * (i + 0.5), PR * 1.94]);
     rings.forEach((r) => {
       el('nxt-ring', 'width:' + r[1].toFixed(0) + 'px;height:' + r[1].toFixed(0) + 'px;' +
         'left:' + (-r[1] / 2).toFixed(0) + 'px;top:' + (-r[1] / 2).toFixed(0) + 'px;' +
@@ -2500,6 +2503,14 @@ class Component extends DCLogic {
       const hs = 54 - j * 8;
       el('nxt-hub', 'width:' + hs + 'px;height:' + hs + 'px;left:' + (-hs / 2) + 'px;top:' + (-hs / 2) + 'px;' +
         'transform:translateY(' + y.toFixed(0) + 'px)');
+    }
+
+    /* muntants longitudinals de punta a punta */
+    for (let i = 0; i < 12; i++) {
+      el('', 'width:5px;height:' + (H + 60) + 'px;left:-2.5px;top:' + (TOP - 30) + 'px;border-radius:3px;' +
+        'background:linear-gradient(180deg, rgba(200,238,255,.42), rgba(46,139,255,.20), rgba(12,48,104,.34));' +
+        'box-shadow:0 0 10px rgba(70,170,255,.35);' +
+        'transform:rotateY(' + (i * 30) + 'deg) translateZ(' + (PR + 6) + 'px)');
     }
 
     el('', 'width:12px;height:' + (H + 70) + 'px;left:-6px;top:' + (TOP - 35) + 'px;border-radius:6px;' +
@@ -2742,7 +2753,7 @@ class Component extends DCLogic {
     /* la turbina entra amb el titular i se'n va amb ell, un pel mes tard
        perque no arribi alhora que el text */
     const turb = document.getElementById('nx2-turb');
-    if (turb) turb.style.opacity = (a2 * 0.62).toFixed(3);
+    if (turb) turb.style.opacity = (a2 * 0.72).toFixed(3);
     if (h.hint) h.hint.style.opacity = (a2 * (1 - mp(p, 0.44, 0.52))).toFixed(3);
     /* Rellevament particules -> text real. Les particules s'apaguen just
        quan el text de DOM acaba d'entrar, aixi no hi ha ni salt ni doble
